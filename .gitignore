@@ -1,2 +1,6 @@
 node_modules/**/*
 .expo/**/*
+.idea/*
+yarn-error.log
+yarn.lock
+package-lock.json

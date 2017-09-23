@@ -9,12 +9,41 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
+    "es6-promise": "^4.1.1",
     "expo": "^25.0.0",
+    "getpass": "^0.1.7",
+    "graphqlify": "^1.1.0",
+    "isomorphic-fetch": "^2.2.1",
+    "prop-types": "^15.6.0",
     "react": "16.2.0",
+    "react-dom": "^16.0.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
-    "react-navigation": "^1.0.0-beta.27"
+    "react-native-communications": "^2.2.1",
+    "react-native-elements": "^0.18.2",
+    "react-native-global-props": "^1.1.1",
+    "react-native-open-maps": "^0.1.1",
+    "react-native-svg": "^5.4.1",
+    "react-native-svg-icon": "^0.7.0",
+    "react-native-vector-icons": "^4.4.2",
+    "react-navigation": "^1.0.0-beta.21",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "webpack": "^3.8.1",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
+    "babel-jest": "^20.0.3",
+    "babel-loader": "^7.1.1",
+    "babel-preset-expo": "^4.0.0",
+    "dotenv": "^4.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-rallycoding": "^3.2.0",
+    "eslint-plugin-react": "^7.4.0",
     "jest-expo": "^25.0.0"
   }
 }

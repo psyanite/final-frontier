@@ -1,0 +1,26 @@
+
+{
+  "parser": "babel-eslint",
+
+  "extends": "eslint-config-rallycoding",
+
+  "env": {
+    "browser": true
+  },
+
+  "globals": {
+    "fetch": true
+  },
+
+  "rules": {
+    "global-require": 0,
+    "no-underscore-dangle": 0,
+    "react/require-extension": 0,
+    "max-len" : ["error", 150],
+    "semi": ["error", "never"],
+    "object-curly-spacing": ["error", "always"],
+    "brace-style": ["error", "stroustrup"]
+
+  }
+
+}
