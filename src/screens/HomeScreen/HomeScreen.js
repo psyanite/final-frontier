@@ -4,13 +4,14 @@ import { connect } from 'react-redux'
 import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native'
 import { WebBrowser } from 'expo'
 
-import Icon, { Names as Icons } from '../components/common/Icon'
-import { MonoText } from '../components/common/StyledText'
+import Icon, { Names as Icons } from '../../components/common/Icon'
+import { MonoText } from '../../components/common/StyledText'
 
-import { BurntHeader } from '../components/navigation/headers/BurntHeader'
-import StoreListContainer from '../modules/stores/components/StoreListContainer'
+import { BurntHeader } from '../../components/navigation/headers/BurntHeader'
+import StoreListContainer from './components/StoreList/StoreListContainer'
 
-import Colors from '../styles/constants/Colors'
+import Colors from '../../styles/constants/ColorConstants'
+import LayoutConstants from "../../styles/constants/LayoutConstants"
 
 class HomeScreen extends Component {
 
@@ -72,8 +73,8 @@ class HomeScreen extends Component {
             <Image
               source={
                 __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
+                  ? require('../../assets/images/robot-dev.png')
+                  : require('../../assets/images/robot-prod.png')
               }
               style={styles.welcomeImage}
             />
@@ -114,11 +115,11 @@ const styles = StyleSheet.create({
     fontFamily: 'grand-hotel',
     fontSize: 40,
     color: '#fff',
-    marginLeft: 20,
+    marginLeft: LayoutConstants.margins.m,
     marginTop: 5,
   },
   headerRight: {
-    marginRight: 20,
+    marginRight: LayoutConstants.margins.m,
   },
   developmentModeText: {
     marginBottom: 20,
