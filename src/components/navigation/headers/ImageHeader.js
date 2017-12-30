@@ -2,8 +2,7 @@ import React from 'react'
 import { View, Image, StyleSheet } from 'react-native'
 import { Header } from 'react-navigation'
 
-export const ImageHeader = ({ props, uri }) => {
-  return (
+export const ImageHeader = ({ props, uri }) => (
     <View>
       <Image
         style={StyleSheet.absoluteFill}
@@ -12,5 +11,4 @@ export const ImageHeader = ({ props, uri }) => {
       <Header {...props} />
     </View>
   )
-}
 

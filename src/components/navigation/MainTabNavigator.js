@@ -12,7 +12,7 @@ import ProfileScreen from '../../screens/ProfileScreen'
 
 import Icon, { Names as Icons } from '../common/Icon'
 
-import Colors from '../../styles/constants/Colors'
+import Colors from '../../styles/constants/ColorConstants'
 
 const styles = StyleSheet.create({
   tabBar: {
