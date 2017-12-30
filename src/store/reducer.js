@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import stores from '../modules/stores/reducer'
-import navigation from '../modules/navigation/reducer'
+import navigationReducer from '../modules/navigation/reducer'
+import storeReducer from '../modules/store/reducer'
+import postReducer from '../modules/post/reducer'
 
 export default combineReducers({
-  stores,
-  navigation,
+  navigation: navigationReducer,
+  stores: storeReducer,
+  posts: postReducer,
 })
