@@ -1,2 +1,1 @@
 export const SET_SEARCHED_STORES = 'SET_SEARCHED_STORES'
-

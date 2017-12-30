@@ -2,7 +2,7 @@
 import * as types from './types'
 import Toaster from '../../lib/toaster'
 
-export const fetchMeow = () => async (dispatch, getState) => {
+export const mockFetchStores = () => async (dispatch, getState) => {
   const stores = [{
     id: 3,
     name: 'Workshop Meowpresso',
