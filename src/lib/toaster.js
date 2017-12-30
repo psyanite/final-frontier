@@ -25,6 +25,7 @@ export default class Toaster {
       const { data } = await response.json()
       return data
     }
+    console.log(response)
     throw new Error(response.status)
   }
 
