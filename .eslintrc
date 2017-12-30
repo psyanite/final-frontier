@@ -20,7 +20,6 @@
     "semi": ["error", "never"],
     "object-curly-spacing": ["error", "always"],
     "brace-style": ["error", "stroustrup"]
-
   }
 
 }
