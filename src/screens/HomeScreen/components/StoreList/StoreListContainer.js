@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
 import StoreList from './StoreList'
-import * as ActionCreators from '../actions'
+import * as ActionCreators from '../../../../modules/store/actions'
 
 class StoreListContainer extends Component {
   componentDidMount() {
     if (!this.props.stores.length) {
       // this.props.actions.fetchStores('banana')
-      this.props.actions.fetchMeow()
+      this.props.actions.mockFetchStores()
     }
   }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import Icon, { Names as Icons } from '../../../components/common/Icons/CustomIcons'
+import Icon, { Names as Icons } from '../../../../components/common/Icons/CustomIcons'
+import LayoutConstants from "../../../../styles/constants/LayoutConstants"
 
 export default class StoreListItem extends Component {
 
@@ -42,7 +43,7 @@ export default class StoreListItem extends Component {
 
     return (
       <TouchableOpacity onPress={this._handleOnPress}>
-        <View key={view.id} style={styles.card}>
+        <View key={view.id} style={styles.wrap}>
           <View style={styles.header}>
             <Image
               style={styles.coverImage}
@@ -114,28 +115,27 @@ export default class StoreListItem extends Component {
 }
 
 const styleConstants = {
-  cardMargin: 10,
   galleryGaps: 2,
 }
 
 const galleryHeight = () => {
+  // todo: refactor layoutconstants.width
   const windowWidth = Dimensions.get('window').width
-  return parseInt(((windowWidth - (2 * (styleConstants.cardMargin)) - (4 * styleConstants.galleryGaps)) / 5), 10)
+  return parseInt(((windowWidth - (2 * (LayoutConstants.margins.m)) - (4 * styleConstants.galleryGaps)) / 5), 10)
 }
 
 const styles = StyleSheet.create({
-  card: {
+  wrap: {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop: styleConstants.cardMargin,
-    marginBottom: styleConstants.cardMargin
+    marginTop: LayoutConstants.margins.s,
+    marginBottom: LayoutConstants.margins.s
   },
   header: {
     flex: 1,
     flexDirection: 'row',
-    marginTop: styleConstants.cardMargin,
-    marginRight: styleConstants.cardMargin,
-    marginLeft: styleConstants.cardMargin
+    marginRight: LayoutConstants.margins.m,
+    marginLeft: LayoutConstants.margins.m
   },
   coverImage: {
     width: 100,
@@ -182,7 +182,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    margin: styleConstants.cardMargin - styleConstants.galleryGaps
+    margin: LayoutConstants.margins.m - styleConstants.galleryGaps,
+    marginTop: LayoutConstants.margins.xs,
+    marginBottom: 0,
   },
   imageContainer: {
     flex: 1,

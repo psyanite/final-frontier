@@ -4,7 +4,7 @@ import { List } from 'react-native-elements'
 
 import StoreListItem from './StoreListItem'
 
-import Colors from '../../../styles/constants/Colors'
+import Colors from '../../../../styles/constants/ColorConstants'
 
 export default class StoreList extends Component {
   state = {
@@ -15,15 +15,10 @@ export default class StoreList extends Component {
     this.props.fetchStores(this.state.ingredientsInput)
   }
 
-  _buildStores = () => {
-    const stores = this.props.stores
-    return Object.keys(stores).map((key) => stores[key])
-  }
-
   _renderSeparator = () => (
     <View
       style={{
-        height: 25,
+        height: 12,
         width: '100%',
         backgroundColor: Colors.bodyBackgroundColor,
       }}
@@ -43,9 +38,9 @@ export default class StoreList extends Component {
         <TouchableHighlight onPress={() => this._handleFetchPress()}>
           <Text>MONEY MONEY MONEY, MUST BE FUNNY, IN A RICH MAN'S WORLD</Text>
         </TouchableHighlight>
-        <List>
+        <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
           <FlatList
-            data={this._buildStores()}
+            data={this.props.stores}
             renderItem={this._renderStore}
             keyExtractor={item => item.id}
             ItemSeparatorComponent={this._renderSeparator}
