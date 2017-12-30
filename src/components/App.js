@@ -9,12 +9,13 @@ import { Ionicons } from '@expo/vector-icons'
 
 import RootNavigation from './navigation/RootNavigation'
 
-import Colors from '../styles/constants/Colors'
+import ColorConstants from '../styles/constants/ColorConstants'
 
 const customTextProps = {
   style: {
     fontFamily: 'open-sans',
-    color: Colors.bodyText
+    fontSize: 16,
+    color: ColorConstants.bodyText,
   }
 }
 
