@@ -12,4 +12,6 @@ export default {
   noticeBackground: tintColor,
   noticeText: '#fff',
   bodyText: '#604b41',
+  lightSeparatorColor: '#eee',
+  darkSeparatorColor: '#ccc',
 }
