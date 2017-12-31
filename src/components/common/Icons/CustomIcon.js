@@ -58,7 +58,7 @@ const Icons = {
   }
 }
 
-export default class Custom extends Component {
+export default class CustomIcon extends Component {
   constructor(props) {
     super(props)
     this.state = {

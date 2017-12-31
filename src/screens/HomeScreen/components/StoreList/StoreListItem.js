@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import Icon, { Names as Icons } from '../../../../components/common/Icons/CustomIcons'
-import LayoutConstants from "../../../../styles/constants/LayoutConstants"
+import CustomIcon, { Names as CustomIcons } from '../../../../components/common/Icons/CustomIcon'
+import LayoutConstants from '../../../../styles/constants/LayoutConstants'
 
 export default class StoreListItem extends Component {
 
@@ -57,19 +57,19 @@ export default class StoreListItem extends Component {
                 <View style={styles.ratingIcon}>
                   <Text style={styles.ratingCount}>23</Text>
                   <View style={styles.ratingIcon}>
-                    <Icon name={Icons.BreadHeart} width={24} height={24} />
+                    <CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />
                   </View>
                 </View>
                 <View style={styles.ratingIcon}>
                   <Text style={styles.ratingCount}>15</Text>
                   <View style={styles.ratingIcon}>
-                    <Icon name={Icons.BreadOkay} width={24} height={24} />
+                    <CustomIcon name={CustomIcons.BreadOkay} width={24} height={24} />
                   </View>
                 </View>
                 <View style={styles.ratingIcon}>
                   <Text style={styles.ratingCount}>2</Text>
                   <View style={styles.ratingIcon}>
-                    <Icon name={Icons.BreadCross} width={24} height={24} />
+                    <CustomIcon name={CustomIcons.BreadCross} width={24} height={24} />
                   </View>
                 </View>
               </View>

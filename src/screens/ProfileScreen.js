@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Image, StyleSheet, Text, View, } from 'react-native'
 
-import Icon, { Names as Icons } from '../components/common/Icon'
+import GenericIcon, { Names as GenericIcons } from '../components/common/Icons/GenericIcon'
 import BurntGradient from '../components/gradients/BurnGradient'
 
 export default class ProfileScreen extends Component {
@@ -27,7 +27,7 @@ export default class ProfileScreen extends Component {
             {/*<TouchableHighlight onPress={()=>{}}>*/}
             <View style={styles.addButtonView}>
               <View style={styles.addButton} >
-                <Icon name={Icons.PersonAdd} width={20} height={20} />
+                <GenericIcon name={GenericIcons.PersonAdd} width={20} height={20} />
                 <Text style={styles.addButtonText}>Add</Text>
               </View>
             </View>

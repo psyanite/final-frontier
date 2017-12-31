@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import Icon, { Names as Icons } from '../../../components/common/Icons/CustomIcons'
+import CustomIcon, { Names as CustomIcons } from '../../../components/common/Icons/CustomIcon'
 import Colors from '../../../styles/constants/ColorConstants'
 import LayoutConstants from '../../../styles/constants/LayoutConstants'
 import GalleryThumbs from '../../../components/common/GalleryThumbs'
@@ -33,29 +33,29 @@ export default class PostListItem extends Component {
               </View>
             </View>
             <View style={styles.overallScore}>
-              <Icon name={Icons.BreadHeart} width={24} height={24} />
+              <CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />
               <Text style={styles.overallScoreType}>{review.overall_score}</Text>
             </View>
           </View>
 
           <View style={styles.scores}>
             <View style={styles.score}>
-              <Icon name={Icons.BreadHeart} width={24} height={24} />
+              <CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />
               <Text style={styles.scoreType}>Taste</Text>
               <Text style={styles.scoreType}>{review.taste_score}</Text>
             </View>
             <View style={styles.score}>
-              <Icon name={Icons.BreadHeart} width={24} height={24} />
+              <CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />
               <Text style={styles.scoreType}>Service</Text>
               <Text style={styles.scoreType}>{review.service_score}</Text>
             </View>
             <View style={styles.score}>
-              <Icon name={Icons.BreadHeart} width={24} height={24} />
+              <CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />
               <Text style={styles.scoreType}>Value</Text>
               <Text style={styles.scoreType}>{review.value_score}</Text>
             </View>
             <View style={styles.score}>
-              <Icon name={Icons.BreadHeart} width={24} height={24} />
+              <CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />
               <Text style={styles.scoreType}>Ambience</Text>
               <Text style={styles.scoreType}>{review.ambience_score}</Text>
             </View>

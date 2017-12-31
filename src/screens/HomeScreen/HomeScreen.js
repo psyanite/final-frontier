@@ -4,14 +4,14 @@ import { connect } from 'react-redux'
 import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native'
 import { WebBrowser } from 'expo'
 
-import Icon, { Names as Icons } from '../../components/common/Icon'
+import GenericIcon, { Names as GenericIcons } from '../../components/common/Icons/GenericIcon'
 import { MonoText } from '../../components/common/StyledText'
 
 import { BurntHeader } from '../../components/navigation/headers/BurntHeader'
 import StoreListContainer from './components/StoreList/StoreListContainer'
 
 import Colors from '../../styles/constants/ColorConstants'
-import LayoutConstants from "../../styles/constants/LayoutConstants"
+import LayoutConstants from '../../styles/constants/LayoutConstants'
 
 class HomeScreen extends Component {
 
@@ -19,7 +19,7 @@ class HomeScreen extends Component {
     const title = <Text style={styles.headerTitle}>Burntoast</Text>
     const right = (
       <View style={styles.headerRight}>
-        <Icon name={Icons.Search} width={25} height={25} />
+        <GenericIcon name={GenericIcons.Search} width={25} height={25} />
       </View>
     )
     return ({

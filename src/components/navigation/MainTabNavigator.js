@@ -10,7 +10,7 @@ import SettingsScreen from '../../screens/SettingsScreen'
 import MyRewardsScreen from '../../screens/MyRewardsScreen'
 import ProfileScreen from '../../screens/ProfileScreen'
 
-import Icon, { Names as Icons } from '../common/Icon'
+import GenericIcon, { Names as GenericIcons } from '../common/Icons/GenericIcon'
 
 import Colors from '../../styles/constants/ColorConstants'
 
@@ -48,24 +48,24 @@ export default TabNavigator(
 
         switch (routeName) {
           case 'Home':
-            iconName = Icons.BreadHeart
+            iconName = GenericIcons.BreadHeart
             break
           case 'Links':
-            iconName = Icons.Coin
+            iconName = GenericIcons.Coin
             break
           case 'Settings':
-            iconName = Icons.NewPost
+            iconName = GenericIcons.NewPost
             break
           case 'MyRewards':
-            iconName = Icons.Star
+            iconName = GenericIcons.Star
             break
           case 'Profile':
-            iconName = Icons.Person
+            iconName = GenericIcons.Person
             break
         }
 
         return (
-          <Icon
+          <GenericIcon
             name={iconName}
             fill={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
             width={25}

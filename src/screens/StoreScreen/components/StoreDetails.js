@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { phonecall as phoneCall } from 'react-native-communications'
 
-import CustomIcon, { Names as CustomIcons } from '../../../components/common/Icons/CustomIcons'
+import CustomIcon, { Names as CustomIcons } from '../../../components/common/Icons/CustomIcon'
 import LayoutConstants from "../../../styles/constants/LayoutConstants"
 
 export default class StoreDetails extends Component {
