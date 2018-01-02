@@ -7,7 +7,7 @@ import * as ActionCreators from '../../../modules/post/actions'
 
 class PostListContainer extends Component {
   componentDidMount() {
-    this.props.actions.fetchPostsByStoreId(this.props.storeId)
+    this.props.actions.mockFetchPostsByStoreId(this.props.storeId)
   }
 
   // todo: navigateToPost

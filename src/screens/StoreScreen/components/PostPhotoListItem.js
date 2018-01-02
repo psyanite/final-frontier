@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
+import TimeAgo from 'react-native-timeago'
 import LayoutConstants from '../../../styles/constants/LayoutConstants'
+import ImagePreview from '../../../components/common/Icons/ImagePreview'
 
 export default class PostPhotoListItem extends Component {
 
   render() {
-    console.log('PostPhotoListItem.render.props')
-    console.log(this.props)
     const post = Object.assign({}, this.props.post)
     const photo = post.post_photos[0]
-    console.log(photo)
     const postedBy = post.posted_by.profile
     return (
       <View key={post.id} style={styles.wrap}>
@@ -22,23 +21,26 @@ export default class PostPhotoListItem extends Component {
             />
             <View style={styles.nameWrap}>
               <Text style={styles.displayName}>{postedBy.display_name}</Text>
-              <Text style={styles.username}>@{postedBy.username}</Text>
+              <Text style={styles.username}>@{postedBy.username} · <TimeAgo time={post.posted_at} /></Text>
             </View>
           </View>
         </View>
 
-        <Image
-          style={styles.photo}
-          source={{ uri: photo.photo }}
+        <ImagePreview
+          style={{
+            width: photoWidth,
+            height: photoWidth,
+            borderRadius: 4,
+          }}
+          image={photo}
         />
 
       </View>
     )
   }
-
 }
 
-const photoWidth = LayoutConstants.window.width - 2 * LayoutConstants.margins.m
+const photoWidth = LayoutConstants.window.width - (2 * LayoutConstants.margins.m)
 
 const styles = StyleSheet.create({
   wrap: {
@@ -75,11 +77,5 @@ const styles = StyleSheet.create({
   },
   username: {
     fontSize: 16,
-  },
-
-  photo: {
-    width: photoWidth,
-    height: photoWidth,
-    borderRadius: 4,
   },
 })

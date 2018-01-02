@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import CustomIcon, { Names as CustomIcons } from '../../../components/common/Icons/CustomIcon'
+import { Image, StyleSheet, Text, View } from 'react-native'
+import TimeAgo from 'react-native-timeago'
+
 import Colors from '../../../styles/constants/ColorConstants'
 import LayoutConstants from '../../../styles/constants/LayoutConstants'
-import GalleryThumbs from '../../../components/common/GalleryThumbs'
+
+import ScoreIcon from '../../../components/common/Icons/ScoreIcon'
+import GalleryThumbs from '../../../components/common/gallery/GalleryThumbs'
+import ViewMoreText from '../../../components/common/ViewMoreText'
 
 export default class PostListItem extends Component {
-
-  // todo: when the PostListItem is pressed, open review in large view? or expand review?
-  _handleOnPress = () => {
-    // this.props.onPress(this.props.store)
-  }
 
   render() {
     const post = Object.assign({}, this.props.post)
@@ -18,74 +17,70 @@ export default class PostListItem extends Component {
     const photos = post.post_photos
     const postedBy = post.posted_by.profile
     return (
-      <TouchableOpacity onPress={this._handleOnPress}>
-        <View key={post.id} style={styles.wrap}>
+      <View key={post.id} style={styles.wrap}>
 
-          <View style={styles.header}>
-            <View style={styles.userDetails}>
-              <Image
-                style={styles.avatar}
-                source={{ uri: postedBy.profile_picture }}
-              />
-              <View style={styles.nameWrap}>
-                <Text style={styles.displayName}>{postedBy.display_name}</Text>
-                <Text style={styles.username}>@{postedBy.username}</Text>
-              </View>
-            </View>
-            <View style={styles.overallScore}>
-              <CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />
-              <Text style={styles.overallScoreType}>{review.overall_score}</Text>
+        <View style={styles.header}>
+          <View style={styles.userDetails}>
+            <Image
+              style={styles.avatar}
+              source={{ uri: postedBy.profile_picture }}
+            />
+            <View style={styles.nameWrap}>
+              <Text style={styles.displayName}>{postedBy.display_name}</Text>
+              <Text style={styles.username}>@{postedBy.username} · <TimeAgo time={post.posted_at} /></Text>
             </View>
           </View>
-
-          <View style={styles.scores}>
-            <View style={styles.score}>
-              <CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />
-              <Text style={styles.scoreType}>Taste</Text>
-              <Text style={styles.scoreType}>{review.taste_score}</Text>
-            </View>
-            <View style={styles.score}>
-              <CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />
-              <Text style={styles.scoreType}>Service</Text>
-              <Text style={styles.scoreType}>{review.service_score}</Text>
-            </View>
-            <View style={styles.score}>
-              <CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />
-              <Text style={styles.scoreType}>Value</Text>
-              <Text style={styles.scoreType}>{review.value_score}</Text>
-            </View>
-            <View style={styles.score}>
-              <CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />
-              <Text style={styles.scoreType}>Ambience</Text>
-              <Text style={styles.scoreType}>{review.ambience_score}</Text>
-            </View>
+          <View style={styles.overallScore}>
+            <ScoreIcon score={review.overall_score} width={34} height={34} />
           </View>
-
-
-          <View style={styles.body}>
-            <Text style={styles.bodyText}>{review.body}</Text>
-          </View>
-
-          {photos ? (
-            <View style={styles.gallery}>
-              <GalleryThumbs images={photos} />
-            </View>
-          ) : null}
-
         </View>
-      </TouchableOpacity>
+
+        <View style={styles.scores}>
+          <View style={styles.score}>
+            <ScoreIcon score={review.taste_score} width={24} height={24} />
+            <Text style={styles.scoreType}>Taste</Text>
+          </View>
+          <View style={styles.score}>
+            <ScoreIcon score={review.service_score} width={24} height={24} />
+            <Text style={styles.scoreType}>Service</Text>
+          </View>
+          <View style={styles.score}>
+            <ScoreIcon score={review.value_score} width={24} height={24} />
+            <Text style={styles.scoreType}>Value</Text>
+          </View>
+          <View style={styles.score}>
+            <ScoreIcon score={review.ambience_score} width={24} height={24} />
+            <Text style={styles.scoreType}>Ambience</Text>
+          </View>
+        </View>
+
+        <View style={styles.body}>
+          <ViewMoreText
+            numberOfLines={3}
+            renderTimeout={100}
+            viewStyle={styles.body}
+          >
+            <Text>{review.body}</Text>
+          </ViewMoreText>
+        </View>
+
+        {photos.length > 0 && (
+          <View style={styles.gallery}>
+            <GalleryThumbs images={photos} />
+          </View>
+        )}
+
+      </View>
     )
   }
-
-}
-
+ }
 
 const styles = StyleSheet.create({
   wrap: {
     backgroundColor: '#fff',
     paddingTop: LayoutConstants.margins.s,
     paddingRight: LayoutConstants.margins.m,
-    paddingBottom: LayoutConstants.margins.l,
+    paddingBottom: LayoutConstants.margins.m,
     paddingLeft: LayoutConstants.margins.m,
   },
 
@@ -93,7 +88,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingBottom: LayoutConstants.margins.s,
-    marginBottom: LayoutConstants.margins.l,
     borderBottomWidth: 1,
     borderBottomColor: Colors.lightSeparatorColor,
   },
@@ -120,25 +114,26 @@ const styles = StyleSheet.create({
   },
 
   overallScore: {
-
-  },
-  overallScoreType: {
-
+    justifyContent: 'center',
   },
 
   scores: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingBottom: 10,
-    marginBottom: 10,
+    paddingTop: LayoutConstants.margins.s,
+    paddingBottom: LayoutConstants.margins.xs,
     borderBottomWidth: 1,
     borderBottomColor: Colors.lightSeparatorColor,
   },
   score: {
-
+    alignItems: 'center',
   },
   scoreType: {
+    marginTop: 2,
+  },
 
+  body: {
+    paddingTop: LayoutConstants.margins.s,
   },
 
   gallery: {
