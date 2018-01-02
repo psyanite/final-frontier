@@ -3,12 +3,12 @@ import { View, Image, StyleSheet } from 'react-native'
 import { Header } from 'react-navigation'
 
 export const ImageHeader = ({ props, uri }) => (
-    <View>
-      <Image
-        style={StyleSheet.absoluteFill}
-        source={{ uri }}
-      />
-      <Header {...props} />
-    </View>
-  )
+  <View>
+    <Image
+      style={StyleSheet.absoluteFill}
+      source={{ uri }}
+    />
+    <Header {...props} />
+  </View>
+)
 
