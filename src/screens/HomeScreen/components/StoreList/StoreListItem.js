@@ -2,14 +2,27 @@ import React, { Component } from 'react'
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import CustomIcon, { Names as CustomIcons } from '../../../../components/common/Icons/CustomIcon'
 import LayoutConstants from '../../../../styles/constants/LayoutConstants'
+import GalleryThumbs from '../../../../components/common/gallery/GalleryThumbs'
 
 export default class StoreListItem extends Component {
 
-  _handleOnPress = () => {
+  handleOnPress = () => {
     this.props.onPress(this.props.store)
   }
 
-  _renderImage = () => {
+  randomPhotos = () => {
+    let rng = Math.floor(Math.random() * 3)
+    const images = []
+    if (rng === 1) {
+      rng = 5
+      for (i = 0; i < rng; i++) {
+        images.push({ id: i+1, photo: this.randomImage() })
+      }
+    }
+    return images
+  }
+
+  randomImage = () => {
     const images = [
       'https://i.imgur.com/r6tqLf9.jpg',
       'https://i.imgur.com/9K3icV0.jpg',
@@ -31,6 +44,7 @@ export default class StoreListItem extends Component {
   render() {
     const store = this.props.store
     const view = Object.assign({}, store)
+    const photos = this.randomPhotos()
     view.location = `${store.suburb.name}, ${store.suburb.city.name}`
     if (store.location) {
       view.location = `${store.location.name}, ${view.location}`
@@ -42,7 +56,7 @@ export default class StoreListItem extends Component {
     }
 
     return (
-      <TouchableOpacity onPress={this._handleOnPress}>
+      <TouchableOpacity onPress={this.handleOnPress}>
         <View key={view.id} style={styles.wrap}>
           <View style={styles.header}>
             <Image
@@ -75,53 +89,17 @@ export default class StoreListItem extends Component {
               </View>
             </View>
           </View>
-          <View style={styles.gallery}>
-            <View style={styles.imageContainer}>
-              <Image
-                style={styles.image}
-                source={{ uri: this._renderImage() }}
-              />
+
+          {photos.length > 0 && (
+            <View style={styles.gallery}>
+              <GalleryThumbs images={photos} />
             </View>
-            <View style={styles.imageContainer}>
-              <Image
-                style={styles.image}
-                source={{ uri: this._renderImage() }}
-              />
-            </View>
-            <View style={styles.imageContainer}>
-              <Image
-                style={styles.image}
-                source={{ uri: this._renderImage() }}
-              />
-            </View>
-            <View style={styles.imageContainer}>
-              <Image
-                style={styles.image}
-                source={{ uri: this._renderImage() }}
-              />
-            </View>
-            <View style={styles.imageContainer}>
-              <Image
-                style={styles.image}
-                source={{ uri: this._renderImage() }}
-              />
-            </View>
-          </View>
+          )}
+
         </View>
       </TouchableOpacity>
     )
   }
-
-}
-
-const styleConstants = {
-  galleryGaps: 2,
-}
-
-const galleryHeight = () => {
-  // todo: refactor layoutconstants.width
-  const windowWidth = Dimensions.get('window').width
-  return parseInt(((windowWidth - (2 * (LayoutConstants.margins.m)) - (4 * styleConstants.galleryGaps)) / 5), 10)
 }
 
 const styles = StyleSheet.create({
@@ -178,22 +156,7 @@ const styles = StyleSheet.create({
   },
 
   gallery: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    margin: LayoutConstants.margins.m - styleConstants.galleryGaps,
+    marginLeft: LayoutConstants.margins.m,
     marginTop: LayoutConstants.margins.xs,
-    marginBottom: 0,
   },
-  imageContainer: {
-    flex: 1,
-    height: galleryHeight(),
-    margin: styleConstants.galleryGaps,
-  },
-  image: {
-    borderRadius: 3,
-    flex: 1,
-    resizeMode: 'cover'
-  }
 })

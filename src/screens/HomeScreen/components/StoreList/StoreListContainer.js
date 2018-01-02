@@ -20,7 +20,6 @@ class StoreListContainer extends Component {
   render() {
     return (
       <StoreList
-        fetchStores={this.props.actions.fetchMeow}
         stores={this.props.stores}
         navigateToStore={this._navigateToStore}
       />

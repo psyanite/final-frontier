@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { connect } from 'react-redux'
 
-import { ScrollView, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { ScrollView, StyleSheet, TouchableHighlight, View } from 'react-native'
 
 import { ImageHeader } from '../../components/navigation/headers/ImageHeader'
 
@@ -49,13 +49,15 @@ class StoreScreen extends Component {
     const store = this.props.navigation.state.params
 
     return (
-      <ScrollView>
-        <StoreDetails store={store} />
-        <PostListContainer
-          storeId={store.id}
-          navigate={this.props.navigation.navigate}
-        />
-      </ScrollView>
+      <View>
+        <ScrollView>
+          <StoreDetails store={store} />
+          <PostListContainer
+            storeId={store.id}
+            navigate={this.props.navigation.navigate}
+          />
+        </ScrollView>
+      </View>
     )
   }
 }
@@ -63,6 +65,7 @@ class StoreScreen extends Component {
 const styles = StyleSheet.create({
   headerLeft: {
     marginLeft: LayoutConstants.margins.m,
+    paddingRight: 30,
   },
 })
 

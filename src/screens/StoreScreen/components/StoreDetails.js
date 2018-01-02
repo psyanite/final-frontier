@@ -34,6 +34,9 @@ export default class StoreDetails extends Component {
     const store = this.props.store
     const details = this._buildDetails(store)
     const address = store.address
+    if (address.address_second_line) {
+      address.address_first_line += `, ${address.address_second_line}`
+    }
     return (
       <View style={styles.wrap}>
 
@@ -58,8 +61,6 @@ export default class StoreDetails extends Component {
                 <CustomIcon name={CustomIcons.Location} width={20} height={20} />
                 <Text style={styles.addressLineText}>{address.address_first_line}</Text>
               </View>
-              { address.address_second_line ?
-                <Text style={styles.addressLine}>{address.address_second_line}</Text> : null }
               <Text style={styles.addressLine}>{address.address_street_number} {address.address_street_name}</Text>
               <Text style={styles.addressLine}>{details.location}</Text>
             </View>
@@ -122,6 +123,7 @@ const styles = StyleSheet.create({
 
   firstLine: {
     flexDirection: 'row',
+    marginBottom: -2,
   },
   phoneLineText: {
     marginLeft: 5,
