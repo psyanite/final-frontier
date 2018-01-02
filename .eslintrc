@@ -16,7 +16,7 @@
     "global-require": 0,
     "no-underscore-dangle": 0,
     "react/require-extension": 0,
-    "max-len" : ["error", 150],
+    "max-len": 0,
     "semi": ["error", "never"],
     "object-curly-spacing": ["error", "always"],
     "brace-style": ["error", "stroustrup"]
