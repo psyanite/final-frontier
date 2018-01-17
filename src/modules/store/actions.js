@@ -1,8 +1,64 @@
-/* eslint-disable max-len */
 import * as types from './types'
 import Toaster from '../../lib/toaster'
+import { AddressFields, CuisineFields } from './queryFields'
+import { LocationFields, SuburbFields } from '../geography/queryFields'
 
-export const mockFetchStores = () => async (dispatch, getState) => {
+export const fetchAllStores = () => async (dispatch, getState) => {
+  const fields = {
+    id: {},
+    name: {},
+    cover_image: {},
+    location: LocationFields,
+    suburb: SuburbFields,
+    cuisines: CuisineFields,
+  }
+  const query = {
+    stores: {
+      field: 'allStores',
+      fields
+    }
+  }
+  const { stores } = await Toaster.get(query)
+  dispatch(setStores(stores))
+}
+
+export const fetchStoreById = (storeId) => async (dispatch, getState) => {
+  const fields = {
+    id: {},
+    name: {},
+    phone_number: {},
+    cover_image: {},
+    address: AddressFields,
+    location: LocationFields,
+    suburb: SuburbFields,
+    cuisines: CuisineFields,
+  }
+  const query = {
+    store: {
+      field: 'storeById',
+      params: { id: storeId },
+      fields
+    }
+  }
+  const { store } = await Toaster.get(query)
+  dispatch(setStore(store[0]))
+}
+
+export const resetStore = () =>  (dispatch) => {
+  dispatch({ type: types.RESET_STORE })
+}
+
+const setStores = (stores) => ({
+  type: types.SET_STORES,
+  stores,
+})
+
+const setStore = (store) => ({
+  type: types.SET_STORE,
+  store,
+})
+
+export const mockFetchAllStores = () => async (dispatch, getState) => {
   const stores = [{
     id: 3,
     name: 'Workshop Meowpresso',
@@ -91,62 +147,7 @@ export const mockFetchStores = () => async (dispatch, getState) => {
       name: 'Modern Australian'
     }]
   }]
+  // console.log(stores)
   dispatch(setStores(stores))
 }
-
-export const fetchStores = (input) => async (dispatch, getState) => {
-  // todo: something with input?
-  const query = {
-    stores: {
-      field: 'allStores',
-      fields: {
-        id: {},
-        name: {},
-        phone_number: {},
-        cover_image: {},
-        address: {
-          fields: {
-            address_first_line: {},
-            address_second_line: {},
-            address_street_number: {},
-            address_street_name: {},
-            google_url: {},
-          }
-        },
-        location: {
-          fields: {
-            id: {},
-            name: {},
-          }
-        },
-        suburb: {
-          fields: {
-            id: {},
-            name: {},
-            city: {
-              fields: {
-                id: {},
-                name: {},
-              }
-            }
-          }
-        },
-        cuisines: {
-          fields: {
-            id: {},
-            name: {},
-          }
-        }
-      }
-    }
-  }
-  const { stores } = await Toaster.get(query)
-  console.log(JSON.stringify(stores))
-  dispatch(setStores(stores))
-}
-
-export const setStores = (stores) => ({
-  type: types.SET_SEARCHED_STORES,
-  stores,
-})
 
