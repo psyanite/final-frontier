@@ -1,3 +1,4 @@
+/* eslint-disable brace-style */
 import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 
@@ -5,71 +6,29 @@ import PropTypes from 'prop-types'
 import { LinearGradient } from 'expo'
 
 class ViewMoreText extends React.Component {
-  constructor(props) {
-    super(props)
-    this.resetData()
 
-    this.state = {
-      numberOfLines: null,
-      opacity: 0,
-      shouldRender: false,
-    }
+  state = {
+    shouldToggle: false,
+    numberOfLines: null,
   }
 
-  componentWillMount() {
-    setTimeout(() => {
+  async componentDidMount() {
+    await nextFrameAsync()
+    const fullHeight = await measureHeightAsync(this._text)
+    this.setState({ numberOfLines: this.props.numberOfLines })
+    await nextFrameAsync()
+    const limitedHeight = await measureHeightAsync(this._text)
+    if (fullHeight > limitedHeight) {
       this.setState({
-        shouldRender: true,
-      })
-    }, this.props.renderTimeout)
-  }
-
-  componentWillReceiveProps() {
-    this.resetData()
-
-    this.setState({
-      numberOfLines: null,
-      opacity: 0,
-    })
-  }
-
-  componentDidUpdate() {
-    if (this.state.numberOfLines === null) {
-      this.props.afterExpand()
-    }
-    else {
-      this.props.afterCollapse()
-    }
-  }
-
-  onLayout = (event) => {
-    const {
-      height,
-    } = event.nativeEvent.layout
-
-    if (height === 0 || this.state.opacity === 1) return false
-
-    this.setOriginalHeight(height)
-    if (this.state.numberOfLines === this.props.numberOfLines) {
-      this.setState({
-        opacity: 1,
-      })
-    }
-    return null
-  }
-
-  setOriginalHeight = (height) => {
-    if (this.originalHeight === 0) {
-      this.originalHeight = height
-
-      this.setState({
-        numberOfLines: this.props.numberOfLines,
+        shouldToggle: true,
+        numberOfLines: this.props.numberOfLines
       })
     }
   }
 
   handlePress = () => {
-    if (this.state.numberOfLines > 0) {
+    const { shouldToggle, numberOfLines } = this.state
+    if (shouldToggle && numberOfLines) {
       this.setState({
         numberOfLines: null,
       })
@@ -79,10 +38,6 @@ class ViewMoreText extends React.Component {
         numberOfLines: this.props.numberOfLines,
       })
     }
-  }
-
-  resetData = () => {
-    this.originalHeight = 0
   }
 
   blur = (
@@ -105,42 +60,45 @@ class ViewMoreText extends React.Component {
   )
 
   render() {
-    if (this.state.shouldRender) {
-      return (
-        <TouchableOpacity onPress={this.handlePress}>
-          <View onLayout={this.onLayout}>
-            <Text
-              style={this.props.textStyle}
-              numberOfLines={this.state.numberOfLines}
-            >
-              {this.props.children}
-            </Text>
-            {
-              this.state.numberOfLines
-              && <View style={{ width: 1, height: 1 }} />
-              && this.blur
-            }
-          </View>
-        </TouchableOpacity>
-      )
-    }
-    return null
+    const { shouldToggle, numberOfLines } = this.state
+    return (
+      <TouchableOpacity onPress={this.handlePress}>
+        <View>
+          <Text
+            style={this.props.textStyle}
+            numberOfLines={numberOfLines}
+            ref={text => { this._text = text }}
+          >
+            {this.props.children}
+          </Text>
+          {
+            shouldToggle && numberOfLines && this.blur
+          }
+        </View>
+      </TouchableOpacity>
+    )
   }
 }
 
+function measureHeightAsync(component) {
+  return new Promise(resolve => {
+    component.measure((x, y, w, h) => {
+      resolve(h)
+    })
+  })
+}
+
+function nextFrameAsync() {
+  return new Promise(resolve => requestAnimationFrame(() => resolve()))
+}
+
 ViewMoreText.propTypes = {
-  afterCollapse: PropTypes.func,
-  afterExpand: PropTypes.func,
   numberOfLines: PropTypes.number.isRequired,
   textStyle: PropTypes.object,
-  renderTimeout: PropTypes.number,
 }
 
 ViewMoreText.defaultProps = {
-  afterCollapse: () => {},
-  afterExpand: () => {},
   textStyle: {},
-  renderTimeout: 0,
 }
 
 export default ViewMoreText
