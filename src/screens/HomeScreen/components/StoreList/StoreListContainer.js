@@ -1,33 +1,32 @@
-import React, {Component} from 'react'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 import StoreList from './StoreList'
 import * as ActionCreators from '../../../../modules/store/actions'
 
 class StoreListContainer extends Component {
   componentDidMount() {
-    if (!this.props.stores.length) {
-      // this.props.actions.fetchStores('banana')
-      this.props.actions.mockFetchStores()
-    }
+    this.props.actions.fetchAllStores()
+    // this.props.actions.mockFetchAllStores()
   }
 
-  _navigateToStore = (store) => {
+  navigateToStore = (store) => {
     this.props.navigate('Store', store)
   }
 
   render() {
-    return (
-      <StoreList
-        stores={this.props.stores}
-        navigateToStore={this._navigateToStore}
-      />
-    )
+    const list = <StoreList stores={this.props.stores} navigateToStore={this.navigateToStore} />
+    console.log(this.props.stores)
+    return this.props.stores ? list : null
   }
 }
 
-const mapStateToProps = state => ({ stores: state.stores })
+const mapStateToProps = state => {
+  const stores = []
+  Object.keys(state.stores).map((key) => stores.push(state.stores[key]))
+  return { stores }
+}
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(ActionCreators, dispatch)

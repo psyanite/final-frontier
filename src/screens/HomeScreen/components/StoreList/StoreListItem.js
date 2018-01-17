@@ -7,7 +7,7 @@ import GalleryThumbs from '../../../../components/common/gallery/GalleryThumbs'
 export default class StoreListItem extends Component {
 
   handleOnPress = () => {
-    this.props.onPress(this.props.store)
+    this.props.navigateToStore(this.props.store)
   }
 
   randomPhotos = () => {
@@ -63,10 +63,10 @@ export default class StoreListItem extends Component {
               style={styles.coverImage}
               source={{ uri: view.cover_image }}
             />
-            <View>
+            <View style={styles.deets}>
               <Text style={styles.name}>{view.name}</Text>
               <Text style={styles.location}>{view.location}</Text>
-              <Text style={styles.cuisines}>{view.cuisines}</Text>
+              <Text style={styles.cuisines} numberOfLines={1} ellipsizeMode={'tail'}>{view.cuisines}</Text>
               <View style={styles.ratings}>
                 <View style={styles.ratingIcon}>
                   <Text style={styles.ratingCount}>23</Text>
@@ -122,6 +122,27 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
 
+  deets: {
+    flexDirection: 'column',
+    flex: 1,
+  },
+
+  name: {
+    flex: 1,
+    flexWrap: 'wrap',
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  location: {
+    flex: 1,
+    flexWrap: 'wrap',
+    fontSize: 15,
+  },
+  cuisines: {
+    fontSize: 15,
+    marginBottom: 4,
+  },
+
   ratings: {
     flex: 1,
     flexDirection: 'row',
@@ -139,20 +160,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#9b4e20',
     marginRight: 4,
-  },
-
-  name: {
-    marginBottom: 3,
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  location: {
-    fontSize: 15,
-    marginBottom: 4,
-  },
-  cuisines: {
-    fontSize: 15,
-    marginBottom: 0,
   },
 
   gallery: {
