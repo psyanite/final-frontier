@@ -32,7 +32,11 @@ class GalleryThumbs extends Component {
   }
 
   renderGalleryThumb = (image, index) => (
-    <TouchableOpacity key={image.id} onPress={() => this.handleThumbPress(index)}>
+    <TouchableOpacity
+      key={image.id}
+      onPress={() => this.handleThumbPress(index)}
+      underlayColor={'transparent'}
+    >
       <Image
         style={styles.thumb}
         source={{ uri: image.photo }}

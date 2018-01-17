@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-import { BurntHeader } from '../../components/navigation/headers/BurntHeader'
+import BurntHeader from '../../components/navigation/headers/BurntHeader'
 import GenericIcon, { Names as GenericIcons } from '../../components/common/Icons/GenericIcon'
 
 import ColorConstants from '../../styles/constants/ColorConstants'
 import LayoutConstants from '../../styles/constants/LayoutConstants'
 import StoreListContainer from './components/StoreList/StoreListContainer'
+import CustomIcon, { Names as CustomIcons } from '../../components/common/Icons/CustomIcon'
 
 class HomeScreen extends Component {
 
   static navigationOptions = () => {
     const title = <Text style={styles.headerTitle}>Burntoast</Text>
-    const right = (
+    const headerRight = (
       <View style={styles.headerRight}>
         <GenericIcon name={GenericIcons.Search} width={25} height={25} />
       </View>
@@ -21,7 +22,7 @@ class HomeScreen extends Component {
     return ({
       header: (props) => <BurntHeader {...props} />,
       headerTitle: title,
-      headerRight: right,
+      headerRight,
       headerStyle: { backgroundColor: 'transparent' },
     })
   }

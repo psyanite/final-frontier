@@ -3,21 +3,22 @@ import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { phonecall as phoneCall } from 'react-native-communications'
 
 import CustomIcon, { Names as CustomIcons } from '../../../components/common/Icons/CustomIcon'
-import LayoutConstants from "../../../styles/constants/LayoutConstants"
+import LayoutConstants from '../../../styles/constants/LayoutConstants'
+import ImageHeader from '../../../components/navigation/headers/ImageHeader'
 
 export default class StoreDetails extends Component {
 
-  _formatViewPhoneNumber = (input) => {
+  formatViewPhoneNumber = (input) => {
     const m = input.match(/^(\d)(\d{4})(\d{4})$/)
     return (!m) ? null : `0${m[1]} ${m[2]} ${m[3]}`
   }
 
-  _formatCallPhoneNumber = (input) => {
+  formatCallPhoneNumber = (input) => {
     const m = input.match(/^(\d)(\d{8})$/)
     return (!m) ? null : `${m[2]}`
   }
 
-  _buildDetails = (store) => {
+  buildDetails = (store) => {
     const details = Object.assign({}, store)
     details.location = `${store.suburb.name}, ${store.suburb.city.name}`
 
@@ -26,70 +27,75 @@ export default class StoreDetails extends Component {
       details.cuisines = store.cuisines.map(cuisine => cuisine.name).join(', ')
     }
 
-    details.phone_number = this._formatViewPhoneNumber(store.phone_number)
+    details.phone_number = this.formatViewPhoneNumber(store.phone_number)
     return details
   }
 
   render() {
-    const store = this.props.store
-    const details = this._buildDetails(store)
-    const address = store.address
+    const { store } = this.props
+    const details = this.buildDetails(store)
+    const address = Object.assign({}, store.address)
     if (address.address_second_line) {
       address.address_first_line += `, ${address.address_second_line}`
     }
+
     return (
-      <View style={styles.wrap}>
+      <View>
+        <ImageHeader uri={details.cover_image} />
 
-        <View style={styles.details}>
-          <Text style={styles.name}>{details.name}</Text>
+        <View style={styles.wrap}>
 
-          <TouchableOpacity onPress={() => phoneCall(this._formatCallPhoneNumber(store.phone_number), true)}>
-            <View style={styles.detail}>
-              <CustomIcon name={CustomIcons.Phone} width={20} height={20} />
-              <Text style={styles.phoneLineText}>{details.phone_number}</Text>
-            </View>
-          </TouchableOpacity>
+          <View style={styles.details}>
+            <Text style={styles.name}>{details.name}</Text>
 
-          <View style={styles.detail}>
-            <CustomIcon name={CustomIcons.Fork} width={20} height={20} />
-            <Text style={styles.cuisineLineText}>{details.cuisines}</Text>
-          </View>
-
-          <TouchableOpacity onPress={() => Linking.openURL(address.google_url)}>
-            <View style={styles.address}>
-              <View style={styles.firstLine}>
-                <CustomIcon name={CustomIcons.Location} width={20} height={20} />
-                <Text style={styles.addressLineText}>{address.address_first_line}</Text>
+            <TouchableOpacity onPress={() => phoneCall(this.formatCallPhoneNumber(store.phone_number), true)}>
+              <View style={styles.detail}>
+                <CustomIcon name={CustomIcons.Phone} width={20} height={20} />
+                <Text style={styles.phoneLineText}>{details.phone_number}</Text>
               </View>
-              <Text style={styles.addressLine}>{address.address_street_number} {address.address_street_name}</Text>
-              <Text style={styles.addressLine}>{details.location}</Text>
+            </TouchableOpacity>
+
+            <View style={styles.detail}>
+              <CustomIcon name={CustomIcons.Fork} width={20} height={20} />
+              <Text style={styles.cuisineLineText}>{details.cuisines}</Text>
             </View>
-          </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => Linking.openURL(address.google_url)}>
+              <View style={styles.address}>
+                <View style={styles.firstLine}>
+                  <CustomIcon name={CustomIcons.Location} width={20} height={20} />
+                  <Text style={styles.addressLineText}>{address.address_first_line}</Text>
+                </View>
+                <Text style={styles.addressLine}>{address.address_street_number} {address.address_street_name}</Text>
+                <Text style={styles.addressLine}>{details.location}</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+
+
+          <View style={styles.ratings}>
+            <View style={styles.rating}>
+              <Text style={styles.ratingCount}>999</Text>
+              <View style={styles.ratingIcon}>
+                <CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />
+              </View>
+            </View>
+            <View style={styles.rating}>
+              <Text style={styles.ratingCount}>15</Text>
+              <View style={styles.ratingIcon}>
+                <CustomIcon name={CustomIcons.BreadOkay} width={24} height={24} />
+              </View>
+            </View>
+            <View style={styles.rating}>
+              <Text style={styles.ratingCount}>2</Text>
+              <View style={styles.ratingIcon}>
+                <CustomIcon name={CustomIcons.BreadCross} width={24} height={24} />
+              </View>
+            </View>
+          </View>
+
         </View>
-
-
-        <View style={styles.ratings}>
-          <View style={styles.rating}>
-            <Text style={styles.ratingCount}>999</Text>
-            <View style={styles.ratingIcon}>
-              <CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />
-            </View>
-          </View>
-          <View style={styles.rating}>
-            <Text style={styles.ratingCount}>15</Text>
-            <View style={styles.ratingIcon}>
-              <CustomIcon name={CustomIcons.BreadOkay} width={24} height={24} />
-            </View>
-          </View>
-          <View style={styles.rating}>
-            <Text style={styles.ratingCount}>2</Text>
-            <View style={styles.ratingIcon}>
-              <CustomIcon name={CustomIcons.BreadCross} width={24} height={24} />
-            </View>
-          </View>
-        </View>
-
-
       </View>
     )
   }

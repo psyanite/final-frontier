@@ -11,7 +11,7 @@ export default class StoreList extends Component {
     ingredientsInput: 'Banana'
   }
 
-  _renderSeparator = () => (
+  renderSeparator = () => (
     <View
       style={{
         height: 12,
@@ -21,10 +21,10 @@ export default class StoreList extends Component {
     />
   )
 
-  _renderStore = ({ item }) => (
+  renderStore = ({ item }) => (
     <StoreListItem
       store={item}
-      onPress={this.props.navigateToStore}
+      navigateToStore={this.props.navigateToStore}
     />
   )
 
@@ -34,12 +34,11 @@ export default class StoreList extends Component {
         <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
           <FlatList
             data={this.props.stores}
-            renderItem={this._renderStore}
+            renderItem={this.renderStore}
             keyExtractor={item => item.id}
-            ItemSeparatorComponent={this._renderSeparator}
+            ItemSeparatorComponent={this.renderSeparator}
           />
         </List>
-
       </View>
     )
   }
