@@ -26,62 +26,8 @@ export default class Toaster {
       return data
     }
     console.log(response)
+    console.log(response._bodyText)
     throw new Error(response.status)
   }
-
-  // static xhr = async (route, params, method) => {
-  //   const headers = {
-  //     Accept: 'application/json',
-  //     'Content-Type': 'application/json',
-  //     dataType: 'json',
-  //   }
-  //
-  //   const options = { method, headers }
-  //   if (params) {
-  //     options.body = JSON.stringify(params)
-  //   }
-  //
-  //   const response = await fetch(`${HOST}${route}`, options)
-  //   console.log(`${HOST}${route}`)
-  //   console.log(options)
-  //   console.log(response)
-  //   if (response.ok) console.log(response.json)
-  //   if (response.ok) return await response.json()
-  //   throw new Error(response.status)
-  // }
-  //
-  // // static get = async (route) => await this.xhr(route, null, 'GET')
-  //
-  // static get = async (route) => {
-  //   const params = null
-  //
-  //   const method = 'GET'
-  //
-  //   const headers = {
-  //     Accept: 'application/json',
-  //     'Content-Type': 'application/json',
-  //     dataType: 'json',
-  //   }
-  //
-  //   const options = { method, headers }
-  //   if (params) {
-  //     options.body = JSON.stringify(params)
-  //   }
-  //
-  //   const response = await fetch(`${HOST}${route}`, options)
-  //   console.log(`${HOST}${route}`)
-  //   console.log(options)
-  //   console.log(response)
-  //   if (response.ok) console.log(response.json)
-  //   if (response.ok) return await response.json()
-  //   throw new Error(response.status)
-  // }
-  //
-  //
-  // static put = async (route, params) => await this.xhr(route, params, 'PUT')
-  //
-  // static post = async (route, params) => await this.xhr(route, params, 'POST')
-  //
-  // static delete = async (route, params) => await this.xhr(route, params, 'DELETE')
 
 }
