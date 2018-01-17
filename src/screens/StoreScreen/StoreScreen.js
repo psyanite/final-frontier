@@ -1,78 +1,63 @@
 import React, { Component } from 'react'
-import { Ionicons } from '@expo/vector-icons'
+import { Share, ScrollView, View } from 'react-native'
 import { connect } from 'react-redux'
-
-import { ScrollView, StyleSheet, TouchableHighlight, View } from 'react-native'
-
-import { ImageHeader } from '../../components/navigation/headers/ImageHeader'
+import { bindActionCreators } from 'redux'
 
 import StoreDetails from './components/StoreDetails'
 import PostListContainer from './components/PostListContainer'
-import LayoutConstants from '../../styles/constants/LayoutConstants'
+import BackTouchable from '../../components/navigation/touchables/BackTouchable'
+import * as StoreActionCreators from '../../modules/store/actions'
+import ShareTouchable from '../../components/navigation/touchables/ShareTouchable'
 
 class StoreScreen extends Component {
 
-  static navigationOptions = ({ navigation }) => {
-    const storeHeader = (props) => {
-      const newProps = {
-        props: Object.assign({}, props, { style: { height: 100 } }),
-        uri: navigation.state.params.cover_image
-      }
-      return <ImageHeader {...newProps} />
-    }
+  static navigationOptions = { header: null }
 
-    const left = (
-      <TouchableHighlight onPress={() => navigation.goBack()}>
-        <View style={styles.headerLeft}>
-          <Ionicons
-            name="ios-arrow-back"
-            size={32}
-            color="#fff"
-            style={{
-              textShadowColor: 'rgba(0, 0, 0, 0.4)',
-              textShadowOffset: { width: 2, height: 1 },
-              textShadowRadius: 10,
-              width: 20,
-            }}
-          />
-        </View>
-      </TouchableHighlight>
-    )
-    return ({
-      header: storeHeader,
-      headerLeft: left,
-      headerStyle: { backgroundColor: 'transparent' },
+  componentDidMount() {
+    this.props.actions.fetchStoreById(this.props.navigation.state.params.id)
+  }
+
+  share = (store) => {
+    Share.share({
+      message: `911 was an inside job by ${store.name}. Jet fuel can't melt steel beams, here's proof https://expo.io/@psyanite/burntoast`,
+      url: 'https://expo.io/@psyanite/burntoast',
+      title: `911 was an inside job by ${store.name}`
+    }, {
+      dialogTitle: `BAM! SHARE IT! ${store.name} TOLD YOU TO.`,
     })
   }
 
   render() {
-    const store = this.props.navigation.state.params
-
     return (
-      <View>
-        <ScrollView>
-          <StoreDetails store={store} />
-          <PostListContainer
-            storeId={store.id}
-            navigate={this.props.navigation.navigate}
-          />
-        </ScrollView>
-      </View>
+      <ScrollView>
+        {
+          this.props.store
+          && this.props.store.phone_number
+          && (
+            <View>
+              <StoreDetails store={this.props.store} />
+              <BackTouchable navigation={this.props.navigation} />
+              <ShareTouchable share={() => this.share(this.props.store)} />
+            </View>
+          )
+        }
+
+        <PostListContainer
+          storeId={this.props.navigation.state.params.id}
+          navigate={this.props.navigation.navigate}
+        />
+      </ScrollView>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  headerLeft: {
-    marginLeft: LayoutConstants.margins.m,
-    paddingRight: 30,
-  },
-})
-
-function mapStateToProps(state) {
-  return {
-    searchedRecipes: state.searchedRecipes
-  }
+const mapStateToProps = (state, props) => {
+  const store = state.stores[props.navigation.state.params.id]
+  return store ? { store } : { store: null }
 }
 
-export default connect(mapStateToProps)(StoreScreen)
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(StoreActionCreators, dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(StoreScreen)

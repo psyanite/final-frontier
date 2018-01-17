@@ -22,9 +22,19 @@ export default class PostList extends Component {
 
   _renderPost = ({ item }) => {
     if (item.type === 'PHOTO') {
-      return <PostPhotoListItem post={item} />
+      return (
+        <PostPhotoListItem
+          post={item}
+          navigateToProfile={this.props.navigateToProfile}
+        />
+      )
     }
-    return <PostReviewListItem post={item} />
+    return (
+      <PostReviewListItem
+        post={item}
+        navigateToProfile={this.props.navigateToProfile}
+      />
+    )
   }
 
   render() {
