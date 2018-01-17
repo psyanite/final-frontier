@@ -8,11 +8,11 @@ import HomeNavigator from './HomeNavigator'
 import LinksScreen from '../../screens/LinksScreen'
 import SettingsScreen from '../../screens/SettingsScreen'
 import MyRewardsScreen from '../../screens/MyRewardsScreen'
-import ProfileScreen from '../../screens/ProfileScreen'
 
 import GenericIcon, { Names as GenericIcons } from '../common/Icons/GenericIcon'
 
 import Colors from '../../styles/constants/ColorConstants'
+import MyProfileScreen from '../../screens/MyProfileScreen/MyProfileScreen'
 
 const styles = StyleSheet.create({
   tabBar: {
@@ -37,7 +37,7 @@ export default TabNavigator(
       screen: MyRewardsScreen,
     },
     Profile: {
-      screen: ProfileScreen,
+      screen: MyProfileScreen,
     },
   },
   {

@@ -2,7 +2,7 @@
 import { StackNavigator } from 'react-navigation'
 
 import HomeScreen from '../../screens/HomeScreen/HomeScreen'
-import StoreScreen from '../../screens/StoreScreen/StoreScreen'
+import StoreNavigator from './StoreNavigator'
 
 export default StackNavigator(
   {
@@ -10,7 +10,7 @@ export default StackNavigator(
       screen: HomeScreen,
     },
     Store: {
-      screen: StoreScreen,
+      screen: StoreNavigator,
     },
   }, {
     headerMode: 'none'
