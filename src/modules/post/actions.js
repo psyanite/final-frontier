@@ -1,64 +1,148 @@
-/* eslint-disable max-len */
 import * as types from './types'
 import Toaster from '../../lib/toaster'
-
-export const mockFetchPostsByStoreId = (storeId) => async (dispatch, getState) => {
-  const allPosts = {
-    1: [{ id: 2, type: 'REVIEW', posted_by: { id: 2, profile: { username: 'curious_chloe', display_name: 'Curious Chloe', profile_picture: 'https://i.pinimg.com/736x/70/51/24/7051248ece052066b0575d3e712786f4--hair-images-a-hotel.jpg' } }, posted_at: '2017-11-24T22:10:55.000Z', post_photos: [], post_review: { id: 2, overall_score: 'okay', taste_score: 'good', service_score: 'bad', value_score: 'okay', ambience_score: 'good', body: "This is the first time I'm had Dumplings and Co, it was a really good experience. I was shocked to see the number of options available for vegetarians. The menu was easy to understand the food was very tasty. We reached here at 5:20 and the restaurant re-opened on time, which showcased good hospitality. We ordered for vegetarian wonton soup and a vegetarian fried rice with mushroom and truffle oil, our order was served very fast and both the dishes were really tasty. We paid $24 for both, which was a good deal as the portions were good in size." } }, { id: 1, type: 'REVIEW', posted_by: { id: 1, profile: { username: 'nyatella', display_name: 'Luna', profile_picture: 'https://instagram.fsyd4-1.fna.fbcdn.net/t51.2885-15/s640x640/sh0.08/e35/25009242_1265083993624512_2786963626508943360_n.jpg' } }, posted_at: '2017-12-29T04:04:20.000Z', post_photos: [{ id: 1, photo: 'https://b.zmtcdn.com/data/reviews_photos/4e2/768396f0d2f2240303be0853341a84e2_1459007636.jpg' }, { id: 2, photo: 'https://b.zmtcdn.com/data/reviews_photos/fd5/56b36df276a188e5ee74c617d24aefd5_1502800424.jpg' }], post_review: { id: 1, overall_score: 'good', taste_score: 'bad', service_score: 'bad', value_score: 'okay', ambience_score: 'okay', body: "We came for the xialongbao (Shanghai soup dumplings) and weren't disappointed. Theses are some of the best. Fill in the order form and in a few, short moments the steamers will begin to arrive, carrying delicate dumplings, full of the tasty minced pork filling and that delicious soup. The rest of the menu is also fantastic. The only thing stopping me giving 5/5 is the price. It's pretty expensive, but certainly worth it for a special occasion. I doubt you will find better value in Sydney." } }],
-    2: [{ id: 3, type: 'PHOTO', posted_by: { id: 1, profile: { username: 'nyatella', display_name: 'Luna', profile_picture: 'https://instagram.fsyd4-1.fna.fbcdn.net/t51.2885-15/s640x640/sh0.08/e35/25009242_1265083993624512_2786963626508943360_n.jpg' } }, posted_at: '2017-10-07T01:54:38.249Z', post_photos: [{ id: 3, photo: 'https://b.zmtcdn.com/data/pictures/chains/0/18347530/62820c277b3ffaa51767bc0049cbc3af.jpg' }], post_review: null }],
-    3: [{ id: 4, type: 'REVIEW', posted_by: { id: 2, profile: { username: 'curious_chloe', display_name: 'Curious Chloe', profile_picture: 'https://i.pinimg.com/736x/70/51/24/7051248ece052066b0575d3e712786f4--hair-images-a-hotel.jpg' } }, posted_at: '2017-10-17T11:22:02.385Z', post_photos: [], post_review: { id: 3, overall_score: 'bad', taste_score: 'okay', service_score: 'good', value_score: 'okay', ambience_score: 'good', body: 'Consistent as always! Coffee was really good, chicken burger was juicy and saucy, and the wicked chips! Matcha cake was so light and sauce was highlight to cake, but I found it very pricey for its taste. I wouldn’t order matcha cake again, that I know for sure! Other dishes though another story :)' } }, { id: 5, type: 'PHOTO', posted_by: { id: 1, profile: { username: 'nyatella', display_name: 'Luna', profile_picture: 'https://instagram.fsyd4-1.fna.fbcdn.net/t51.2885-15/s640x640/sh0.08/e35/25009242_1265083993624512_2786963626508943360_n.jpg' } }, posted_at: '2017-11-05T20:58:09.777Z', post_photos: [{ id: 4, photo: 'https://b.zmtcdn.com/data/pictures/chains/5/16564875/3c87693a4c32ce2fefb1c857829bc2fd.jpg' }], post_review: null }],
-  }
-  dispatch(setPosts(allPosts[storeId]))
-}
+import { PostFields } from './queryFields'
 
 export const fetchPostsByStoreId = (storeId) => async (dispatch, getState) => {
   const query = {
     posts: {
       field: 'postsByStoreId',
       params: { storeId },
-      fields: {
-        id: {},
-        type: {},
-        posted_by: {
-          fields: {
-            id: {},
-            profile: {
-              fields: {
-                username: {},
-                display_name: {},
-                profile_picture: {},
-              },
-            },
-          },
-        },
-        posted_at: {},
-        post_photos: {
-          fields: {
-            id: {},
-            photo: {},
-          }
-        },
-        post_review: {
-          fields: {
-            id: {},
-            overall_score: {},
-            taste_score: {},
-            service_score: {},
-            value_score: {},
-            ambience_score: {},
-            body: {},
-          }
-        },
-      }
+      fields: PostFields.fields
     }
   }
   const { posts } = await Toaster.get(query)
-  console.log(JSON.stringify(posts))
-  dispatch(setPosts(posts))
+  dispatch(setStorePosts(storeId, posts))
 }
 
-export const setPosts = (posts) => ({
-  type: types.SET_POSTS,
+export const fetchPostsByUserAccountId = (userAccountId) => async (dispatch, getState) => {
+  const query = {
+    posts: {
+      field: 'postsByUserAccountId',
+      params: { userAccountId },
+      fields: PostFields.fields
+    }
+  }
+  const { posts } = await Toaster.get(query)
+  dispatch(setProfilePosts(userAccountId, posts))
+}
+
+export const fetchPostsForLoggedInUser = (userAccountId) => async (dispatch, getState) => {
+  const query = {
+    posts: {
+      field: 'postsByUserAccountId',
+      params: { userAccountId },
+      fields: PostFields.fields
+    }
+  }
+  const { posts } = await Toaster.get(query)
+  dispatch(setMyProfilePosts(posts))
+}
+
+const setStorePosts = (storeId, posts) => ({
+  type: types.SET_STORE_POSTS,
+  storeId,
   posts,
 })
 
+const setProfilePosts = (userAccountId, posts) => ({
+  type: types.SET_PROFILE_POSTS,
+  userAccountId,
+  posts,
+})
+
+const setMyProfilePosts = (posts) => ({
+  type: types.SET_MY_PROFILE_POSTS,
+  posts,
+})
+
+export const mockFetchPostsByStoreId = (storeId) => async (dispatch, getState) => {
+  const posts = [{
+    id: 3,
+    name: 'Workshop Meowpresso',
+    phone_number: '288819222',
+    cover_image: 'https://b.zmtcdn.com/data/res_imagery/16562081_RESTAURANT_bf27f21b41f1ee074a931eae5d8f719b.jpg?fit=around%7C1200%3A464&crop=1200%3A464%3B0%2C0',
+    address: {
+      address_first_line: 'Basement Level',
+      address_second_line: null,
+      address_street_number: '500',
+      address_street_name: 'George Street',
+      google_url: 'https://goo.gl/maps/njQmnE8NFi52'
+    },
+    location: {
+      id: 4,
+      name: 'The Galleries'
+    },
+    suburb: {
+      id: 1,
+      name: 'CBD',
+      city: {
+        id: 1,
+        name: 'Sydney'
+      }
+    },
+    cuisines: [{
+      id: 1,
+      name: 'Café'
+    }, {
+      id: 4,
+      name: 'Brunch'
+    }]
+  }, {
+    id: 1,
+    name: 'Dumplings & Co.',
+    phone_number: '296992235',
+    cover_image: 'https://b.zmtcdn.com/data/res_imagery/16564570_RESTAURANT_058971a49fafe87b9c772331b251b1fa.jpg?fit=around%7C1200%3A464&crop=1200%3A464%3B0%2C0',
+    address: {
+      address_first_line: 'Level 2, Hawker Lane',
+      address_second_line: 'Chatswood Westfield',
+      address_street_number: '1',
+      address_street_name: 'Anderson Street',
+      google_url: 'https://goo.gl/maps/GZxSRicabTu'
+    },
+    location: {
+      id: 5,
+      name: 'Westfield Pitt Street Mall'
+    },
+    suburb: {
+      id: 1,
+      name: 'CBD',
+      city: {
+        id: 1,
+        name: 'Sydney'
+      }
+    },
+    cuisines: [{
+      id: 1,
+      name: 'Café'
+    }, {
+      id: 4,
+      name: 'Brunch'
+    }]
+  }, {
+    id: 2,
+    name: 'Bite Chew Drink',
+    phone_number: '295258017',
+    cover_image: 'https://b.zmtcdn.com/data/res_imagery/16569020_RESTAURANT_817e5ad9618b57f235213a26776dc169_c.jpg?fit=around%7C1200%3A464&crop=1200%3A464%3B0%2C0',
+    address: {
+      address_first_line: 'Level 1, Shop 11.04',
+      address_second_line: 'Regent Place Arcade',
+      address_street_number: '487',
+      address_street_name: 'George Street',
+      google_url: 'https://goo.gl/maps/Ds7vagBoTu42'
+    },
+    location: null,
+    suburb: {
+      id: 1,
+      name: 'CBD',
+      city: {
+        id: 1,
+        name: 'Sydney'
+      }
+    },
+    cuisines: [{
+      id: 2,
+      name: 'Modern Australian'
+    }]
+  }]
+  dispatch(setStorePosts(posts))
+}
