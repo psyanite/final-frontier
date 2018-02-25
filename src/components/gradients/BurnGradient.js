@@ -1,6 +1,9 @@
 import React from 'react'
 import { LinearGradient } from 'expo'
 
+/**
+ * Customized LinearGradient component for the signature Burnt color scheme
+ */
 const BurntGradient = (props) => <LinearGradient {...props} />
 
 BurntGradient.defaultProps = {

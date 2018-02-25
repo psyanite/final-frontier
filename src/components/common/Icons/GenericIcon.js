@@ -3,6 +3,10 @@ import React from 'react'
 import SvgIcon from 'react-native-svg-icon'
 import { G, Path } from 'react-native-svg'
 
+/**
+ * Collection of outline icons wrapped around SvgIcon from react-native-svg-icon.
+ * Color of the icon is customizable.
+ */
 const GenericIcon = (props) => <SvgIcon {...props} svgs={Icons} />
 
 export const Names = {
