@@ -1,23 +1,21 @@
-import React, {Component} from 'react'
+import React from 'react'
+import { StyleSheet } from 'react-native'
 import LayoutConstants from '../../styles/constants/LayoutConstants'
-import ImagePreview from '../common/Icons/ImagePreview'
+import ImagePreview from '../common/gallery/ImagePreview'
 
-export default class PostPhoto extends Component {
+const PostPhoto = ({ photo }) => (
+  <ImagePreview
+    style={style}
+    image={photo}
+  />
+)
 
-  render() {
-    const style = {
-      width: desiredDimension,
-      height: desiredDimension,
-      borderRadius: 4,
-    }
+const size = LayoutConstants.window.width - (2 * LayoutConstants.margins.m)
 
-    return (
-      <ImagePreview
-        style={style}
-        image={this.props.photo}
-      />
-    )
-  }
+const style = {
+    width: size,
+    height: size,
+    borderRadius: 4,
 }
 
-const desiredDimension = LayoutConstants.window.width - (2 * LayoutConstants.margins.m)
+export default PostPhoto

@@ -1,27 +1,24 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import PropTypes from 'prop-types'
 
-class Overlay extends Component {
-
-  render() {
-    return (
-      <View style={styles.background}>
-        <Modal transparent onRequestClose={() => this.props.onClose()}>
-          <View style={styles.background} />
-          <View style={styles.content}>
-            {this.props.children}
-          </View>
-          <View style={styles.header}>
-            <TouchableOpacity onPress={() => this.props.onClose()}>
-              <Text style={styles.closeButton}>×</Text>
-            </TouchableOpacity>
-          </View>
-        </Modal>
+/**
+ * Black overlay covering entire view with a close button
+ * in the top right hand corner.
+ */
+const Overlay = ({ onClose, children }) => (
+  <View style={styles.background}>
+    <Modal transparent onRequestClose={onClose}>
+      <View style={styles.background} />
+      <View style={styles.content}>{ children }</View>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={onClose}>
+          <Text style={styles.closeButton}>×</Text>
+        </TouchableOpacity>
       </View>
-    )
-  }
-}
+    </Modal>
+  </View>
+)
 
 const styles = StyleSheet.create({
   background: {

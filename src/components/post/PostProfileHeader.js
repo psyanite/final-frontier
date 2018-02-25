@@ -1,39 +1,32 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import TimeAgo from 'react-native-timeago'
-import Colors from '../../styles/constants/ColorConstants'
 import ScoreIcon from '../common/Icons/ScoreIcon'
 import LayoutConstants from '../../styles/constants/LayoutConstants'
 
-export default class PostPhotoListItem extends Component {
-
-  render() {
-
-    const { postedBy, postedAt, overallScore } = this.props
-    const profile = postedBy.profile
-
-    return (
-      <View style={styles.wrap}>
-        <TouchableOpacity onPress={() => this.props.navigateToProfile(postedBy)}>
-          <View style={styles.userDetails}>
-            <Image
-              style={styles.avatar}
-              source={{ uri: profile.profile_picture }}
-            />
-            <View style={styles.nameWrap}>
-              <Text style={styles.displayName}>{profile.display_name}</Text>
-              <Text style={styles.username}>@{profile.username} · <TimeAgo time={postedAt} /></Text>
-            </View>
+const PostProfileHeader = ({ postedBy, postedAt, overallScore, navigateToProfile }) => {
+  const profile = postedBy.profile
+  return (
+    <View style={styles.wrap}>
+      <TouchableOpacity onPress={() => navigateToProfile(postedBy)}>
+        <View style={styles.userDetails}>
+          <Image
+            style={styles.avatar}
+            source={{ uri: profile.profile_picture }}
+          />
+          <View style={styles.nameWrap}>
+            <Text style={styles.displayName}>{profile.display_name}</Text>
+            <Text style={styles.username}>@{profile.username} · <TimeAgo time={postedAt} /></Text>
           </View>
-        </TouchableOpacity>
-        {overallScore && (
-          <View style={styles.overallScore}>
-            <ScoreIcon score={overallScore} width={34} height={34}/>
-          </View>
-        )}
-      </View>
-    )
-  }
+        </View>
+      </TouchableOpacity>
+      {overallScore && (
+        <View style={styles.overallScore}>
+          <ScoreIcon score={overallScore} width={34} height={34} />
+        </View>
+      )}
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -68,3 +61,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 })
+
+export default PostProfileHeader

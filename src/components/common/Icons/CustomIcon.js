@@ -68,25 +68,15 @@ const Icons = {
   }
 }
 
-class CustomIcon extends Component {
-  state = {
-    width: this.props.width,
-    height: this.props.height,
-    icon: Icons[this.props.name],
-  }
-
-  render() {
-    return (
-      <Svg
-        height={this.state.height}
-        width={this.state.width}
-        viewBox={this.state.icon.viewBox}
-      >
-        {this.state.icon.svg}
-      </Svg>
-    )
-  }
-}
+const CustomIcon = ({ width, height, name }) => (
+  <Svg
+    height={height}
+    width={width}
+    viewBox={Icons[name].viewBox}
+  >
+    {Icons[name].svg}
+  </Svg>
+)
 
 CustomIcon.defaultProps = {
   width: 20,

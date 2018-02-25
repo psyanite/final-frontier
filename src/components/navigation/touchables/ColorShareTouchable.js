@@ -1,23 +1,18 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import LayoutConstants from '../../../styles/constants/LayoutConstants'
 import CustomIcon, { Names as CustomIcons } from '../../common/Icons/CustomIcon'
 
-class ShareTouchable extends Component {
-  render() {
-    const { size, share } = this.props
-    return (
-      <TouchableOpacity
-        onPress={() => share()}
-        underlayColor={'transparent'}
-        style={styles.wrap}
-      >
-        <CustomIcon name={CustomIcons.Share} width={size} height={size} />
-      </TouchableOpacity>
-    )
-  }
-}
+const ColorShareTouchable = ({ size, share }) => (
+  <TouchableOpacity
+    onPress={share}
+    underlayColor={'transparent'}
+    style={styles.wrap}
+  >
+    <CustomIcon name={CustomIcons.Share} width={size} height={size} />
+  </TouchableOpacity>
+)
 
 const styles = StyleSheet.create({
   wrap: {
@@ -28,12 +23,12 @@ const styles = StyleSheet.create({
   },
 })
 
-ShareTouchable.propTypes = {
+ColorShareTouchable.propTypes = {
   share: PropTypes.func.isRequired
 }
 
-ShareTouchable.defaultProps = {
+ColorShareTouchable.defaultProps = {
   size: 32
 }
 
-export default ShareTouchable
+export default ColorShareTouchable

@@ -1,28 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import { Ionicons } from '@expo/vector-icons'
 import LayoutConstants from '../../../styles/constants/LayoutConstants'
 
-class ShareTouchable extends Component {
-  render() {
-    const { size, share, color } = this.props
-    return (
-      <TouchableOpacity
-        onPress={() => share()}
-        underlayColor={'transparent'}
-        style={styles.wrap}
-      >
-        <Ionicons
-          name='md-share'
-          size={size}
-          color={color}
-          style={styles.icon}
-        />
-      </TouchableOpacity>
-    )
-  }
-}
+const ShareTouchable = ({ size, share, color }) => (
+  <TouchableOpacity
+    onPress={() => share()}
+    underlayColor={'transparent'}
+    style={styles.wrap}
+  >
+    <Ionicons
+      name='md-share'
+      size={size}
+      color={color}
+      style={styles.icon}
+    />
+  </TouchableOpacity>
+)
 
 const styles = StyleSheet.create({
   wrap: {

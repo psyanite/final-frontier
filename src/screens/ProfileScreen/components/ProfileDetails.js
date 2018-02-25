@@ -1,28 +1,25 @@
-import React, { Component } from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import {
+  Image, StyleSheet, Text, View} from 'react-native'
 
 import AngledImageHeader from '../../../components/navigation/headers/AngledImageHeader'
 
-export default class StoreDetails extends Component {
-  render() {
-    const { profile } = this.props
+const StoreDetails = ({ profile }) => (
+  // todo: replace angledimageheader with image header and add height prop to image header
+  <View>
 
-    return (
-      <View>
-        // todo: replace with image header and add height prop to image header
-        <AngledImageHeader uri={profile.profile_picture} />
+    <AngledImageHeader uri={profile.profile_picture} />
 
-        <View style={styles.userDetails}>
-          <Image style={styles.avatar} source={{ uri: profile.profile_picture }} />
-          <View style={styles.nameWrap}>
-            <Text style={styles.displayName}>{profile.display_name}</Text>
-            <Text style={styles.username}>@{profile.username}</Text>
-          </View>
-        </View>
+    <View style={styles.userDetails}>
+      <Image style={styles.avatar} source={{ uri: profile.profile_picture }} />
+      <View style={styles.nameWrap}>
+        <Text style={styles.displayName}>{profile.display_name}</Text>
+        <Text style={styles.username}>@{profile.username}</Text>
       </View>
-    )
-  }
-}
+    </View>
+
+  </View>
+)
 
 const styles = StyleSheet.create({
   headerRight: {
@@ -83,3 +80,5 @@ const styles = StyleSheet.create({
   //   fontSize: 15,
   // },
 })
+
+export default StoreDetails

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { phonecall as phoneCall } from 'react-native-communications'
 
@@ -6,99 +6,93 @@ import CustomIcon, { Names as CustomIcons } from '../../../components/common/Ico
 import LayoutConstants from '../../../styles/constants/LayoutConstants'
 import ImageHeader from '../../../components/navigation/headers/ImageHeader'
 
-export default class StoreDetails extends Component {
-
-  formatViewPhoneNumber = (input) => {
-    const m = input.match(/^(\d)(\d{4})(\d{4})$/)
-    return (!m) ? null : `0${m[1]} ${m[2]} ${m[3]}`
+const StoreDetails = ({ store }) => {
+  const details = buildDetails(store)
+  const address = Object.assign({}, store.address)
+  if (address.address_second_line) {
+    address.address_first_line += `, ${address.address_second_line}`
   }
+  return (
+    <View>
+      <ImageHeader uri={details.cover_image} />
 
-  formatCallPhoneNumber = (input) => {
-    const m = input.match(/^(\d)(\d{8})$/)
-    return (!m) ? null : `${m[2]}`
-  }
+      <View style={styles.wrap}>
 
-  buildDetails = (store) => {
-    const details = Object.assign({}, store)
-    details.location = `${store.suburb.name}, ${store.suburb.city.name}`
+        <View style={styles.details}>
+          <Text style={styles.name}>{details.name}</Text>
 
-    details.cuisines = ''
-    if (store.cuisines) {
-      details.cuisines = store.cuisines.map(cuisine => cuisine.name).join(', ')
-    }
-
-    details.phone_number = this.formatViewPhoneNumber(store.phone_number)
-    return details
-  }
-
-  render() {
-    const { store } = this.props
-    const details = this.buildDetails(store)
-    const address = Object.assign({}, store.address)
-    if (address.address_second_line) {
-      address.address_first_line += `, ${address.address_second_line}`
-    }
-
-    return (
-      <View>
-        <ImageHeader uri={details.cover_image} />
-
-        <View style={styles.wrap}>
-
-          <View style={styles.details}>
-            <Text style={styles.name}>{details.name}</Text>
-
-            <TouchableOpacity onPress={() => phoneCall(this.formatCallPhoneNumber(store.phone_number), true)}>
-              <View style={styles.detail}>
-                <CustomIcon name={CustomIcons.Phone} width={20} height={20} />
-                <Text style={styles.phoneLineText}>{details.phone_number}</Text>
-              </View>
-            </TouchableOpacity>
-
+          <TouchableOpacity onPress={() => phoneCall(formatCallPhoneNumber(store.phone_number), true)}>
             <View style={styles.detail}>
-              <CustomIcon name={CustomIcons.Fork} width={20} height={20} />
-              <Text style={styles.cuisineLineText}>{details.cuisines}</Text>
+              <CustomIcon name={CustomIcons.Phone} width={20} height={20} />
+              <Text style={styles.phoneLineText}>{details.phone_number}</Text>
             </View>
+          </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => Linking.openURL(address.google_url)}>
-              <View style={styles.address}>
-                <View style={styles.firstLine}>
-                  <CustomIcon name={CustomIcons.Location} width={20} height={20} />
-                  <Text style={styles.addressLineText}>{address.address_first_line}</Text>
-                </View>
-                <Text style={styles.addressLine}>{address.address_street_number} {address.address_street_name}</Text>
-                <Text style={styles.addressLine}>{details.location}</Text>
-              </View>
-            </TouchableOpacity>
+          <View style={styles.detail}>
+            <CustomIcon name={CustomIcons.Fork} width={20} height={20} />
+            <Text style={styles.cuisineLineText}>{details.cuisines}</Text>
           </View>
 
-
-
-          <View style={styles.ratings}>
-            <View style={styles.rating}>
-              <Text style={styles.ratingCount}>999</Text>
-              <View style={styles.ratingIcon}>
-                <CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />
+          <TouchableOpacity onPress={() => Linking.openURL(address.google_url)}>
+            <View style={styles.address}>
+              <View style={styles.firstLine}>
+                <CustomIcon name={CustomIcons.Location} width={20} height={20} />
+                <Text style={styles.addressLineText}>{address.address_first_line}</Text>
               </View>
+              <Text style={styles.addressLine}>{address.address_street_number} {address.address_street_name}</Text>
+              <Text style={styles.addressLine}>{details.location}</Text>
             </View>
-            <View style={styles.rating}>
-              <Text style={styles.ratingCount}>15</Text>
-              <View style={styles.ratingIcon}>
-                <CustomIcon name={CustomIcons.BreadOkay} width={24} height={24} />
-              </View>
-            </View>
-            <View style={styles.rating}>
-              <Text style={styles.ratingCount}>2</Text>
-              <View style={styles.ratingIcon}>
-                <CustomIcon name={CustomIcons.BreadCross} width={24} height={24} />
-              </View>
-            </View>
-          </View>
-
+          </TouchableOpacity>
         </View>
+
+
+        <View style={styles.ratings}>
+          <View style={styles.rating}>
+            <Text style={styles.ratingCount}>999</Text>
+            <View style={styles.ratingIcon}>
+              <CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />
+            </View>
+          </View>
+          <View style={styles.rating}>
+            <Text style={styles.ratingCount}>15</Text>
+            <View style={styles.ratingIcon}>
+              <CustomIcon name={CustomIcons.BreadOkay} width={24} height={24} />
+            </View>
+          </View>
+          <View style={styles.rating}>
+            <Text style={styles.ratingCount}>2</Text>
+            <View style={styles.ratingIcon}>
+              <CustomIcon name={CustomIcons.BreadCross} width={24} height={24} />
+            </View>
+          </View>
+        </View>
+
       </View>
-    )
+    </View>
+  )
+}
+
+const formatViewPhoneNumber = (input) => {
+  const m = input.match(/^(\d)(\d{4})(\d{4})$/)
+  return (!m) ? null : `0${m[1]} ${m[2]} ${m[3]}`
+}
+
+const formatCallPhoneNumber = (input) => {
+  const m = input.match(/^(\d)(\d{8})$/)
+  return (!m) ? null : `${m[2]}`
+}
+
+const buildDetails = (store) => {
+  const details = Object.assign({}, store)
+  details.location = `${store.suburb.name}, ${store.suburb.city.name}`
+
+  details.cuisines = ''
+  if (store.cuisines) {
+    details.cuisines = store.cuisines.map(cuisine => cuisine.name).join(', ')
   }
+
+  details.phone_number = formatViewPhoneNumber(store.phone_number)
+  return details
 }
 
 const styles = StyleSheet.create({
@@ -174,3 +168,5 @@ const styles = StyleSheet.create({
   },
 
 })
+
+export default StoreDetails

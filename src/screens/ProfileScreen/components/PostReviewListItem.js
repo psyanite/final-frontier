@@ -1,34 +1,26 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import LayoutConstants from '../../../styles/constants/LayoutConstants'
 import PostReview from '../../../components/post/PostReview'
 import PostStoreHeader from '../../../components/post/PostStoreHeader'
 
-export default class PostListItem extends Component {
+const PostListItem = ({ post, navigateToStore }) => (
+  <View key={post.id} style={styles.wrap}>
 
-  render() {
+    <PostStoreHeader
+      store={post.store}
+      postedAt={post.posted_at}
+      overallScore={post.post_review.overall_score}
+      navigateToStore={navigateToStore}
+    />
 
-    const { post } = this.props
+    <PostReview
+      review={post.post_review}
+      photos={post.post_photos}
+    />
 
-    return (
-      <View key={post.id} style={styles.wrap}>
-
-        <PostStoreHeader
-          store={post.store}
-          postedAt={post.posted_at}
-          overallScore={post.post_review.overall_score}
-          navigateToStore={this.props.navigateToStore}
-        />
-
-        <PostReview
-          review={post.post_review}
-          photos={post.post_photos}
-        />
-
-      </View>
-    )
-  }
- }
+  </View>
+)
 
 const styles = StyleSheet.create({
   wrap: {
@@ -39,3 +31,5 @@ const styles = StyleSheet.create({
     paddingLeft: LayoutConstants.margins.m,
   },
 })
+
+export default PostListItem

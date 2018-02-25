@@ -4,34 +4,27 @@ import TimeAgo from 'react-native-timeago'
 import ScoreIcon from '../common/Icons/ScoreIcon'
 import LayoutConstants from '../../styles/constants/LayoutConstants'
 
-export default class PostStoreHeader extends Component {
-
-  render() {
-    const { store, postedAt, overallScore } = this.props
-
-    return (
-      <View style={styles.wrap}>
-        <TouchableOpacity onPress={() => this.props.navigateToStore(store)}>
-          <View style={styles.userDetails}>
-            <Image
-              style={styles.avatar}
-              source={{ uri: store.cover_image }}
-            />
-            <View style={styles.nameWrap}>
-              <Text style={styles.name}>{store.name}</Text>
-              <Text style={styles.timeAgo}><TimeAgo time={postedAt} /></Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-        {overallScore && (
-          <View style={styles.overallScore}>
-            <ScoreIcon score={overallScore} width={34} height={34} />
-          </View>
-        )}
+const PostStoreHeader = ({ store, postedAt, overallScore }) => (
+  <View style={styles.wrap}>
+    <TouchableOpacity onPress={() => this.props.navigateToStore(store)}>
+      <View style={styles.userDetails}>
+        <Image
+          style={styles.avatar}
+          source={{ uri: store.cover_image }}
+        />
+        <View style={styles.nameWrap}>
+          <Text style={styles.name}>{store.name}</Text>
+          <Text style={styles.timeAgo}><TimeAgo time={postedAt} /></Text>
+        </View>
       </View>
-    )
-  }
-}
+    </TouchableOpacity>
+    {overallScore && (
+      <View style={styles.overallScore}>
+        <ScoreIcon score={overallScore} width={34} height={34} />
+      </View>
+    )}
+  </View>
+)
 
 const styles = StyleSheet.create({
   wrap: {
@@ -65,3 +58,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 })
+
+export default PostStoreHeader

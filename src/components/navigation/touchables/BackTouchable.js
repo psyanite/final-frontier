@@ -1,28 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { NavigationActions } from 'react-navigation'
 import { StyleSheet, TouchableHighlight } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import LayoutConstants from '../../../styles/constants/LayoutConstants'
 
-class BackTouchable extends Component {
-  render() {
-    const { navigation, size, color } = this.props
-    return (
-      <TouchableHighlight
-        onPress={() => navigation.dispatch(NavigationActions.back())}
-        underlayColor={'transparent'}
-        style={styles.wrap}
-      >
-        <Ionicons
-          name='ios-arrow-back'
-          size={size}
-          color={color}
-          style={styles.icon}
-        />
-      </TouchableHighlight>
-    )
-  }
-}
+const BackTouchable = ({ navigation, size, color }) => (
+  <TouchableHighlight
+    onPress={() => navigation.dispatch(NavigationActions.back())}
+    underlayColor={'transparent'}
+    style={styles.wrap}
+  >
+    <Ionicons
+      name='ios-arrow-back'
+      size={size}
+      color={color}
+      style={styles.icon}
+    />
+  </TouchableHighlight>
+)
 
 const styles = StyleSheet.create({
   wrap: {

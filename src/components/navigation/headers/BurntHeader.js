@@ -4,7 +4,10 @@ import { Header } from 'react-navigation'
 
 import BurntGradient from '../../gradients/BurnGradient'
 
-export default BurntHeader = props => {
+/**
+ * Header with the signature Burnt color scheme as a gradient.
+ */
+const BurntHeader = (props) => {
   const newProps = Object.assign({}, props, { style: { backgroundColor: 'transparent' } })
   return (
     <View>
@@ -14,3 +17,5 @@ export default BurntHeader = props => {
     </View>
   )
 }
+
+export default BurntHeader

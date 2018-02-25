@@ -1,34 +1,26 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import LayoutConstants from '../../../styles/constants/LayoutConstants'
 import PostProfileHeader from '../../../components/post/PostProfileHeader'
 import PostReview from '../../../components/post/PostReview'
 
-export default class PostListItem extends Component {
+const PostListItem = ({ post, navigateToProfile }) => (
+  <View key={post.id} style={styles.wrap}>
 
-  render() {
+    <PostProfileHeader
+      postedBy={post.posted_by}
+      postedAt={post.posted_at}
+      overallScore={post.post_review.overall_score}
+      navigateToProfile={navigateToProfile}
+    />
 
-    const { post } = this.props
+    <PostReview
+      review={post.post_review}
+      photos={post.post_photos}
+    />
 
-    return (
-      <View key={post.id} style={styles.wrap}>
-
-        <PostProfileHeader
-          postedBy={post.posted_by}
-          postedAt={post.posted_at}
-          overallScore={post.post_review.overall_score}
-          navigateToProfile={this.props.navigateToProfile}
-        />
-
-        <PostReview
-          review={post.post_review}
-          photos={post.post_photos}
-        />
-
-      </View>
-    )
-  }
- }
+  </View>
+)
 
 const styles = StyleSheet.create({
   wrap: {
@@ -39,3 +31,5 @@ const styles = StyleSheet.create({
     paddingLeft: LayoutConstants.margins.m,
   },
 })
+
+export default PostListItem

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Colors from '../../styles/constants/ColorConstants'
 import ScoreIcon from '../common/Icons/ScoreIcon'
@@ -6,51 +6,43 @@ import LayoutConstants from '../../styles/constants/LayoutConstants'
 import GalleryThumbs from '../common/gallery/GalleryThumbs'
 import ViewMoreText from '../common/ViewMoreText'
 
-export default class PostPhotoListItem extends Component {
-
-  render() {
-
-    const { review, photos } = this.props
-
-    return (
-      <View>
-        <View style={styles.scores}>
-          <View style={styles.score}>
-            <ScoreIcon score={review.taste_score} width={24} height={24} />
-            <Text style={styles.scoreType}>Taste</Text>
-          </View>
-          <View style={styles.score}>
-            <ScoreIcon score={review.service_score} width={24} height={24} />
-            <Text style={styles.scoreType}>Service</Text>
-          </View>
-          <View style={styles.score}>
-            <ScoreIcon score={review.value_score} width={24} height={24} />
-            <Text style={styles.scoreType}>Value</Text>
-          </View>
-          <View style={styles.score}>
-            <ScoreIcon score={review.ambience_score} width={24} height={24} />
-            <Text style={styles.scoreType}>Ambience</Text>
-          </View>
-        </View>
-
-        <View style={styles.body}>
-          <ViewMoreText
-            numberOfLines={3}
-            viewStyle={styles.body}
-          >
-            <Text>{review.body}</Text>
-          </ViewMoreText>
-        </View>
-
-        {photos.length > 0 && (
-          <View style={styles.gallery}>
-            <GalleryThumbs images={photos} />
-          </View>
-        )}
+const PostPhotoListItem = ({ review, photos }) => (
+  <View>
+    <View style={styles.scores}>
+      <View style={styles.score}>
+        <ScoreIcon score={review.taste_score} width={24} height={24} />
+        <Text style={styles.scoreType}>Taste</Text>
       </View>
-    )
-  }
-}
+      <View style={styles.score}>
+        <ScoreIcon score={review.service_score} width={24} height={24} />
+        <Text style={styles.scoreType}>Service</Text>
+      </View>
+      <View style={styles.score}>
+        <ScoreIcon score={review.value_score} width={24} height={24} />
+        <Text style={styles.scoreType}>Value</Text>
+      </View>
+      <View style={styles.score}>
+        <ScoreIcon score={review.ambience_score} width={24} height={24} />
+        <Text style={styles.scoreType}>Ambience</Text>
+      </View>
+    </View>
+
+    <View style={styles.body}>
+      <ViewMoreText
+        numberOfLines={3}
+        viewStyle={styles.body}
+      >
+        <Text>{review.body}</Text>
+      </ViewMoreText>
+    </View>
+
+    {photos.length > 0 && (
+      <View style={styles.gallery}>
+        <GalleryThumbs images={photos} />
+      </View>
+    )}
+  </View>
+)
 
 const styles = StyleSheet.create({
   scores: {
@@ -77,3 +69,5 @@ const styles = StyleSheet.create({
     marginTop: LayoutConstants.margins.s
   },
 })
+
+export default PostPhotoListItem
