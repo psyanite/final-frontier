@@ -1,20 +1,19 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Image, TouchableOpacity, View } from 'react-native'
 import GalleryCarousel from '../gallery/GalleryCarousel'
 import Overlay from '../Overlay'
 
-class ImagePreview extends Component {
-  state = {
-    displayOverlay: false,
-    overlayContent: null,
-  }
+/**
+ * A thumbnail of a image when pressed, will be displayed
+ * in full size on top of a black overlay using GalleryCarousel.
+ */
+class ImagePreview extends PureComponent {
+
+  state = { overlayContent: null }
 
   hideOverlay = () => {
-    this.setState({
-      displayOverlay: false,
-      overlayContent: null,
-    })
+    this.setState({ overlayContent: null })
   }
 
   buildGalleryCarousel = () => (
@@ -23,18 +22,14 @@ class ImagePreview extends Component {
 
   handlePreviewPress = () => {
     const gallery = this.buildGalleryCarousel()
-    this.setState({
-      displayOverlay: true,
-      overlayContent: gallery
-    })
+    this.setState({ overlayContent: gallery })
   }
 
   render() {
     return (
       <View>
         {
-          this.state.displayOverlay
-          && this.state.overlayContent
+          this.state.overlayContent
           && <Overlay onClose={this.hideOverlay}>{this.state.overlayContent}</Overlay>
         }
         <TouchableOpacity onPress={() => this.handlePreviewPress()}>

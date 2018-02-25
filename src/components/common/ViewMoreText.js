@@ -1,11 +1,13 @@
-/* eslint-disable brace-style */
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
-
 import PropTypes from 'prop-types'
 import { LinearGradient } from 'expo'
 
-class ViewMoreText extends React.Component {
+/**
+ * Text component which is shortened by the numberOfLines prop,
+ * and expands to full height onPress.
+ */
+class ViewMoreText extends PureComponent {
 
   state = {
     shouldToggle: false,
@@ -29,14 +31,10 @@ class ViewMoreText extends React.Component {
   handlePress = () => {
     const { shouldToggle, numberOfLines } = this.state
     if (shouldToggle && numberOfLines) {
-      this.setState({
-        numberOfLines: null,
-      })
+      this.setState({ numberOfLines: null })
     }
     else {
-      this.setState({
-        numberOfLines: this.props.numberOfLines,
-      })
+      this.setState({ numberOfLines: this.props.numberOfLines })
     }
   }
 
@@ -60,20 +58,17 @@ class ViewMoreText extends React.Component {
   )
 
   render() {
-    const { shouldToggle, numberOfLines } = this.state
     return (
       <TouchableOpacity onPress={this.handlePress}>
         <View>
           <Text
+            numberOfLines={this.state.numberOfLines}
             style={this.props.textStyle}
-            numberOfLines={numberOfLines}
             ref={text => { this._text = text }}
           >
             {this.props.children}
           </Text>
-          {
-            shouldToggle && numberOfLines && this.blur
-          }
+          { this.state.shouldToggle && this.state.numberOfLines && this.blur }
         </View>
       </TouchableOpacity>
     )

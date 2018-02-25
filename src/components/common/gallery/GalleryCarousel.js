@@ -1,24 +1,28 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Gallery from 'react-native-image-gallery'
 
-class GalleryCarousel extends Component {
+/**
+ * A slideshow, carousel-like presentation where
+ * users view images by swiping left and right.
+ * GalleryCarousel is a wrapper around Gallery from 'react-native-image-gallery.
+ */
+class GalleryCarousel extends PureComponent {
 
   onChangeImage = (index) => {
     this.setState({ index })
   }
 
-  images = () => this.props.images.map((image) => ({
-    source: {
-      uri: image.photo
-    }
-  }))
-
   render() {
+    const images = this.props.images.map((image) => ({
+      source: {
+        uri: image.photo
+      }
+    }))
     return (
       <Gallery
         style={this.props.style}
-        images={this.images()}
+        images={images}
         onPageSelected={this.onChangeImage}
         initialPage={this.props.initialPage}
       />
