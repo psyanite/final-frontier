@@ -18,7 +18,7 @@ const ScoreIcon = (props) => {
       newProps.name = CustomIcons.BreadHeart
       break
     default:
-      break
+      return null
   }
   return <CustomIcon {...newProps} />
 }
