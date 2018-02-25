@@ -1,7 +1,6 @@
-/* eslint-disable max-len */
 import React from 'react'
 import SvgIcon from 'react-native-svg-icon'
-import { G, Path } from 'react-native-svg'
+import { Path } from 'react-native-svg'
 
 /**
  * Collection of outline icons wrapped around SvgIcon from react-native-svg-icon.
