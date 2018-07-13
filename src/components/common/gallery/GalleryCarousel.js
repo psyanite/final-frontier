@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import Gallery from 'react-native-image-gallery'
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import Gallery from 'react-native-image-gallery';
 
 /**
  * A slideshow, carousel-like presentation where
@@ -10,7 +10,7 @@ import Gallery from 'react-native-image-gallery'
 class GalleryCarousel extends PureComponent {
 
   onChangeImage = (index) => {
-    this.setState({ index })
+    this.setState({ index });
   }
 
   render() {
@@ -18,7 +18,7 @@ class GalleryCarousel extends PureComponent {
       source: {
         uri: image.photo
       }
-    }))
+    }));
     return (
       <Gallery
         style={this.props.style}
@@ -26,7 +26,7 @@ class GalleryCarousel extends PureComponent {
         onPageSelected={this.onChangeImage}
         initialPage={this.props.initialPage}
       />
-    )
+    );
   }
 }
 
@@ -34,11 +34,11 @@ GalleryCarousel.propTypes = {
   images: PropTypes.array.isRequired,
   initialPage: PropTypes.number,
   style: PropTypes.object,
-}
+};
 
 GalleryCarousel.defaultProps = {
   initialPage: 0,
   style: { flex: 1 },
-}
+};
 
-export default GalleryCarousel
+export default GalleryCarousel;

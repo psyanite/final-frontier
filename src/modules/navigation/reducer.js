@@ -1,9 +1,12 @@
-import { NavigationActions } from 'react-navigation'
-import { RootStackNavigator } from '../../components/navigation/RootNavigation'
+import { NavigationActions } from 'react-navigation';
+import AppNavigator from '../../components/navigation/AppNavigator';
 
-const initialState = RootStackNavigator.router.getStateForAction(NavigationActions.init())
+// const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Home'));
+const initialState = AppNavigator.router.getStateForAction(NavigationActions.init());
 
 export default (state = initialState, action) => {
-  const nextState = RootStackNavigator.router.getStateForAction(action, state)
-  return nextState || state
-}
+  const nextState = AppNavigator.router.getStateForAction(action, state);
+
+  // Simply return the original `state` if `nextState` is null or undefined.
+  return nextState || state;
+};

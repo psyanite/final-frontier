@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
-import { Share, ScrollView, View } from 'react-native'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, { Component } from 'react';
+import { Share, ScrollView, View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import StoreDetails from './components/StoreDetails'
-import PostListContainer from './components/PostListContainer'
-import BackTouchable from '../../components/navigation/touchables/BackTouchable'
-import * as StoreActionCreators from '../../modules/store/actions'
-import ShareTouchable from '../../components/navigation/touchables/ShareTouchable'
+import StoreDetails from './components/StoreDetails';
+import PostListContainer from './components/PostListContainer';
+import BackTouchable from '../../components/navigation/touchables/BackTouchable';
+import * as StoreActionCreators from '../../modules/store/actions';
+import ShareTouchable from '../../components/navigation/touchables/ShareTouchable';
 
 class StoreScreen extends Component {
 
-  static navigationOptions = { header: null }
+  static navigationOptions = { header: null };
 
   componentDidMount() {
-    this.props.actions.fetchStoreById(this.props.navigation.state.params.id)
+    this.props.actions.fetchStoreById(this.props.navigation.state.params.id);
   }
 
   share = (store) => {
@@ -24,7 +24,7 @@ class StoreScreen extends Component {
       title: `911 was an inside job by ${store.name}`
     }, {
       dialogTitle: `BAM! SHARE IT! ${store.name} TOLD YOU TO.`,
-    })
+    });
   }
 
   render() {
@@ -47,17 +47,17 @@ class StoreScreen extends Component {
           navigate={this.props.navigation.navigate}
         />
       </ScrollView>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state, props) => {
-  const store = state.stores[props.navigation.state.params.id]
-  return store ? { store } : { store: null }
-}
+  const store = state.stores[props.navigation.state.params.id];
+  return store ? { store } : { store: null };
+};
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(StoreActionCreators, dispatch)
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(StoreScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(StoreScreen);

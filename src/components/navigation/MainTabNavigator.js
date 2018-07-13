@@ -1,18 +1,17 @@
 /* eslint-disable default-case */
-import React from 'react'
-import { StyleSheet } from 'react-native'
-import { TabNavigator, TabBarBottom } from 'react-navigation'
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
+import HomeStack from './HomeStack';
 
-import HomeNavigator from './HomeNavigator'
+import LinksScreen from '../../screens/LinksScreen';
+import SettingsScreen from '../../screens/SettingsScreen';
+import MyRewardsScreen from '../../screens/MyRewardsScreen';
 
-import LinksScreen from '../../screens/LinksScreen'
-import SettingsScreen from '../../screens/SettingsScreen'
-import MyRewardsScreen from '../../screens/MyRewardsScreen'
+import GenericIcon, { Names as GenericIcons } from '../common/Icons/GenericIcon';
 
-import GenericIcon, { Names as GenericIcons } from '../common/Icons/GenericIcon'
-
-import Colors from '../../styles/constants/ColorConstants'
-import MyProfileScreen from '../../screens/MyProfileScreen/MyProfileScreen'
+import Colors from '../../styles/constants/ColorConstants';
+import MyProfileScreen from '../../screens/MyProfileScreen/MyProfileScreen';
 
 const styles = StyleSheet.create({
   tabBar: {
@@ -22,65 +21,82 @@ const styles = StyleSheet.create({
   },
 })
 
-export default TabNavigator(
-  {
-    Home: {
-      screen: HomeNavigator,
-    },
-    Links: {
-      screen: LinksScreen,
-    },
-    Settings: {
-      screen: SettingsScreen,
-    },
-    MyRewards: {
-      screen: MyRewardsScreen,
-    },
-    Profile: {
-      screen: MyProfileScreen,
-    },
+const LinksStack = createStackNavigator({
+  Links: LinksScreen,
+});
+
+LinksStack.navigationOptions = {
+  tabBarLabel: 'Links',
+  tabBarIcon: ({ focused }) => (
+    <GenericIcon
+      name={GenericIcons.Coin}
+      fill={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+      width={25}
+      height={25}
+    />
+  ),
+};
+
+const SettingsStack = createStackNavigator({
+  Settings: SettingsScreen,
+});
+
+SettingsStack.navigationOptions = {
+  tabBarLabel: 'Settings',
+  tabBarIcon: ({ focused }) => (
+    <GenericIcon
+      name={GenericIcons.NewPost}
+      fill={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+      width={25}
+      height={25}
+    />
+  ),
+};
+
+const MyRewardsStack = createStackNavigator({
+  Settings: MyRewardsScreen,
+});
+
+MyRewardsStack.navigationOptions = {
+  tabBarLabel: 'Settings',
+  tabBarIcon: ({ focused }) => (
+    <GenericIcon
+      name={GenericIcons.Star}
+      fill={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+      width={25}
+      height={25}
+    />
+  ),
+};
+
+const MyProfileStack = createStackNavigator({
+  Settings: MyProfileScreen,
+});
+
+MyProfileStack.navigationOptions = {
+  tabBarLabel: 'Settings',
+  tabBarIcon: ({ focused }) => (
+    <GenericIcon
+      name={GenericIcons.Person}
+      fill={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+      width={25}
+      height={25}
+    />
+  ),
+};
+
+export default createBottomTabNavigator({
+  HomeStack,
+  LinksStack,
+  SettingsStack,
+  MyRewardsStack,
+  MyProfileStack
+}, {
+  tabBarPosition: 'bottom',
+  tabBarOptions: {
+    showLabel: false,
+    style: styles.tabBar
   },
-  {
-    navigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused }) => {
-        const { routeName } = navigation.state
-        let iconName
-
-        switch (routeName) {
-          case 'Home':
-            iconName = GenericIcons.BreadHeart
-            break
-          case 'Links':
-            iconName = GenericIcons.Coin
-            break
-          case 'Settings':
-            iconName = GenericIcons.NewPost
-            break
-          case 'MyRewards':
-            iconName = GenericIcons.Star
-            break
-          case 'Profile':
-            iconName = GenericIcons.Person
-            break
-        }
-
-        return (
-          <GenericIcon
-            name={iconName}
-            fill={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-            width={25}
-            height={25}
-          />
-        )
-      },
-    }),
-    tabBarComponent: TabBarBottom,
-    tabBarPosition: 'bottom',
-    tabBarOptions: {
-      showLabel: false,
-      style: styles.tabBar
-    },
-    animationEnabled: false,
-    swipeEnabled: true,
-  }
-)
+  animationEnabled: true,
+  swipeEnabled: true,
+});

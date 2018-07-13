@@ -1,7 +1,7 @@
-import React from 'react'
-import { Image, StyleSheet, View } from 'react-native'
-import { BlurView } from 'expo'
-import LayoutConstants from '../../../styles/constants/LayoutConstants'
+import React from 'react';
+import { Image, StyleSheet, View } from 'react-native';
+import { BlurView } from 'expo';
+import LayoutConstants from '../../../styles/constants/LayoutConstants';
 
 /**
  * Tinted image header with an angled bottom for aesthetics.
@@ -15,7 +15,7 @@ const AngledImageHeader = ({ uri }) => (
     <BlurView tint='dark' intensity={10} style={StyleSheet.absoluteFill} />
     <View style={styles.triangle} />
   </View>
-)
+);
 
 const styles = StyleSheet.create({
   wrap: {
@@ -38,6 +38,6 @@ const styles = StyleSheet.create({
       { rotate: '180deg' }
     ]
   },
-})
+});
 
-export default AngledImageHeader
+export default AngledImageHeader;

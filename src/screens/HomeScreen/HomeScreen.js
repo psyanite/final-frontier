@@ -1,43 +1,43 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { StyleSheet, Text, View } from 'react-native';
 
-import BurntHeader from '../../components/navigation/headers/BurntHeader'
-import GenericIcon, { Names as GenericIcons } from '../../components/common/Icons/GenericIcon'
+import BurntHeader from '../../components/navigation/headers/BurntHeader';
+import GenericIcon, { Names as GenericIcons } from '../../components/common/Icons/GenericIcon';
+import StoreListContainer from './components/StoreList/StoreListContainer';
 
-import ColorConstants from '../../styles/constants/ColorConstants'
-import LayoutConstants from '../../styles/constants/LayoutConstants'
-import StoreListContainer from './components/StoreList/StoreListContainer'
-import CustomIcon, { Names as CustomIcons } from '../../components/common/Icons/CustomIcon'
+import ColorConstants from '../../styles/constants/ColorConstants';
+import LayoutConstants from '../../styles/constants/LayoutConstants';
 
 class HomeScreen extends Component {
 
   static navigationOptions = () => {
-    const title = <Text style={styles.headerTitle}>Burntoast</Text>
+    const title = <Text style={styles.headerTitle}>Burntoast</Text>;
     const headerRight = (
       <View style={styles.headerRight}>
         <GenericIcon name={GenericIcons.Search} width={25} height={25} />
       </View>
-    )
+    );
     return ({
-      header: (props) => <BurntHeader {...props} />,
       headerTitle: title,
+      header: (props) => <BurntHeader {...props} />,
       headerRight,
       headerStyle: { backgroundColor: 'transparent' },
-    })
-  }
+    });
+  };
+
 
   state = {
     displayOverlay: true,
     overlayContent: null,
-  }
+  };
 
   render() {
     return (
       <View style={styles.container}>
         <StoreListContainer navigate={this.props.navigation.navigate} />
       </View>
-    )
+    );
   }
 }
 
@@ -59,12 +59,12 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingTop: 30,
   },
-})
+});
 
 function mapStateToProps(state) {
   return {
     searchedRecipes: state.searchedRecipes
-  }
+  };
 }
 
-export default connect(mapStateToProps)(HomeScreen)
+export default connect(mapStateToProps)(HomeScreen);

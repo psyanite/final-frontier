@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { Image, StyleSheet, Text, TouchableHighlight, View, } from 'react-native'
+import React, { Component } from 'react';
+import { ScrollView, Share, StyleSheet, } from 'react-native';
 
-import { Ionicons } from '@expo/vector-icons'
-
-import AngledImageHeader from '../../components/navigation/headers/AngledImageHeader'
-import PostListContainer from './components/PostListContainer'
-import BackTouchable from '../../components/navigation/touchables/BackTouchable'
+import { Ionicons } from '@expo/vector-icons';
+import PostListContainer from './components/PostListContainer';
+import BackTouchable from '../../components/navigation/touchables/BackTouchable';
+import ProfileDetails from '../ProfileScreen/components/ProfileDetails';
+import ShareTouchable from '../../components/navigation/touchables/ShareTouchable';
 
 
 export default class ProfileScreen extends Component {
@@ -20,57 +20,54 @@ export default class ProfileScreen extends Component {
         left: 0,
         right: 0,
       },
-    })
+    });
+
+  share = (userAccount) => {
+    Share.share({
+      message: `911 was an inside job by ${userAccount.profile.display_name}. Jet fuel can't melt steel beams, here's proof https://expo.io/@psyanite/burntoast`,
+      url: 'https://expo.io/@psyanite/burntoast',
+      title: `911 was an inside job by ${userAccount.profile.display_name}`
+    }, {
+      dialogTitle: `BAM! SHARE IT! ${userAccount.profile.display_name} TOLD YOU TO.`,
+    });
+  };
 
   render() {
     let userAccount = {
       id: 1,
       profile: {
-        username: 'lytele_x',
-        display_name: 'Luna Lytele',
-        profile_picture: 'https://instagram.fsyd4-1.fna.fbcdn.net/t51.2885-15/sh0.08/e35/p750x750/25011194_154776358620802_195638642255855616_n.jpg',
+        username: 'nyatella',
+        display_name: 'Luna',
+        profile_picture: 'https://imgur.com/HYz307Q.jpg',
       }
-    }
+    };
 
     if (this.props.navigation.state.params) {
-      userAccount = this.props.navigation.state.params
+      userAccount = this.props.navigation.state.params;
     }
-    const profile = userAccount.profile
+
     return (
-      <View style={styles.wrap}>
+      <ScrollView style={styles.wrap}>
 
-        <AngledImageHeader uri={profile.profile_picture} />
-
-        <View style={styles.userDetails}>
-          <Image style={styles.avatar} source={{ uri: profile.profile_picture }} />
-          <View style={styles.nameWrap}>
-            <Text style={styles.displayName}>{profile.display_name}</Text>
-            <Text style={styles.username}>@{profile.username}</Text>
-            <TouchableHighlight>
-              <Ionicons name='md-share' size={20} color={'#ff884e'} />
-            </TouchableHighlight>
-          </View>
-        </View>
+        <ProfileDetails profile={userAccount.profile} />
 
         <PostListContainer userAccountId={userAccount.id} />
 
-      </View>
-    )
+        <ShareTouchable share={() => this.share(userAccount)} />
+
+      </ScrollView>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   wrap: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    flex: 1,
     backgroundColor: '#fff',
   },
+
   userDetails: {
-    marginTop: -80,
-    marginLeft: 50,
+    marginTop: -60,
+    marginLeft: 20,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -85,8 +82,8 @@ const styles = StyleSheet.create({
     height: 115,
   },
   avatar: {
-    width: 140,
-    height: 140,
+    width: 110,
+    height: 110,
     marginTop: 15,
     borderRadius: 70,
     borderWidth: 5,
@@ -101,7 +98,7 @@ const styles = StyleSheet.create({
   },
   nameWrap: {
     marginTop: 20,
-    marginLeft: 7,
+    marginLeft: 15,
   },
   displayName: {
     fontWeight: 'bold',
@@ -129,4 +126,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 15,
   },
-})
+});

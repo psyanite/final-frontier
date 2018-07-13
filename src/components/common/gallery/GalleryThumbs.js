@@ -1,10 +1,10 @@
 /* eslint-disable no-mixed-operators */
-import React, { PureComponent } from 'react'
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
-import PropTypes from 'prop-types'
-import LayoutConstants from '../../../styles/constants/LayoutConstants'
-import GalleryCarousel from './GalleryCarousel'
-import Overlay from '../Overlay'
+import React, { PureComponent } from 'react';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import PropTypes from 'prop-types';
+import LayoutConstants from '../../../styles/constants/LayoutConstants';
+import GalleryCarousel from './GalleryCarousel';
+import Overlay from '../Overlay';
 
 /**
  * A collection of thumbnails of a collection of gallery images.
@@ -14,24 +14,24 @@ import Overlay from '../Overlay'
  */
 class GalleryThumbs extends PureComponent {
 
-  state = { overlayContent: null }
+  state = { overlayContent: null };
 
   hideOverlay = () => {
-    this.setState({ overlayContent: null })
-  }
+    this.setState({ overlayContent: null });
+  };
 
   buildGalleryCarousel = (index) => (
     <GalleryCarousel images={this.props.images} initialPage={index} />
-  )
+  );
 
   handleThumbPress = (index) => {
-    const gallery = this.buildGalleryCarousel(index)
-    this.setState({ overlayContent: gallery })
-  }
+    const gallery = this.buildGalleryCarousel(index);
+    this.setState({ overlayContent: gallery });
+  };
 
   renderGalleryThumb = (image, index) => (
     <TouchableOpacity
-      key={image.id}
+      key={image.id.toString()}
       onPress={() => this.handleThumbPress(index)}
       underlayColor={'transparent'}
     >
@@ -40,10 +40,10 @@ class GalleryThumbs extends PureComponent {
         source={{ uri: image.photo }}
       />
     </TouchableOpacity>
-  )
+  );
 
   render() {
-    const { images } = this.props
+    const { images } = this.props;
 
     if (images.length > 0) {
       return (
@@ -56,21 +56,21 @@ class GalleryThumbs extends PureComponent {
             {images.map((image, index) => this.renderGalleryThumb(image, index))}
           </View>
         </View>
-      )
+      );
     }
-    return null
+    return null;
   }
 
 }
 
-const galleryGap = 2
-const numberOfThumbs = 5
-const numberOfGaps = numberOfThumbs - 1
-const windowWidth = LayoutConstants.window.width
-const sideMargin = LayoutConstants.margins.m
-const numberOfSideMargins = 2
-const galleryWidth = windowWidth - numberOfSideMargins * sideMargin
-const thumbSize = Math.floor((galleryWidth - numberOfGaps * galleryGap) / numberOfThumbs)
+const galleryGap = 2;
+const numberOfThumbs = 5;
+const numberOfGaps = numberOfThumbs - 1;
+const windowWidth = LayoutConstants.window.width;
+const sideMargin = LayoutConstants.margins.m;
+const numberOfSideMargins = 2;
+const galleryWidth = windowWidth - numberOfSideMargins * sideMargin;
+const thumbSize = Math.floor((galleryWidth - numberOfGaps * galleryGap) / numberOfThumbs);
 
 const styles = StyleSheet.create({
   gallery: {
@@ -83,10 +83,10 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     resizeMode: 'cover'
   }
-})
+});
 
 GalleryThumbs.propTypes = {
   images: PropTypes.array.isRequired,
-}
+};
 
-export default GalleryThumbs
+export default GalleryThumbs;

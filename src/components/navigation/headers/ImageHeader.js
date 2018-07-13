@@ -1,7 +1,7 @@
-import React from 'react'
-import { Image, StyleSheet, View } from 'react-native'
-import { BlurView } from 'expo'
-import PropTypes from 'prop-types'
+import React from 'react';
+import { Image, StyleSheet, View } from 'react-native';
+import { BlurView } from 'expo';
+import PropTypes from 'prop-types';
 
 const ImageHeader = ({ uri, height, isTinted }) => (
   <View style={{ height }}>
@@ -11,17 +11,17 @@ const ImageHeader = ({ uri, height, isTinted }) => (
     />
     { isTinted && <BlurView tint='dark' intensity={10} style={StyleSheet.absoluteFill} /> }
   </View>
-)
+);
 
 ImageHeader.defaultProps = {
   height: 100,
   isTinted: false,
-}
+};
 
 ImageHeader.propTypes = {
   uri: PropTypes.string.isRequired,
   height: PropTypes.number,
   isTinted: PropTypes.bool,
-}
+};
 
-export default ImageHeader
+export default ImageHeader;

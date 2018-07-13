@@ -44,7 +44,7 @@ export default class PostList extends Component {
           <FlatList
             data={this.props.posts}
             renderItem={this._renderPost}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.id.toString()}
             ItemSeparatorComponent={this._renderSeparator}
           />
         </List>

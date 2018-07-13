@@ -35,7 +35,7 @@ export default class StoreList extends Component {
           <FlatList
             data={this.props.stores}
             renderItem={this.renderStore}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.id.toString()}
             ItemSeparatorComponent={this.renderSeparator}
           />
         </List>

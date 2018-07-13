@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 import {
-  Image, StyleSheet, Text, View} from 'react-native'
+  Image, StyleSheet, Text, View } from 'react-native';
 
-import AngledImageHeader from '../../../components/navigation/headers/AngledImageHeader'
+import ImageHeader from '../../../components/navigation/headers/ImageHeader';
 
 const StoreDetails = ({ profile }) => (
   // todo: replace angledimageheader with image header and add height prop to image header
   <View>
 
-    <AngledImageHeader uri={profile.profile_picture} />
+    <ImageHeader uri={profile.profile_picture} height={80} isTinted />
 
     <View style={styles.userDetails}>
       <Image style={styles.avatar} source={{ uri: profile.profile_picture }} />
@@ -19,7 +19,7 @@ const StoreDetails = ({ profile }) => (
     </View>
 
   </View>
-)
+);
 
 const styles = StyleSheet.create({
   headerRight: {
@@ -79,6 +79,6 @@ const styles = StyleSheet.create({
   //   fontWeight: 'bold',
   //   fontSize: 15,
   // },
-})
+});
 
-export default StoreDetails
+export default StoreDetails;
