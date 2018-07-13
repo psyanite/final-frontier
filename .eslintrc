@@ -16,7 +16,7 @@
     "no-underscore-dangle": 0,
     "react/require-extension": 0,
     "max-len": 0,
-    "semi": ["error", "never"],
+    "semi": ["error", "always"],
     "quotes": ["error", "single"],
     "object-curly-spacing": ["error", "always"],
     "brace-style": ["error", "stroustrup"]
