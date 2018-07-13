@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import TimeAgo from 'react-native-timeago'
-import ScoreIcon from '../common/Icons/ScoreIcon'
-import LayoutConstants from '../../styles/constants/LayoutConstants'
+import React, { Component } from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import TimeAgo from 'react-native-timeago';
+import ScoreIcon from '../common/Icons/ScoreIcon';
+import LayoutConstants from '../../styles/constants/LayoutConstants';
 
 const PostStoreHeader = ({ store, postedAt, overallScore }) => (
   <View style={styles.wrap}>
@@ -24,7 +24,7 @@ const PostStoreHeader = ({ store, postedAt, overallScore }) => (
       </View>
     )}
   </View>
-)
+);
 
 const styles = StyleSheet.create({
   wrap: {
@@ -57,6 +57,6 @@ const styles = StyleSheet.create({
   overallScore: {
     justifyContent: 'center',
   },
-})
+});
 
-export default PostStoreHeader
+export default PostStoreHeader;

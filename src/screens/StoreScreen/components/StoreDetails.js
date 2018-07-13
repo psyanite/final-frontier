@@ -1,16 +1,16 @@
-import React from 'react'
-import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { phonecall as phoneCall } from 'react-native-communications'
+import React from 'react';
+import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { phonecall as phoneCall } from 'react-native-communications';
 
-import CustomIcon, { Names as CustomIcons } from '../../../components/common/Icons/CustomIcon'
-import LayoutConstants from '../../../styles/constants/LayoutConstants'
-import ImageHeader from '../../../components/navigation/headers/ImageHeader'
+import CustomIcon, { Names as CustomIcons } from '../../../components/common/Icons/CustomIcon';
+import LayoutConstants from '../../../styles/constants/LayoutConstants';
+import ImageHeader from '../../../components/navigation/headers/ImageHeader';
 
 const StoreDetails = ({ store }) => {
-  const details = buildDetails(store)
-  const address = Object.assign({}, store.address)
+  const details = buildDetails(store);
+  const address = Object.assign({}, store.address);
   if (address.address_second_line) {
-    address.address_first_line += `, ${address.address_second_line}`
+    address.address_first_line += `, ${address.address_second_line}`;
   }
   return (
     <View>
@@ -69,31 +69,31 @@ const StoreDetails = ({ store }) => {
 
       </View>
     </View>
-  )
-}
+  );
+};
 
 const formatViewPhoneNumber = (input) => {
-  const m = input.match(/^(\d)(\d{4})(\d{4})$/)
-  return (!m) ? null : `0${m[1]} ${m[2]} ${m[3]}`
-}
+  const m = input.match(/^(\d)(\d{4})(\d{4})$/);
+  return (!m) ? null : `0${m[1]} ${m[2]} ${m[3]}`;
+};
 
 const formatCallPhoneNumber = (input) => {
-  const m = input.match(/^(\d)(\d{8})$/)
-  return (!m) ? null : `${m[2]}`
-}
+  const m = input.match(/^(\d)(\d{8})$/);
+  return (!m) ? null : `${m[2]}`;
+};
 
 const buildDetails = (store) => {
-  const details = Object.assign({}, store)
-  details.location = `${store.suburb.name}, ${store.suburb.city.name}`
+  const details = Object.assign({}, store);
+  details.location = `${store.suburb.name}, ${store.suburb.city.name}`;
 
-  details.cuisines = ''
+  details.cuisines = '';
   if (store.cuisines) {
-    details.cuisines = store.cuisines.map(cuisine => cuisine.name).join(', ')
+    details.cuisines = store.cuisines.map(cuisine => cuisine.name).join(', ');
   }
 
-  details.phone_number = formatViewPhoneNumber(store.phone_number)
-  return details
-}
+  details.phone_number = formatViewPhoneNumber(store.phone_number);
+  return details;
+};
 
 const styles = StyleSheet.create({
   wrap: {
@@ -167,6 +167,6 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
 
-})
+});
 
-export default StoreDetails
+export default StoreDetails;

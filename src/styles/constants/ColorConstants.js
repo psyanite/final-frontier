@@ -1,4 +1,4 @@
-const tintColor = '#ffab40'
+const tintColor = '#ffab40';
 
 export default {
   bodyBackgroundColor: '#f5f5f5',
@@ -14,4 +14,4 @@ export default {
   bodyText: '#604b41',
   lightSeparatorColor: '#eee',
   darkSeparatorColor: '#ddd',
-}
+};

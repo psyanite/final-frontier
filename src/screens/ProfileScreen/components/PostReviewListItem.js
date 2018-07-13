@@ -1,8 +1,8 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import LayoutConstants from '../../../styles/constants/LayoutConstants'
-import PostReview from '../../../components/post/PostReview'
-import PostStoreHeader from '../../../components/post/PostStoreHeader'
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import LayoutConstants from '../../../styles/constants/LayoutConstants';
+import PostReview from '../../../components/post/PostReview';
+import PostStoreHeader from '../../../components/post/PostStoreHeader';
 
 const PostListItem = ({ post, navigateToStore }) => (
   <View key={post.id} style={styles.wrap}>
@@ -20,7 +20,7 @@ const PostListItem = ({ post, navigateToStore }) => (
     />
 
   </View>
-)
+);
 
 const styles = StyleSheet.create({
   wrap: {
@@ -30,6 +30,6 @@ const styles = StyleSheet.create({
     paddingBottom: LayoutConstants.margins.m,
     paddingLeft: LayoutConstants.margins.m,
   },
-})
+});
 
-export default PostListItem
+export default PostListItem;

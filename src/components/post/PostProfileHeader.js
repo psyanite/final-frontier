@@ -1,11 +1,11 @@
-import React from 'react'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import TimeAgo from 'react-native-timeago'
-import ScoreIcon from '../common/Icons/ScoreIcon'
-import LayoutConstants from '../../styles/constants/LayoutConstants'
+import React from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import TimeAgo from 'react-native-timeago';
+import ScoreIcon from '../common/Icons/ScoreIcon';
+import LayoutConstants from '../../styles/constants/LayoutConstants';
 
 const PostProfileHeader = ({ postedBy, postedAt, overallScore, navigateToProfile }) => {
-  const profile = postedBy.profile
+  const profile = postedBy.profile;
   return (
     <View style={styles.wrap}>
       <TouchableOpacity onPress={() => navigateToProfile(postedBy)}>
@@ -26,8 +26,8 @@ const PostProfileHeader = ({ postedBy, postedAt, overallScore, navigateToProfile
         </View>
       )}
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   wrap: {
@@ -60,6 +60,6 @@ const styles = StyleSheet.create({
   overallScore: {
     justifyContent: 'center',
   },
-})
+});
 
-export default PostProfileHeader
+export default PostProfileHeader;

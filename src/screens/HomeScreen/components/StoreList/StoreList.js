@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import { FlatList, View } from 'react-native'
-import { List } from 'react-native-elements'
+import React, { Component } from 'react';
+import { FlatList, View } from 'react-native';
+import { List } from 'react-native-elements';
 
-import StoreListItem from './StoreListItem'
+import StoreListItem from './StoreListItem';
 
-import Colors from '../../../../styles/constants/ColorConstants'
+import Colors from '../../../../styles/constants/ColorConstants';
 
 export default class StoreList extends Component {
   state = {
@@ -40,7 +40,7 @@ export default class StoreList extends Component {
           />
         </List>
       </View>
-    )
+    );
   }
 
 }

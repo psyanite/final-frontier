@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
-import PropTypes from 'prop-types'
-import { LinearGradient } from 'expo'
+import React, { PureComponent } from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
+import PropTypes from 'prop-types';
+import { LinearGradient } from 'expo';
 
 /**
  * Text component which is shortened by the numberOfLines prop,
@@ -15,26 +15,26 @@ class ViewMoreText extends PureComponent {
   }
 
   async componentDidMount() {
-    await nextFrameAsync()
-    const fullHeight = await measureHeightAsync(this._text)
-    this.setState({ numberOfLines: this.props.numberOfLines })
-    await nextFrameAsync()
-    const limitedHeight = await measureHeightAsync(this._text)
+    await nextFrameAsync();
+    const fullHeight = await measureHeightAsync(this._text);
+    this.setState({ numberOfLines: this.props.numberOfLines });
+    await nextFrameAsync();
+    const limitedHeight = await measureHeightAsync(this._text);
     if (fullHeight > limitedHeight) {
       this.setState({
         shouldToggle: true,
         numberOfLines: this.props.numberOfLines
-      })
+      });
     }
   }
 
   handlePress = () => {
-    const { shouldToggle, numberOfLines } = this.state
+    const { shouldToggle, numberOfLines } = this.state;
     if (shouldToggle && numberOfLines) {
-      this.setState({ numberOfLines: null })
+      this.setState({ numberOfLines: null });
     }
     else {
-      this.setState({ numberOfLines: this.props.numberOfLines })
+      this.setState({ numberOfLines: this.props.numberOfLines });
     }
   }
 
@@ -64,36 +64,38 @@ class ViewMoreText extends PureComponent {
           <Text
             numberOfLines={this.state.numberOfLines}
             style={this.props.textStyle}
-            ref={text => { this._text = text }}
+            ref={text => {
+ this._text = text; 
+}}
           >
             {this.props.children}
           </Text>
           { this.state.shouldToggle && this.state.numberOfLines && this.blur }
         </View>
       </TouchableOpacity>
-    )
+    );
   }
 }
 
 function measureHeightAsync(component) {
   return new Promise(resolve => {
     component.measure((x, y, w, h) => {
-      resolve(h)
-    })
-  })
+      resolve(h);
+    });
+  });
 }
 
 function nextFrameAsync() {
-  return new Promise(resolve => requestAnimationFrame(() => resolve()))
+  return new Promise(resolve => requestAnimationFrame(() => resolve()));
 }
 
 ViewMoreText.propTypes = {
   numberOfLines: PropTypes.number.isRequired,
   textStyle: PropTypes.object,
-}
+};
 
 ViewMoreText.defaultProps = {
   textStyle: {},
-}
+};
 
-export default ViewMoreText
+export default ViewMoreText;

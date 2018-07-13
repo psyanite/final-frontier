@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderTopColor: 'transparent'
   },
-})
+});
 
 const LinksStack = createStackNavigator({
   Links: LinksScreen,

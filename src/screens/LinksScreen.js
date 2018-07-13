@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { ScrollView, StyleSheet } from 'react-native'
-import { ExpoLinksView } from '@expo/samples'
+import React, { Component } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+import { ExpoLinksView } from '@expo/samples';
 
 export default class LinksScreen extends Component {
   static navigationOptions = {
@@ -14,7 +14,7 @@ export default class LinksScreen extends Component {
            * content, we just wanted to provide you with some helpful links */}
         <ExpoLinksView />
       </ScrollView>
-    )
+    );
   }
 }
 
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     backgroundColor: '#fff',
   },
-})
+});

@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react'
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import PropTypes from 'prop-types'
+import React, { PureComponent } from 'react';
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import PropTypes from 'prop-types';
 
 /**
  * Black overlay covering entire view with a close button
@@ -18,7 +18,7 @@ const Overlay = ({ onClose, children }) => (
       </View>
     </Modal>
   </View>
-)
+);
 
 const styles = StyleSheet.create({
   background: {
@@ -58,10 +58,10 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOpacity: 0.8,
   },
-})
+});
 
 Overlay.propTypes = {
   onClose: PropTypes.func.isRequired,
-}
+};
 
-export default Overlay
+export default Overlay;

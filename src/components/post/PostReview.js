@@ -1,10 +1,10 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import Colors from '../../styles/constants/ColorConstants'
-import ScoreIcon from '../common/Icons/ScoreIcon'
-import LayoutConstants from '../../styles/constants/LayoutConstants'
-import GalleryThumbs from '../common/gallery/GalleryThumbs'
-import ViewMoreText from '../common/ViewMoreText'
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import Colors from '../../styles/constants/ColorConstants';
+import ScoreIcon from '../common/Icons/ScoreIcon';
+import LayoutConstants from '../../styles/constants/LayoutConstants';
+import GalleryThumbs from '../common/gallery/GalleryThumbs';
+import ViewMoreText from '../common/ViewMoreText';
 
 const PostPhotoListItem = ({ review, photos }) => (
   <View>
@@ -42,7 +42,7 @@ const PostPhotoListItem = ({ review, photos }) => (
       </View>
     )}
   </View>
-)
+);
 
 const styles = StyleSheet.create({
   scores: {
@@ -68,6 +68,6 @@ const styles = StyleSheet.create({
   gallery: {
     marginTop: LayoutConstants.margins.s
   },
-})
+});
 
-export default PostPhotoListItem
+export default PostPhotoListItem;

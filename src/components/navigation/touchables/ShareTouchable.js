@@ -1,8 +1,8 @@
-import React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import PropTypes from 'prop-types'
-import { Ionicons } from '@expo/vector-icons'
-import LayoutConstants from '../../../styles/constants/LayoutConstants'
+import React from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
+import { Ionicons } from '@expo/vector-icons';
+import LayoutConstants from '../../../styles/constants/LayoutConstants';
 
 const ShareTouchable = ({ size, share, color }) => (
   <TouchableOpacity
@@ -17,7 +17,7 @@ const ShareTouchable = ({ size, share, color }) => (
       style={styles.icon}
     />
   </TouchableOpacity>
-)
+);
 
 const styles = StyleSheet.create({
   wrap: {
@@ -33,15 +33,15 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 10,
   },
-})
+});
 
 ShareTouchable.propTypes = {
   share: PropTypes.func.isRequired
-}
+};
 
 ShareTouchable.defaultProps = {
   size: 32,
   color: '#fff'
-}
+};
 
-export default ShareTouchable
+export default ShareTouchable;

@@ -4,4 +4,4 @@ export const ProfileFields = {
     display_name: {},
     profile_picture: {},
   }
-}
+};

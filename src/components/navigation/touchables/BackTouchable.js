@@ -1,8 +1,8 @@
-import React from 'react'
-import { NavigationActions } from 'react-navigation'
-import { StyleSheet, TouchableHighlight } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
-import LayoutConstants from '../../../styles/constants/LayoutConstants'
+import React from 'react';
+import { NavigationActions } from 'react-navigation';
+import { StyleSheet, TouchableHighlight } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import LayoutConstants from '../../../styles/constants/LayoutConstants';
 
 const BackTouchable = ({ navigation, size, color }) => (
   <TouchableHighlight
@@ -17,7 +17,7 @@ const BackTouchable = ({ navigation, size, color }) => (
       style={styles.icon}
     />
   </TouchableHighlight>
-)
+);
 
 const styles = StyleSheet.create({
   wrap: {
@@ -31,11 +31,11 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 2, height: 1 },
     textShadowRadius: 10,
   },
-})
+});
 
 BackTouchable.defaultProps = {
   size: 32,
   color: '#fff',
-}
+};
 
-export default BackTouchable
+export default BackTouchable;

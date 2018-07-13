@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import { Image, TouchableOpacity, View } from 'react-native'
-import GalleryCarousel from '../gallery/GalleryCarousel'
-import Overlay from '../Overlay'
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { Image, TouchableOpacity, View } from 'react-native';
+import GalleryCarousel from '../gallery/GalleryCarousel';
+import Overlay from '../Overlay';
 
 /**
  * A thumbnail of a image when pressed, will be displayed
@@ -13,7 +13,7 @@ class ImagePreview extends PureComponent {
   state = { overlayContent: null }
 
   hideOverlay = () => {
-    this.setState({ overlayContent: null })
+    this.setState({ overlayContent: null });
   }
 
   buildGalleryCarousel = () => (
@@ -21,8 +21,8 @@ class ImagePreview extends PureComponent {
   )
 
   handlePreviewPress = () => {
-    const gallery = this.buildGalleryCarousel()
-    this.setState({ overlayContent: gallery })
+    const gallery = this.buildGalleryCarousel();
+    this.setState({ overlayContent: gallery });
   }
 
   render() {
@@ -39,17 +39,17 @@ class ImagePreview extends PureComponent {
           />
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 }
 
 ImagePreview.propTypes = {
   image: PropTypes.object.isRequired,
   style: PropTypes.object,
-}
+};
 
 ImagePreview.defaultProps = {
   style: { width: 50, height: 50 },
-}
+};
 
-export default ImagePreview
+export default ImagePreview;

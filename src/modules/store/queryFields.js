@@ -3,7 +3,7 @@ export const CuisineFields = {
     id: {},
     name: {},
   }
-}
+};
 
 export const AddressFields = {
   fields: {
@@ -13,4 +13,4 @@ export const AddressFields = {
     address_street_name: {},
     google_url: {},
   }
-}
+};

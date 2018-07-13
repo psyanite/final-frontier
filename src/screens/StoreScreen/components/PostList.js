@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { FlatList, View } from 'react-native'
-import { List } from 'react-native-elements'
+import React, { Component } from 'react';
+import { FlatList, View } from 'react-native';
+import { List } from 'react-native-elements';
 
-import ColorConstants from '../../../styles/constants/ColorConstants'
+import ColorConstants from '../../../styles/constants/ColorConstants';
 
-import PostPhotoListItem from './PostPhotoListItem'
-import PostReviewListItem from './PostReviewListItem'
+import PostPhotoListItem from './PostPhotoListItem';
+import PostReviewListItem from './PostReviewListItem';
 
 export default class PostList extends Component {
 
@@ -27,14 +27,14 @@ export default class PostList extends Component {
           post={item}
           navigateToProfile={this.props.navigateToProfile}
         />
-      )
+      );
     }
     return (
       <PostReviewListItem
         post={item}
         navigateToProfile={this.props.navigateToProfile}
       />
-    )
+    );
   }
 
   render() {
@@ -50,7 +50,7 @@ export default class PostList extends Component {
         </List>
 
       </View>
-    )
+    );
   }
 
 }

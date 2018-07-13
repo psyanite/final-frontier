@@ -3,7 +3,7 @@ export const LocationFields = {
     id: {},
     name: {},
   }
-}
+};
 export const SuburbFields = {
   fields: {
     id: {},
@@ -15,4 +15,4 @@ export const SuburbFields = {
       }
     }
   }
-}
+};

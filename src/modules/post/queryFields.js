@@ -1,11 +1,11 @@
-import { ProfileFields } from '../userAccount/queryFields'
+import { ProfileFields } from '../userAccount/queryFields';
 
 const PostPhotoFields = {
   fields: {
     id: {},
     photo: {},
   }
-}
+};
 
 const PostReviewFields = {
   fields: {
@@ -17,7 +17,7 @@ const PostReviewFields = {
     ambience_score: {},
     body: {},
   }
-}
+};
 
 export const PostFields = {
   fields: {
@@ -40,4 +40,4 @@ export const PostFields = {
     post_photos: PostPhotoFields,
     post_review: PostReviewFields,
   }
-}
+};

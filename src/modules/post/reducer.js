@@ -1,10 +1,10 @@
-import * as types from './types'
+import * as types from './types';
 
 const initialState = {
   storePosts: {},
   profilePosts: {},
   myProfilePosts: [],
-}
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -12,26 +12,26 @@ export default (state = initialState, action) => {
     case types.SET_STORE_POSTS: {
       const storePosts = Object.assign({}, state.storePosts, {
         [action.storeId]: action.posts
-      })
-      return Object.assign({}, state, { storePosts })
+      });
+      return Object.assign({}, state, { storePosts });
     }
 
     case types.SET_PROFILE_POSTS: {
       const profilePosts = Object.assign({}, state.profilePosts, {
         [action.userAccountId]: action.posts
-      })
-      return Object.assign({}, state, { profilePosts })
+      });
+      return Object.assign({}, state, { profilePosts });
     }
 
     case types.SET_MY_PROFILE_POSTS: {
       return Object.assign({}, state, {
         myProfilePosts: action.posts
-      })
+      });
     }
 
     default: {
-      return state
+      return state;
     }
 
   }
-}
+};

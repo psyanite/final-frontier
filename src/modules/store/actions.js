@@ -1,7 +1,7 @@
-import * as types from './types'
-import Toaster from '../../lib/toaster'
-import { AddressFields, CuisineFields } from './queryFields'
-import { LocationFields, SuburbFields } from '../geography/queryFields'
+import * as types from './types';
+import Toaster from '../../lib/toaster';
+import { AddressFields, CuisineFields } from './queryFields';
+import { LocationFields, SuburbFields } from '../geography/queryFields';
 
 export const fetchAllStores = () => async (dispatch, getState) => {
   const fields = {
@@ -11,16 +11,16 @@ export const fetchAllStores = () => async (dispatch, getState) => {
     location: LocationFields,
     suburb: SuburbFields,
     cuisines: CuisineFields,
-  }
+  };
   const query = {
     stores: {
       field: 'allStores',
       fields
     }
-  }
-  const { stores } = await Toaster.get(query)
-  dispatch(setStores(stores))
-}
+  };
+  const { stores } = await Toaster.get(query);
+  dispatch(setStores(stores));
+};
 
 export const fetchStoreById = (storeId) => async (dispatch, getState) => {
   const fields = {
@@ -32,31 +32,31 @@ export const fetchStoreById = (storeId) => async (dispatch, getState) => {
     location: LocationFields,
     suburb: SuburbFields,
     cuisines: CuisineFields,
-  }
+  };
   const query = {
     store: {
       field: 'storeById',
       params: { id: storeId },
       fields
     }
-  }
-  const { store } = await Toaster.get(query)
-  dispatch(setStore(store[0]))
-}
+  };
+  const { store } = await Toaster.get(query);
+  dispatch(setStore(store[0]));
+};
 
-export const resetStore = () =>  (dispatch) => {
-  dispatch({ type: types.RESET_STORE })
-}
+export const resetStore = () => (dispatch) => {
+  dispatch({ type: types.RESET_STORE });
+};
 
 const setStores = (stores) => ({
   type: types.SET_STORES,
   stores,
-})
+});
 
 const setStore = (store) => ({
   type: types.SET_STORE,
   store,
-})
+});
 
 export const mockFetchAllStores = () => async (dispatch, getState) => {
   const stores = [{
@@ -146,8 +146,8 @@ export const mockFetchAllStores = () => async (dispatch, getState) => {
       id: 2,
       name: 'Modern Australian'
     }]
-  }]
+  }];
   // console.log(stores)
-  dispatch(setStores(stores))
-}
+  dispatch(setStores(stores));
+};
 

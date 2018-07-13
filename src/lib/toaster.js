@@ -1,7 +1,7 @@
-import graphqlify from 'graphqlify'
+import graphqlify from 'graphqlify';
 
 // todo: get this from confrigs
-const HOST = 'http://192.168.1.6:3000/graphql'
+const HOST = 'http://192.168.56.1:3000/graphql';
 
 export default class Toaster {
 
@@ -10,7 +10,7 @@ export default class Toaster {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       dataType: 'json',
-    }
+    };
 
     const options = {
       method: 'POST',
@@ -18,16 +18,16 @@ export default class Toaster {
       body: JSON.stringify({
         query: graphqlify(query),
       }),
-    }
+    };
 
-    const response = await fetch(`${HOST}`, options)
+    const response = await fetch(`${HOST}`, options);
     if (response.ok) {
-      const { data } = await response.json()
-      return data
+      const { data } = await response.json();
+      return data;
     }
-    console.log(response)
-    console.log(response._bodyText)
-    throw new Error(response.status)
+    console.log(response);
+    console.log(response._bodyText);
+    throw new Error(response.status);
   }
 
 }

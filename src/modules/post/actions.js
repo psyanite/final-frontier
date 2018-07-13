@@ -1,6 +1,6 @@
-import * as types from './types'
-import Toaster from '../../lib/toaster'
-import { PostFields } from './queryFields'
+import * as types from './types';
+import Toaster from '../../lib/toaster';
+import { PostFields } from './queryFields';
 
 export const fetchPostsByStoreId = (storeId) => async (dispatch, getState) => {
   const query = {
@@ -9,10 +9,10 @@ export const fetchPostsByStoreId = (storeId) => async (dispatch, getState) => {
       params: { storeId },
       fields: PostFields.fields
     }
-  }
-  const { posts } = await Toaster.get(query)
-  dispatch(setStorePosts(storeId, posts))
-}
+  };
+  const { posts } = await Toaster.get(query);
+  dispatch(setStorePosts(storeId, posts));
+};
 
 export const fetchPostsByUserAccountId = (userAccountId) => async (dispatch, getState) => {
   const query = {
@@ -21,10 +21,10 @@ export const fetchPostsByUserAccountId = (userAccountId) => async (dispatch, get
       params: { userAccountId },
       fields: PostFields.fields
     }
-  }
-  const { posts } = await Toaster.get(query)
-  dispatch(setProfilePosts(userAccountId, posts))
-}
+  };
+  const { posts } = await Toaster.get(query);
+  dispatch(setProfilePosts(userAccountId, posts));
+};
 
 export const fetchPostsForLoggedInUser = (userAccountId) => async (dispatch, getState) => {
   const query = {
@@ -33,27 +33,27 @@ export const fetchPostsForLoggedInUser = (userAccountId) => async (dispatch, get
       params: { userAccountId },
       fields: PostFields.fields
     }
-  }
-  const { posts } = await Toaster.get(query)
-  dispatch(setMyProfilePosts(posts))
-}
+  };
+  const { posts } = await Toaster.get(query);
+  dispatch(setMyProfilePosts(posts));
+};
 
 const setStorePosts = (storeId, posts) => ({
   type: types.SET_STORE_POSTS,
   storeId,
   posts,
-})
+});
 
 const setProfilePosts = (userAccountId, posts) => ({
   type: types.SET_PROFILE_POSTS,
   userAccountId,
   posts,
-})
+});
 
 const setMyProfilePosts = (posts) => ({
   type: types.SET_MY_PROFILE_POSTS,
   posts,
-})
+});
 
 export const mockFetchPostsByStoreId = (storeId) => async (dispatch, getState) => {
   const posts = [{
@@ -143,6 +143,6 @@ export const mockFetchPostsByStoreId = (storeId) => async (dispatch, getState) =
       id: 2,
       name: 'Modern Australian'
     }]
-  }]
-  dispatch(setStorePosts(posts))
-}
+  }];
+  dispatch(setStorePosts(posts));
+};

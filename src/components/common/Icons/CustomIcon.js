@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { G, Path, Rect, Svg } from 'react-native-svg'
+import React, { Component } from 'react';
+import { G, Path, Rect, Svg } from 'react-native-svg';
 
 export const Names = {
   BreadHeart: 'BreadHeart',
@@ -9,7 +9,7 @@ export const Names = {
   Fork: 'Fork',
   Phone: 'Phone',
   Share: 'Share',
-}
+};
 
 const Icons = {
   // Ratings
@@ -66,7 +66,7 @@ const Icons = {
     </G>,
     viewBox: '0 0 300 300'
   }
-}
+};
 
 const CustomIcon = ({ width, height, name }) => (
   <Svg
@@ -76,11 +76,11 @@ const CustomIcon = ({ width, height, name }) => (
   >
     {Icons[name].svg}
   </Svg>
-)
+);
 
 CustomIcon.defaultProps = {
   width: 20,
   height: 20,
-}
+};
 
-export default CustomIcon
+export default CustomIcon;

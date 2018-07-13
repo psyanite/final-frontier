@@ -1,25 +1,25 @@
-import React, { Component } from 'react'
-import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import CustomIcon, { Names as CustomIcons } from '../../../../components/common/Icons/CustomIcon'
-import LayoutConstants from '../../../../styles/constants/LayoutConstants'
-import GalleryThumbs from '../../../../components/common/gallery/GalleryThumbs'
+import React, { Component } from 'react';
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import CustomIcon, { Names as CustomIcons } from '../../../../components/common/Icons/CustomIcon';
+import LayoutConstants from '../../../../styles/constants/LayoutConstants';
+import GalleryThumbs from '../../../../components/common/gallery/GalleryThumbs';
 
 export default class StoreListItem extends Component {
 
   handleOnPress = () => {
-    this.props.navigateToStore(this.props.store)
+    this.props.navigateToStore(this.props.store);
   }
 
   randomPhotos = () => {
-    let rng = Math.floor(Math.random() * 3)
-    const images = []
+    let rng = Math.floor(Math.random() * 3);
+    const images = [];
     if (rng === 1) {
-      rng = 5
+      rng = 5;
       for (i = 0; i < rng; i++) {
-        images.push({ id: i+1, photo: this.randomImage() })
+        images.push({ id: i + 1, photo: this.randomImage() });
       }
     }
-    return images
+    return images;
   }
 
   randomImage = () => {
@@ -36,23 +36,23 @@ export default class StoreListItem extends Component {
       'https://b.zmtcdn.com/data/res_imagery/16566248_CHAIN_491a164e22b19761f36df7c833a62e49_c.jpg',
       'https://b.zmtcdn.com/data/res_imagery/16559171_RESTAURANT_619e090fe7c62a879ce0179d5fedd69f_c.jpg',
       'https://b.zmtcdn.com/data/res_imagery/16557237_RESTAURANT_1bddec09c720a87210b64e26104f3066_c.jpg'
-    ]
-    const rng = Math.floor(Math.random() * images.length)
-    return images[rng]
+    ];
+    const rng = Math.floor(Math.random() * images.length);
+    return images[rng];
   }
 
   render() {
-    const store = this.props.store
-    const view = Object.assign({}, store)
-    const photos = this.randomPhotos()
-    view.location = `${store.suburb.name}, ${store.suburb.city.name}`
+    const store = this.props.store;
+    const view = Object.assign({}, store);
+    const photos = this.randomPhotos();
+    view.location = `${store.suburb.name}, ${store.suburb.city.name}`;
     if (store.location) {
-      view.location = `${store.location.name}, ${view.location}`
+      view.location = `${store.location.name}, ${view.location}`;
     }
 
-    view.cuisines = ''
+    view.cuisines = '';
     if (store.cuisines) {
-      view.cuisines = store.cuisines.map(cuisine => cuisine.name).join(', ')
+      view.cuisines = store.cuisines.map(cuisine => cuisine.name).join(', ');
     }
 
     return (
@@ -98,7 +98,7 @@ export default class StoreListItem extends Component {
 
         </View>
       </TouchableOpacity>
-    )
+    );
   }
 }
 
@@ -166,4 +166,4 @@ const styles = StyleSheet.create({
     marginLeft: LayoutConstants.margins.m,
     marginTop: LayoutConstants.margins.xs,
   },
-})
+});
