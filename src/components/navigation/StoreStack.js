@@ -13,7 +13,7 @@ const StoreStack = createStackNavigator(
     },
   },
   {
-    headerMode: 'none'
+    headerMode: 'screen'
   }
 );
 

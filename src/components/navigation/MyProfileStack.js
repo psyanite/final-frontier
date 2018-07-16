@@ -23,8 +23,8 @@ const MyProfileStack = createStackNavigator(
   },
   {
     headerMode: 'screen'
-
-  });
+  }
+);
 
 MyProfileStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
