@@ -19,4 +19,4 @@ function getEnvVars(env = '') {
   if (env.indexOf('prod') !== -1) return ENV.prod;
 }
 
-export default getEnvVars(Constants.manifest.description);
+export default getEnvVars(Constants.manifest.extra.env);

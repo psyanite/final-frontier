@@ -14,7 +14,16 @@
 ### How to reach the final frontier
 
 * Start up the frakkin toaster
-* [https://medium.com/@psyanite/how-to-use-genymotion-with-expo-cc52815928cf] (Setup Genymotion with Expo)
+* [Setup Genymotion with Expo](https://medium.com/@psyanite/how-to-use-genymotion-with-expo-cc52815928cf)
 * Or install Expo on a device
-* Update the host in src/lib/toaster.js
+* Update the host in /config
 * Start project on Expo XDE
+* In Expo XDE, change Host to LAN, and enable Development Mode
+
+### More Info
+
+* Environment and 'enableReduxLogger' are defined in app.json, then loaded via config/index.js
+* Enable live reload, hot reload, or debugging remotely could cause issues with AsyncStorage
+* Enable redux logger for debugging
+* Press Ctrl-M in the emulator or shake device to bring up the developer menu
+* Use debug JS remotely on emulator or device for debugging

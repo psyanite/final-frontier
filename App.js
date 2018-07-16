@@ -3,6 +3,7 @@ import { connect, Provider } from 'react-redux';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { createReactNavigationReduxMiddleware, reduxifyNavigator } from 'react-navigation-redux-helpers';
 import { setCustomText } from 'react-native-global-props';
+
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
@@ -11,13 +12,11 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react';
 
-
-import { AppLoading, Asset, Font } from 'expo';
+import { Constants, AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 
 import rootReducer from './src/reducer/index';
 import AppNavigator from './src/components/navigation/AppNavigator';
-
 import ColorConstants from './src/styles/constants/ColorConstants';
 
 const customTextProps = {
@@ -42,10 +41,17 @@ const ReduxifiedAppNavigator = reduxifyNavigator(AppNavigator, 'root');
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+const middleWare = () => {
+  const wares = [reduxNavigationMiddleware, thunk];
+  if (Constants.manifest.extra.enableReduxLogger) {
+    wares.push(logger);
+  }
+  return applyMiddleware(...wares);
+};
+
 const store = createStore(
   persistedReducer,
-  // applyMiddleware(reduxNavigationMiddleware, thunk, logger)
-  applyMiddleware(reduxNavigationMiddleware, thunk)
+  middleWare()
 );
 
 const persistor = persistStore(store);
