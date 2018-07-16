@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import LayoutConstants from '../../../styles/constants/LayoutConstants';
-import CustomIcon, { Names as CustomIcons } from '../../common/Icons/CustomIcon';
+import CustomIcon, { Names as CustomIcons } from '../../common/icons/CustomIcon';
 
 const ColorShareTouchable = ({ size, share }) => (
   <TouchableOpacity

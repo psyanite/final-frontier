@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Colors from '../../styles/constants/ColorConstants';
-import ScoreIcon from '../common/Icons/ScoreIcon';
+import ScoreIcon from '../common/icons/ScoreIcon';
 import LayoutConstants from '../../styles/constants/LayoutConstants';
 import GalleryThumbs from '../common/gallery/GalleryThumbs';
 import ViewMoreText from '../common/ViewMoreText';

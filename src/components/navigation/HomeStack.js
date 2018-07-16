@@ -5,7 +5,7 @@ import { createStackNavigator } from 'react-navigation';
 import HomeScreen from '../../screens/HomeScreen/HomeScreen';
 import StoreNavigator from './StoreStack';
 
-import GenericIcon, { Names as GenericIcons } from '../common/Icons/GenericIcon';
+import GenericIcon, { Names as GenericIcons } from '../common/icons/GenericIcon';
 
 import Colors from '../../styles/constants/ColorConstants';
 

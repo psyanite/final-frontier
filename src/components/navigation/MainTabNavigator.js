@@ -8,10 +8,11 @@ import LinksScreen from '../../screens/LinksScreen';
 import SettingsScreen from '../../screens/SettingsScreen';
 import MyRewardsScreen from '../../screens/MyRewardsScreen';
 
-import GenericIcon, { Names as GenericIcons } from '../common/Icons/GenericIcon';
+import GenericIcon, { Names as GenericIcons } from '../common/icons/GenericIcon';
 
 import Colors from '../../styles/constants/ColorConstants';
 import MyProfileScreen from '../../screens/MyProfileScreen/MyProfileScreen';
+import MyProfileStack from './MyProfileStack';
 
 const styles = StyleSheet.create({
   tabBar: {
@@ -62,22 +63,6 @@ MyRewardsStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <GenericIcon
       name={GenericIcons.Star}
-      fill={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-      width={25}
-      height={25}
-    />
-  ),
-};
-
-const MyProfileStack = createStackNavigator({
-  Settings: MyProfileScreen,
-});
-
-MyProfileStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <GenericIcon
-      name={GenericIcons.Person}
       fill={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
       width={25}
       height={25}

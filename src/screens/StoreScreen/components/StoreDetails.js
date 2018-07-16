@@ -2,7 +2,7 @@ import React from 'react';
 import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { phonecall as phoneCall } from 'react-native-communications';
 
-import CustomIcon, { Names as CustomIcons } from '../../../components/common/Icons/CustomIcon';
+import CustomIcon, { Names as CustomIcons } from '../../../components/common/icons/CustomIcon';
 import LayoutConstants from '../../../styles/constants/LayoutConstants';
 import ImageHeader from '../../../components/navigation/headers/ImageHeader';
 

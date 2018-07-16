@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 
 import BurntHeader from '../../components/navigation/headers/BurntHeader';
-import GenericIcon, { Names as GenericIcons } from '../../components/common/Icons/GenericIcon';
+import GenericIcon, { Names as GenericIcons } from '../../components/common/icons/GenericIcon';
 import StoreListContainer from './components/StoreList/StoreListContainer';
 
 import ColorConstants from '../../styles/constants/ColorConstants';
 import LayoutConstants from '../../styles/constants/LayoutConstants';
 
-class HomeScreen extends Component {
+export default class HomeScreen extends Component {
 
   static navigationOptions = () => {
     const title = <Text style={styles.headerTitle}>Burntoast</Text>;
@@ -60,11 +59,3 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
 });
-
-function mapStateToProps(state) {
-  return {
-    searchedRecipes: state.searchedRecipes
-  };
-}
-
-export default connect(mapStateToProps)(HomeScreen);

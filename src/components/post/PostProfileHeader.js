@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import TimeAgo from 'react-native-timeago';
-import ScoreIcon from '../common/Icons/ScoreIcon';
+import ScoreIcon from '../common/icons/ScoreIcon';
 import LayoutConstants from '../../styles/constants/LayoutConstants';
 
 const PostProfileHeader = ({ postedBy, postedAt, overallScore, navigateToProfile }) => {
@@ -11,7 +11,7 @@ const PostProfileHeader = ({ postedBy, postedAt, overallScore, navigateToProfile
       <TouchableOpacity onPress={() => navigateToProfile(postedBy)}>
         <View style={styles.userDetails}>
           <Image
-            style={styles.avatar}
+            style={styles.logo}
             source={{ uri: profile.profile_picture }}
           />
           <View style={styles.nameWrap}>
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   userDetails: {
     flexDirection: 'row',
   },
-  avatar: {
+  logo: {
     width: 50,
     height: 50,
     marginRight: 10,

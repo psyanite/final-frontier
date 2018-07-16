@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import CustomIcon, { Names as CustomIcons } from '../../../../components/common/Icons/CustomIcon';
+import CustomIcon, { Names as CustomIcons } from '../../../../components/common/icons/CustomIcon';
 import LayoutConstants from '../../../../styles/constants/LayoutConstants';
 import GalleryThumbs from '../../../../components/common/gallery/GalleryThumbs';
 
