@@ -38,7 +38,7 @@ export default class ProfileScreen extends Component {
 
         <ProfileDetails profile={userAccount.profile} />
 
-        <BackTouchable navigation={this.props.navigation} />
+        <BackTouchable navigation={this.props.navigation} type={'overlay'}/>
 
         <ShareTouchable share={() => this.share(userAccount)} />
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Share, ScrollView, View, Text } from 'react-native';
+import { Share, ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -36,7 +36,7 @@ class StoreScreen extends Component {
           && (
             <View>
               <StoreDetails store={this.props.store} />
-              <BackTouchable navigation={this.props.navigation} />
+              <BackTouchable navigation={this.props.navigation} type={'overlay'} />
               <ShareTouchable share={() => this.share(this.props.store)} />
             </View>
           )

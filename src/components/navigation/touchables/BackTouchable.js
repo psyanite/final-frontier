@@ -1,32 +1,50 @@
+/* eslint-disable no-param-reassign */
 import React from 'react';
-import { NavigationActions } from 'react-navigation';
-import { StyleSheet, TouchableHighlight } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import PropTypes from 'prop-types';
 import LayoutConstants from '../../../styles/constants/LayoutConstants';
+import ColorConstants from '../../../styles/constants/ColorConstants';
 
-const BackTouchable = ({ navigation, size, color }) => (
-  <TouchableHighlight
-    onPress={() => navigation.dispatch(NavigationActions.back())}
-    underlayColor={'transparent'}
-    style={styles.wrap}
-  >
+const BackTouchable = ({ navigation, type, wrapStyle, size, color }) => (
+    <TouchableOpacity
+      onPress={() => navigation.goBack()}
+      style={wrapStyle}
+    >
+      { getIcon(size, color, type) }
+    </TouchableOpacity>
+);
+
+const getIcon = (size, color, type) => {
+  let name;
+  let style;
+  switch (type) {
+    case 'overlay':
+      name = 'ios-arrow-back';
+      style = styles.overlayIcon;
+      color = '#fff'; // overlay is always white arrow on black background
+      break;
+    case 'line':
+    default:
+      name = 'ios-arrow-round-back-outline';
+      style = styles.lineIcon;
+  }
+  return (
     <Ionicons
-      name='ios-arrow-back'
+      name={name}
+      style={style}
       size={size}
       color={color}
-      style={styles.icon}
     />
-  </TouchableHighlight>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   wrap: {
-    position: 'absolute',
-    top: LayoutConstants.margins.s,
-    left: LayoutConstants.margins.m,
-    width: 100,
+    paddingLeft: LayoutConstants.margins.m,
   },
-  icon: {
+  lineIcon: {},
+  overlayIcon: {
     textShadowColor: 'rgba(0, 0, 0, 0.5)',
     textShadowOffset: { width: 2, height: 1 },
     textShadowRadius: 10,
@@ -35,7 +53,12 @@ const styles = StyleSheet.create({
 
 BackTouchable.defaultProps = {
   size: 32,
-  color: '#fff',
+  color: ColorConstants.bodyText,
+};
+
+BackTouchable.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default BackTouchable;
