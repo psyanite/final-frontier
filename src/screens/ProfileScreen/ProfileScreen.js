@@ -2,25 +2,26 @@ import React, { Component } from 'react';
 import { ScrollView, Share, StyleSheet } from 'react-native';
 
 import PostListContainer from './components/PostListContainer';
-import BackTouchable from '../../components/navigation/touchables/BackTouchable';
 import ProfileDetails from './components/ProfileDetails';
-import ShareTouchable from '../../components/navigation/touchables/ShareTouchable';
+import HeaderBack from '../../components/navigation/headers/HeaderBack';
+import HeaderShare from '../../components/navigation/headers/HeaderShare';
+import ImageOverlayHeader from '../../components/navigation/headers/ImageOverlayHeader';
 
 export default class ProfileScreen extends Component {
 
   static navigationOptions = { header: null };
 
-  share = (userAccount) => {
-    Share.share({
-      message: `911 was an inside job by ${userAccount.profile.display_name}. Jet fuel can't melt steel beams, here's proof https://expo.io/@psyanite/burntoast`,
-      url: 'https://expo.io/@psyanite/burntoast',
-      title: `911 was an inside job by ${userAccount.profile.display_name}`
-    }, {
-      dialogTitle: `BAM! SHARE IT! ${userAccount.profile.display_name} TOLD YOU TO.`,
-    });
-  };
-
   render() {
+    const share = (profile) => {
+      Share.share({
+        message: `Check out ${profile.display_name}'s profile`,
+        url: 'https://expo.io/@psyanite/burntoast',
+        title: `Check out ${profile.display_name}'s profile`,
+      }, {
+        dialogTitle: `Share ${profile.display_name}'s profile`,
+      });
+    };
+
     let userAccount = {
       id: 1,
       profile: {
@@ -36,11 +37,13 @@ export default class ProfileScreen extends Component {
     return (
       <ScrollView style={styles.wrap}>
 
+        <ImageOverlayHeader>
+          <HeaderBack navigation={this.props.navigation} type={'line'} color={'#fff'} />
+          <HeaderShare share={() => share(userAccount.profile)} color={'#fff'} />
+        </ImageOverlayHeader>
+
+
         <ProfileDetails profile={userAccount.profile} />
-
-        <BackTouchable navigation={this.props.navigation} type={'overlay'}/>
-
-        <ShareTouchable share={() => this.share(userAccount)} />
 
         <PostListContainer
           userAccountId={userAccount.id}

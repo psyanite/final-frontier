@@ -23,7 +23,7 @@ class MySettingsScreen extends Component {
       left: 0,
       right: 0,
     },
-    headerLeft: <HeaderBack navigation={navigation} type={'line'} color={'#fff'} />
+    headerLeft: <HeaderBack navigation={navigation} type={'line'} color={'#fff'} wrapStyle={styles.headerLeft} />
   });
 
   render() {
@@ -56,6 +56,9 @@ class MySettingsScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  headerLeft: {
+    paddingLeft: LayoutConstants.margins.m
+  },
   settingsIcon: {
     marginBottom: 20,
   },

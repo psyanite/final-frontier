@@ -13,11 +13,16 @@ class ProfileScreen extends Component {
   static navigationOptions = { header: null };
 
   componentWillMount() {
-    const { profile } = this.props;
-    if (Object.keys(profile).length === 0 && profile.constructor === Object) {
+    if (!this.isUserLoggedIn()) {
       this.props.navigation.navigate('Login');
     }
   }
+
+  isUserLoggedIn = () => {
+    // TODO: Replace with Utils/Object.isNonEmpty && isEmpty
+    const { profile } = this.props;
+    return profile && !(Object.keys(profile).length === 0 && profile.constructor === Object);
+  };
 
   navigateToSettings = () => this.props.navigation.navigate('MySettings');
 
@@ -26,15 +31,14 @@ class ProfileScreen extends Component {
 
     return (
       <ScrollView style={styles.wrap}>
-        { profile ? (
+        { this.isUserLoggedIn() && (
           <View>
             <ProfileDetails profile={profile} />
             <PostListContainer userAccountId={profile.id} />
-
             <TouchableOpacity
               onPress={() => this.navigateToSettings()}
-              underlayColor={'transparent'}
               style={styles.moreIconWrap}
+              activeOpacity={1.0}
             >
               <Ionicons
                 name='md-more'
@@ -43,11 +47,9 @@ class ProfileScreen extends Component {
                 style={styles.moreIcon}
               />
             </TouchableOpacity>
-
           </View>
-          ) : (
-            <View />
-        )}
+          )
+        }
       </ScrollView>
     );
   }

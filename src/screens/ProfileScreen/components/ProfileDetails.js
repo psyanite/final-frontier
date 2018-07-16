@@ -4,11 +4,13 @@ import {
 
 import ImageHeader from '../../../components/navigation/headers/ImageHeader';
 
-const StoreDetails = ({ profile }) => (
-  // todo: replace angledimageheader with image header and add height prop to image header
+const ProfileDetails = ({ profile }) => (
   <View>
 
-    <ImageHeader uri={profile.profile_picture} height={80} isTinted />
+    {
+      profile.profile_picture &&
+      <ImageHeader uri={profile.profile_picture} height={80} isTinted />
+    }
 
     <View style={styles.userDetails}>
       <Image style={styles.logo} source={{ uri: profile.profile_picture }} />
@@ -60,25 +62,6 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 15,
   },
-
-  // addButtonView: {
-  //   flex: 1,
-  //   alignItems: 'flex-end',
-  // },
-  // addButton: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  //   padding: 8,
-  //   backgroundColor: '#8bcdff', // todo: use color constant
-  //   borderRadius: 3,
-  // },
-  // addButtonText: {
-  //   marginLeft: 3,
-  //   color: '#fff',
-  //   fontWeight: 'bold',
-  //   fontSize: 15,
-  // },
 });
 
-export default StoreDetails;
+export default ProfileDetails;
