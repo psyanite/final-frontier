@@ -7,8 +7,8 @@ import ColorConstants from '../../../styles/constants/ColorConstants';
 const WideWhiteButton = ({ onPress, style, text, textColor, children }) => (
   <TouchableOpacity
     onPress={onPress}
-    // underlayColor={'transparent'}
     style={[styles.defaultButtonStyle, style]}
+    activeOpacity={1.0}
   >
     { getChildren(children, text, textColor) }
   </TouchableOpacity>

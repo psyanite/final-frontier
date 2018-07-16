@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -12,7 +12,7 @@ const Overlay = ({ onClose, children }) => (
       <View style={styles.background} />
       <View style={styles.content}>{ children }</View>
       <View style={styles.header}>
-        <TouchableOpacity onPress={onClose}>
+        <TouchableOpacity onPress={onClose} activeOpacity={1.0}>
           <Text style={styles.closeButton}>×</Text>
         </TouchableOpacity>
       </View>
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   closeButton: {
+    marginTop: 10,
     marginLeft: 20,
     width: 57,
     fontSize: 52,

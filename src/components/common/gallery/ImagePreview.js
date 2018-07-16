@@ -10,20 +10,20 @@ import Overlay from '../Overlay';
  */
 class ImagePreview extends PureComponent {
 
-  state = { overlayContent: null }
+  state = { overlayContent: null };
 
   hideOverlay = () => {
     this.setState({ overlayContent: null });
-  }
+  };
 
   buildGalleryCarousel = () => (
     <GalleryCarousel images={[this.props.image]} />
-  )
+  );
 
   handlePreviewPress = () => {
     const gallery = this.buildGalleryCarousel();
     this.setState({ overlayContent: gallery });
-  }
+  };
 
   render() {
     return (
@@ -32,7 +32,7 @@ class ImagePreview extends PureComponent {
           this.state.overlayContent
           && <Overlay onClose={this.hideOverlay}>{this.state.overlayContent}</Overlay>
         }
-        <TouchableOpacity onPress={() => this.handlePreviewPress()}>
+        <TouchableOpacity onPress={() => this.handlePreviewPress()} activeOpacity={1.0}>
           <Image
             style={this.props.style}
             source={{ uri: this.props.image.photo }}

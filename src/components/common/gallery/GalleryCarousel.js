@@ -11,7 +11,7 @@ class GalleryCarousel extends PureComponent {
 
   onChangeImage = (index) => {
     this.setState({ index });
-  }
+  };
 
   render() {
     const images = this.props.images.map((image) => ({

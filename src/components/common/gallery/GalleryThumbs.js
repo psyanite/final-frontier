@@ -33,7 +33,7 @@ class GalleryThumbs extends PureComponent {
     <TouchableOpacity
       key={image.id.toString()}
       onPress={() => this.handleThumbPress(index)}
-      underlayColor={'transparent'}
+      activeOpacity={1.0}
     >
       <Image
         style={styles.thumb}
