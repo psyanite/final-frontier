@@ -9,8 +9,16 @@ import PostList from '../../StoreScreen/components/PostList';
 class PostListContainer extends Component {
 
   componentDidMount() {
-    this.props.actions.fetchPostsForLoggedInUser(this.props.userAccountId);
+    this.fetchPosts(this.props.userAccountId);
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.userAccountId !== nextProps.userAccountId) {
+      this.fetchPosts(nextProps.userAccountId);
+    }
+  }
+
+  fetchPosts = (userAccountId) => this.props.actions.fetchPostsForLoggedInUser(userAccountId);
 
   navigateToProfile = (user) => {
     this.props.navigate('Profile', user);

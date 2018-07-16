@@ -1,60 +1,53 @@
 import React, { Component } from 'react';
-import { ScrollView, Share, StyleSheet, } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity, View, } from 'react-native';
+import { connect } from 'react-redux';
 
 import { Ionicons } from '@expo/vector-icons';
+
 import PostListContainer from './components/PostListContainer';
-import BackTouchable from '../../components/navigation/touchables/BackTouchable';
 import ProfileDetails from '../ProfileScreen/components/ProfileDetails';
-import ShareTouchable from '../../components/navigation/touchables/ShareTouchable';
+import LayoutConstants from '../../styles/constants/LayoutConstants';
 
+class ProfileScreen extends Component {
 
-export default class ProfileScreen extends Component {
+  static navigationOptions = { header: null };
 
-  static navigationOptions = ({ navigation }) => ({
-      headerLeft: <BackTouchable navigation={navigation} />,
-      headerStyle: {
-        position: 'absolute',
-        backgroundColor: 'transparent',
-        zIndex: 100,
-        top: 0,
-        left: 0,
-        right: 0,
-      },
-    });
+  componentWillMount() {
+    const { profile } = this.props;
+    if (Object.keys(profile).length === 0 && profile.constructor === Object) {
+      this.props.navigation.navigate('Login');
+    }
+  }
 
-  share = (userAccount) => {
-    Share.share({
-      message: `911 was an inside job by ${userAccount.profile.display_name}. Jet fuel can't melt steel beams, here's proof https://expo.io/@psyanite/burntoast`,
-      url: 'https://expo.io/@psyanite/burntoast',
-      title: `911 was an inside job by ${userAccount.profile.display_name}`
-    }, {
-      dialogTitle: `BAM! SHARE IT! ${userAccount.profile.display_name} TOLD YOU TO.`,
-    });
-  };
+  navigateToSettings = () => this.props.navigation.navigate('MySettings');
 
   render() {
-    let userAccount = {
-      id: 1,
-      profile: {
-        username: 'nyatella',
-        display_name: 'Luna',
-        profile_picture: 'https://imgur.com/HYz307Q.jpg',
-      }
-    };
-
-    if (this.props.navigation.state.params) {
-      userAccount = this.props.navigation.state.params;
-    }
+    const { profile } = this.props;
 
     return (
       <ScrollView style={styles.wrap}>
+        { profile ? (
+          <View>
+            <ProfileDetails profile={profile} />
+            <PostListContainer userAccountId={profile.id} />
 
-        <ProfileDetails profile={userAccount.profile} />
+            <TouchableOpacity
+              onPress={() => this.navigateToSettings()}
+              underlayColor={'transparent'}
+              style={styles.moreIconWrap}
+            >
+              <Ionicons
+                name='md-more'
+                size={32}
+                color={'#fff'}
+                style={styles.moreIcon}
+              />
+            </TouchableOpacity>
 
-        <PostListContainer userAccountId={userAccount.id} />
-
-        <ShareTouchable share={() => this.share(userAccount)} />
-
+          </View>
+          ) : (
+            <View />
+        )}
       </ScrollView>
     );
   }
@@ -81,7 +74,7 @@ const styles = StyleSheet.create({
     left: 0,
     height: 115,
   },
-  avatar: {
+  logo: {
     width: 110,
     height: 110,
     marginTop: 15,
@@ -126,4 +119,24 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 15,
   },
+
+  moreIconWrap: {
+    position: 'absolute',
+    top: LayoutConstants.margins.s,
+    right: 0,
+    justifyContent: 'flex-end',
+  },
+  moreIcon: {
+    width: 30,
+    // textShadowColor: 'rgba(0, 0, 0, 0.7)',
+    // textShadowOffset: { width: 2, height: 2 },
+    // textShadowRadius: 10,
+  },
+
 });
+
+const mapStateToProps = state => ({
+  profile: state.me,
+});
+
+export default connect(mapStateToProps)(ProfileScreen);
