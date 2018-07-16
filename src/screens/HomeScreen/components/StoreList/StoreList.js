@@ -9,7 +9,7 @@ import Colors from '../../../../styles/constants/ColorConstants';
 export default class StoreList extends Component {
   state = {
     ingredientsInput: 'Banana'
-  }
+  };
 
   renderSeparator = () => (
     <View
@@ -19,14 +19,14 @@ export default class StoreList extends Component {
         backgroundColor: Colors.bodyBackgroundColor,
       }}
     />
-  )
+  );
 
   renderStore = ({ item }) => (
     <StoreListItem
       store={item}
       navigateToStore={this.props.navigateToStore}
     />
-  )
+  );
 
   render() {
     return (

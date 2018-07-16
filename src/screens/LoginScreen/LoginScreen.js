@@ -4,11 +4,11 @@ import { Image, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ActionCreators from '../../modules/me/actions';
-import BurntGradient from '../../components/gradients/BurnGradient';
+import BurntGradient from '../../components/gradients/BurntGradient';
 import ColorConstants from '../../styles/constants/ColorConstants';
 import * as Auth from '../../lib/Auth';
 import WideWhiteButton from '../../components/common/buttons/WideWhiteButton';
-import BurnView from '../../components/common/BurnView';
+import BurntView from '../../components/common/BurntView';
 
 class LoginScreen extends Component {
 
@@ -38,12 +38,11 @@ class LoginScreen extends Component {
           onLoginSuccess();
         }
         catch (e) {
-          console.log('An error has occurred when attempting to login with Facebook');
-          console.log(e);
+          console.log('An error has occurred when attempting to login with Facebook', e);
         }
       }
       else {
-        console.log('An error has occurred when attempting to login with Facebook');
+        console.log('Response from Facebook was not success');
       }
     };
 
@@ -70,7 +69,7 @@ class LoginScreen extends Component {
     };
 
     return (
-      <BurnView isCenterCenter>
+      <BurntView centerCenterYah>
 
         <Image style={styles.logo} source={require('../../assets/images/bk/loading-icon.png')} />
 
@@ -78,7 +77,7 @@ class LoginScreen extends Component {
         <WideWhiteButton onPress={loginAsTestUserLuna} text={'Login as test user Luna'} />
         <WideWhiteButton style={styles.button} onPress={loginAsTestUserChloe} text={'Login as test user Chloe'} />
 
-      </BurnView>
+      </BurntView>
     );
   }
 }

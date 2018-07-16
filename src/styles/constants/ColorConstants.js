@@ -13,5 +13,4 @@ export default {
   noticeText: '#fff',
   bodyText: '#604b41',
   lightSeparatorColor: '#eee',
-  darkSeparatorColor: '#ddd',
 };

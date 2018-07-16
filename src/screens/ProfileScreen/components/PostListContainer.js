@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as PostActionCreators from '../../../modules/post/actions';
-import * as StoreActionCreators from '../../../modules/store/actions';
 
 import PostList from './PostList';
 
@@ -15,7 +14,7 @@ class PostListContainer extends Component {
 
   navigateToStore = (store) => {
     this.props.navigate('Store', store);
-  }
+  };
 
   render() {
     return (

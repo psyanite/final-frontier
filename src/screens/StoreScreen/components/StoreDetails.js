@@ -14,7 +14,7 @@ const StoreDetails = ({ store }) => {
   }
   return (
     <View>
-      <ImageHeader uri={details.cover_image} />
+      <ImageHeader uri={details.cover_image} height={180} />
 
       <View style={styles.wrap}>
 

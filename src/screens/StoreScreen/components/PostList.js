@@ -14,7 +14,7 @@ export default class PostList extends Component {
       style={{
         width: '100%',
         borderTopWidth: 1,
-        borderTopColor: ColorConstants.darkSeparatorColor,
+        borderTopColor: ColorConstants.lightSeparatorColor,
         backgroundColor: '#fff',
       }}
     />

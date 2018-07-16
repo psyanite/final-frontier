@@ -9,7 +9,7 @@ import LayoutConstants from '../../styles/constants/LayoutConstants';
 import * as ActionCreators from '../../modules/me/actions';
 
 import BackTouchable from '../../components/navigation/touchables/BackTouchable';
-import BurntGradient from '../../components/gradients/BurnGradient';
+import BurntGradient from '../../components/gradients/BurntGradient';
 import WideWhiteButton from '../../components/common/buttons/WideWhiteButton';
 
 class MySettingsScreen extends Component {

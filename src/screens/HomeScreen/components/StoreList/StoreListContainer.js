@@ -13,7 +13,7 @@ class StoreListContainer extends Component {
 
   navigateToStore = (store) => {
     this.props.navigate('Store', store);
-  }
+  };
 
   render() {
     const list = <StoreList stores={this.props.stores} navigateToStore={this.navigateToStore} />;

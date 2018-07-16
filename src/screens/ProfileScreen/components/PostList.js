@@ -14,11 +14,11 @@ export default class PostList extends Component {
       style={{
         width: '100%',
         borderTopWidth: 1,
-        borderTopColor: ColorConstants.darkSeparatorColor,
+        borderTopColor: ColorConstants.lightSeparatorColor,
         backgroundColor: '#fff',
       }}
     />
-  )
+  );
 
   _renderPost = ({ item }) => {
     if (item.type === 'PHOTO') {
@@ -35,7 +35,7 @@ export default class PostList extends Component {
         navigateToStore={this.props.navigateToStore}
       />
     );
-  }
+  };
 
   render() {
     return (

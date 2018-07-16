@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { Linking, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -9,7 +9,7 @@ import LayoutConstants from '../../styles/constants/LayoutConstants';
 import * as ActionCreators from '../../modules/me/actions';
 import WideWhiteButton from '../../components/common/buttons/WideWhiteButton';
 import HeaderBack from '../../components/navigation/headers/HeaderBack';
-import BurnView from '../../components/common/BurnView';
+import BurntView from '../../components/common/BurntView';
 
 class MySettingsScreen extends Component {
 
@@ -27,25 +27,30 @@ class MySettingsScreen extends Component {
   });
 
   render() {
-    const logout = async () => {
+    const logout = () => {
       this.props.actions.setMe({});
       this.props.navigation.navigate('Login');
     };
 
+    const openEmail = () => {
+      Linking.openURL('mailto:contact@burntoast.com?subject=Hey!&body=Tell us what you think!')
+        .catch(e => console.log('An error occurred', e));
+    };
+
     return (
-      <BurnView isCenterCenter>
+      <BurntView centerCenterYah>
 
         <WideWhiteButton onPress={logout} style={styles.wrap} >
           <Text style={styles.title}>Logout</Text>
           <Ionicons name='ios-log-out' size={32} color={ColorConstants.tintColor} style={styles.overlayIcon} />
         </WideWhiteButton>
 
-        <WideWhiteButton onPress={() => {}} style={styles.wrap} >
+        <WideWhiteButton onPress={openEmail} style={styles.wrap} >
           <Text style={styles.title}>Contact Burntoast</Text>
           <Ionicons name='ios-send-outline' size={35} color={ColorConstants.tintColor} style={styles.overlayIcon} />
         </WideWhiteButton>
 
-      </BurnView>
+      </BurntView>
     );
   }
 }

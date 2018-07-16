@@ -8,7 +8,7 @@ export default class StoreListItem extends Component {
 
   handleOnPress = () => {
     this.props.navigateToStore(this.props.store);
-  }
+  };
 
   randomPhotos = () => {
     let rng = Math.floor(Math.random() * 3);
@@ -20,7 +20,7 @@ export default class StoreListItem extends Component {
       }
     }
     return images;
-  }
+  };
 
   randomImage = () => {
     const images = [
@@ -39,7 +39,7 @@ export default class StoreListItem extends Component {
     ];
     const rng = Math.floor(Math.random() * images.length);
     return images[rng];
-  }
+  };
 
   render() {
     const store = this.props.store;
@@ -56,7 +56,7 @@ export default class StoreListItem extends Component {
     }
 
     return (
-      <TouchableOpacity onPress={this.handleOnPress}>
+      <TouchableOpacity onPress={this.handleOnPress} activeOpacity={1.0}>
         <View key={view.id} style={styles.wrap}>
           <View style={styles.header}>
             <Image
