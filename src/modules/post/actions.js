@@ -1,5 +1,5 @@
 import * as types from './types';
-import Toaster from '../../lib/toaster';
+import Toaster from '../../lib/Toaster';
 import { PostFields } from './queryFields';
 
 export const fetchPostsByStoreId = (storeId) => async (dispatch, getState) => {

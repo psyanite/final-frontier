@@ -1,5 +1,5 @@
 import * as types from './types';
-import Toaster from '../../lib/toaster';
+import Toaster from '../../lib/Toaster';
 import { AddressFields, CuisineFields } from './queryFields';
 import { LocationFields, SuburbFields } from '../geography/queryFields';
 

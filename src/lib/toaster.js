@@ -1,7 +1,7 @@
 import graphqlify from 'graphqlify';
+import config from '../config/index.js';
 
-// todo: get this from confrigs
-const HOST = 'http://192.168.56.1:3000/graphql';
+const HOST = `${config.toasterUrl}/graphql`;
 
 export default class Toaster {
 
