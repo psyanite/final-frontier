@@ -1,16 +1,15 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
-import BurnGradient from '../gradients/BurnGradient';
+import BurnGradient from '../gradients/BurntGradient';
 import LayoutConstants from '../../styles/constants/LayoutConstants';
 
 /**
  * Static view that is NOT-SCROLLABLE, with the BurnGradient background.
  */
-const BurnView = ({ isCenterCenter, children }) =>
+const BurntView = ({ centerCenterYah, children }) =>
   (<BurnGradient
     children={children}
-    style={[styles.default, isCenterCenter ? styles.centerCenter : {}]}
+    style={[styles.default, centerCenterYah ? styles.centerCenter : {}]}
   />);
 
 const styles = StyleSheet.create({
@@ -26,4 +25,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default BurnView;
+export default BurntView;
