@@ -11,7 +11,7 @@ const StoreDetails = ({ profile }) => (
     <ImageHeader uri={profile.profile_picture} height={80} isTinted />
 
     <View style={styles.userDetails}>
-      <Image style={styles.avatar} source={{ uri: profile.profile_picture }} />
+      <Image style={styles.logo} source={{ uri: profile.profile_picture }} />
       <View style={styles.nameWrap}>
         <Text style={styles.displayName}>{profile.display_name}</Text>
         <Text style={styles.username}>@{profile.username}</Text>
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  avatar: {
+  logo: {
     width: 140,
     height: 140,
     marginTop: 15,

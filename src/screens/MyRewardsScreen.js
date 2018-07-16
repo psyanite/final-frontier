@@ -3,9 +3,7 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
 export default class MyRewardsScreen extends Component {
-  static navigationOptions = {
-    title: 'My Rewards',
-  };
+  static navigationOptions = { title: 'My Rewards' };
 
   render() {
     return (

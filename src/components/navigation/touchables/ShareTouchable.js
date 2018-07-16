@@ -14,7 +14,7 @@ const ShareTouchable = ({ size, share, color }) => (
       name='md-share'
       size={size}
       color={color}
-      style={styles.icon}
+      style={styles.overlayIcon}
     />
   </TouchableOpacity>
 );
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     paddingLeft: 50,
     justifyContent: 'flex-end',
   },
-  icon: {
+  overlayIcon: {
     width: 30,
     textShadowColor: 'rgba(0, 0, 0, 0.7)',
     textShadowOffset: { width: 2, height: 2 },

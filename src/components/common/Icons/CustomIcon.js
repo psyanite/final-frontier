@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { G, Path, Rect, Svg } from 'react-native-svg';
 
 export const Names = {
