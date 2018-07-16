@@ -7,6 +7,11 @@ import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { PersistGate } from 'redux-persist/integration/react';
+
+
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -23,6 +28,11 @@ const customTextProps = {
   }
 };
 
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
 const reduxNavigationMiddleware = createReactNavigationReduxMiddleware(
   'root',
   state => state.nav,
@@ -30,10 +40,15 @@ const reduxNavigationMiddleware = createReactNavigationReduxMiddleware(
 
 const ReduxifiedAppNavigator = reduxifyNavigator(AppNavigator, 'root');
 
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 const store = createStore(
-  rootReducer,
-  applyMiddleware(reduxNavigationMiddleware, thunk, logger)
+  persistedReducer,
+  // applyMiddleware(reduxNavigationMiddleware, thunk, logger)
+  applyMiddleware(reduxNavigationMiddleware, thunk)
 );
+
+const persistor = persistStore(store);
 
 const mapStateToProps = (state) => ({
   state: state.navigation,
@@ -46,17 +61,22 @@ export default class App extends Component {
     isLoadingComplete: false,
   };
 
+  _loadAssets = () => Asset.loadAsync([
+    require('./src/assets/images/robot-dev.png'),
+    require('./src/assets/images/robot-prod.png'),
+    require('./src/assets/images/bk/loading-icon.png'),
+  ]);
+
+  _loadFonts = () => Font.loadAsync({
+    ...Ionicons.font,
+    'grand-hotel': require('./src/assets/fonts/GrandHotel-Regular.ttf'),
+    'open-sans': require('./src/assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-light': require('./src/assets/fonts/OpenSans-Light.ttf'),
+  });
+
   _loadResourcesAsync = async () => Promise.all([
-    Asset.loadAsync([
-      require('./src/assets/images/robot-dev.png'),
-      require('./src/assets/images/robot-prod.png'),
-    ]),
-    Font.loadAsync({
-      ...Ionicons.font,
-      'grand-hotel': require('./src/assets/fonts/GrandHotel-Regular.ttf'),
-      'open-sans': require('./src/assets/fonts/OpenSans-Regular.ttf'),
-      'open-sans-light': require('./src/assets/fonts/OpenSans-Light.ttf'),
-    }),
+    this._loadAssets(),
+    this._loadFonts()
   ]);
 
   _handleLoadingError = error => {
@@ -65,7 +85,7 @@ export default class App extends Component {
     console.warn(error);
   };
 
-  _handleFinishLoading = () => {
+  _handleFinishLoading = async () => {
     setCustomText(customTextProps);
     this.setState({ isLoadingComplete: true });
   };
@@ -82,11 +102,13 @@ export default class App extends Component {
     }
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
-          <AppWithNavigationState />
-        </View>
+        <PersistGate loading={null} persistor={persistor}>
+          <View style={styles.container}>
+            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+            {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
+            <AppWithNavigationState />
+          </View>
+        </PersistGate>
       </Provider>
     );
   }
@@ -102,4 +124,3 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.2)',
   },
 });
-
