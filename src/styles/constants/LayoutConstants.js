@@ -4,6 +4,7 @@ const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
 export default {
+  headerHeight: 50,
   margins: {
     xs: 5,
     s: 10,
