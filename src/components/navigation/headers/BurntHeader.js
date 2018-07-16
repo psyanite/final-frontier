@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Header } from 'react-navigation';
 
-import BurntGradient from '../../gradients/BurnGradient';
+import BurntGradient from '../../gradients/BurntGradient';
 
 /**
  * Header with the signature Burnt color scheme as a gradient.
