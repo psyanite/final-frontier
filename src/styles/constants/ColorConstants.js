@@ -3,7 +3,7 @@ const tintColor = '#ffab40';
 export default {
   bodyBackgroundColor: '#f5f5f5',
   tintColor,
-  tabIconDefault: '#e5e5e5',
+  tabIconDefault: 'rgba(96, 75, 65, 0.6)',
   tabIconSelected: tintColor,
   errorBackground: '#ccc',
   errorText: '#fff',
