@@ -30,6 +30,7 @@ const customTextProps = {
 const persistConfig = {
   key: 'root',
   storage,
+  whitelist: ['me']
 };
 
 const reduxNavigationMiddleware = createReactNavigationReduxMiddleware(
