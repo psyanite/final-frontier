@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity, View, } from 'react-native';
 import { connect } from 'react-redux';
-
 import { Ionicons } from '@expo/vector-icons';
 
+import * as ObjectHelpers from '../../lib/ObjectHelpers';
 import PostListContainer from './components/PostListContainer';
 import ProfileDetails from '../ProfileScreen/components/ProfileDetails';
 import LayoutConstants from '../../styles/constants/LayoutConstants';
@@ -18,11 +18,7 @@ class ProfileScreen extends Component {
     }
   }
 
-  isUserLoggedIn = () => {
-    // TODO: Replace with Utils/Object.isNonEmpty && isEmpty
-    const { profile } = this.props;
-    return profile && !(Object.keys(profile).length === 0 && profile.constructor === Object);
-  };
+  isUserLoggedIn = () => ObjectHelpers.isNonEmpty(this.props.profile);
 
   navigateToSettings = () => this.props.navigation.navigate('MySettings');
 
@@ -100,25 +96,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   userName: {
-    fontSize: 15,
-  },
-
-  addButtonView: {
-    flex: 1,
-    alignItems: 'flex-end',
-  },
-  addButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 8,
-    backgroundColor: '#8bcdff', // todo: use color constant
-    borderRadius: 3,
-  },
-  addButtonText: {
-    marginLeft: 3,
-    color: '#fff',
-    fontWeight: 'bold',
     fontSize: 15,
   },
 

@@ -3,13 +3,13 @@ import { ScrollView, Share, View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import * as ObjectHelpers from '../../lib/ObjectHelpers';
+import * as StoreActionCreators from '../../modules/store/actions';
 import StoreDetails from './components/StoreDetails';
 import PostListContainer from './components/PostListContainer';
-import * as StoreActionCreators from '../../modules/store/actions';
 import HeaderBack from '../../components/navigation/headers/HeaderBack';
 import HeaderShare from '../../components/navigation/headers/HeaderShare';
 import ImageOverlayHeader from '../../components/navigation/headers/ImageOverlayHeader';
-
 
 class StoreScreen extends Component {
 
@@ -39,9 +39,7 @@ class StoreScreen extends Component {
         </ImageOverlayHeader>
 
         {
-          // TODO: Replace with Utils/Object.isNonEmpty && isEmpty
-          this.props.store
-          && this.props.store.phone_number
+          ObjectHelpers.isNonEmpty(this.props.store)
           && (
             <View>
               <StoreDetails store={this.props.store} />
