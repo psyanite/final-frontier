@@ -11,6 +11,7 @@ import * as ActionCreators from '../../modules/me/actions';
 import BackTouchable from '../../components/navigation/touchables/BackTouchable';
 import BurntGradient from '../../components/gradients/BurntGradient';
 import WideButton from '../../components/common/buttons/WideButton';
+import { routeNames } from '../../components/navigation/AppNavigator';
 
 class MySettingsScreen extends Component {
 
@@ -19,7 +20,7 @@ class MySettingsScreen extends Component {
   render() {
     const logout = async () => {
       this.props.actions.setMe({});
-      this.props.navigation.navigate('Login');
+      this.props.navigation.navigate(routeNames.Login);
     };
 
     return (

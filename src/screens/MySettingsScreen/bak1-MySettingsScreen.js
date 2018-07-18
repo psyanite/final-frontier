@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import ColorConstants from '../../styles/constants/ColorConstants';
 import LayoutConstants from '../../styles/constants/LayoutConstants';
 import * as ActionCreators from '../../modules/me/actions';
+import { routeNames } from '../../components/navigation/AppNavigator';
 
 class MySettingsScreen extends Component {
 
@@ -15,7 +16,7 @@ class MySettingsScreen extends Component {
   render() {
     const logout = async () => {
       this.props.actions.setMe({});
-      this.props.navigation.navigate('Login');
+      this.props.navigation.navigate(routeNames.Login);
     };
 
     return (

@@ -6,12 +6,13 @@ import BurntView from '../components/common/BurntView';
 import ColorConstants from '../styles/constants/ColorConstants';
 import GenericIcon, { Names as GenericIcons } from '../components/common/icons/GenericIcon';
 import LayoutConstants from '../styles/constants/LayoutConstants';
+import { routeNames } from '../components/navigation/AppNavigator';
 
 export default class NewPostScreen extends Component {
 
   static navigationOptions = { header: null };
 
-  navigateTo = () => this.props.navigation.navigate('MySettings');
+  navigateTo = () => this.props.navigation.navigate(routeNames.MySettings);
 
   render() {
     return (

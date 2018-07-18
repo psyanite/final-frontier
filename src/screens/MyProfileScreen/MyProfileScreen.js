@@ -7,6 +7,7 @@ import * as ObjectHelpers from '../../lib/ObjectHelpers';
 import PostListContainer from './components/PostListContainer';
 import ProfileDetails from '../ProfileScreen/components/ProfileDetails';
 import LayoutConstants from '../../styles/constants/LayoutConstants';
+import { routeNames } from '../../components/navigation/AppNavigator';
 
 class ProfileScreen extends Component {
 
@@ -20,7 +21,7 @@ class ProfileScreen extends Component {
 
   isUserLoggedIn = () => ObjectHelpers.isNonEmpty(this.props.profile);
 
-  navigateToSettings = () => this.props.navigation.navigate('MySettings');
+  navigateToSettings = () => this.props.navigation.navigate(routeNames.MySettings);
 
   render() {
     const { profile } = this.props;

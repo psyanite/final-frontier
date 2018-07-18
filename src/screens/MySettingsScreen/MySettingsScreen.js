@@ -11,6 +11,7 @@ import WideButton, { Types as WideButtonTypes } from '../../components/common/bu
 import HeaderBack from '../../components/navigation/headers/HeaderBack';
 import BurntView from '../../components/common/BurntView';
 import GenericIcon, { Names as GenericIcons } from '../../components/common/icons/GenericIcon';
+import { routeNames } from '../../components/navigation/AppNavigator';
 
 class MySettingsScreen extends Component {
   
@@ -30,7 +31,7 @@ class MySettingsScreen extends Component {
   render() {
     const logout = () => {
       this.props.actions.setMe({});
-      this.props.navigation.navigate('Login');
+      this.props.navigation.navigate(routeNames.Login);
     };
 
     const openEmail = () => {

@@ -8,13 +8,14 @@ import ColorConstants from '../../styles/constants/ColorConstants';
 import * as Auth from '../../lib/Auth';
 import WideButton, { Types as WideButtonTypes } from '../../components/common/buttons/WideButton';
 import BurntView from '../../components/common/BurntView';
+import { routeNames } from '../../components/navigation/AppNavigator';
 
 class LoginScreen extends Component {
 
   static navigationOptions = { header: null };
 
   render() {
-    const onLoginSuccess = () => this.props.navigation.navigate('MyProfile');
+    const onLoginSuccess = () => this.props.navigation.navigate(routeNames.MyProfile);
 
     const loginWithFacebook = async () => {
       const appId = Constants.manifest.facebookAppId;
