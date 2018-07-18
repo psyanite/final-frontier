@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import { Header } from 'react-navigation';
 
 import BurntGradient from '../../gradients/BurntGradient';
@@ -10,11 +9,9 @@ import BurntGradient from '../../gradients/BurntGradient';
 const BurntHeader = (props) => {
   const newProps = Object.assign({}, props, { style: { backgroundColor: 'transparent' } });
   return (
-    <View>
-      <BurntGradient>
-        <Header {...newProps} />
-      </BurntGradient>
-    </View>
+    <BurntGradient>
+      <Header {...newProps} />
+    </BurntGradient>
   );
 };
 

@@ -1,23 +1,25 @@
-/* eslint-disable default-case */
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 
-import HomeScreen from '../../screens/HomeScreen/HomeScreen';
+import HomeScreen from '../../../screens/HomeScreen/HomeScreen';
 import StoreNavigator from './StoreStack';
 
-import GenericIcon, { Names as GenericIcons } from '../common/icons/GenericIcon';
+import * as Helper from '../helpers/index';
+import GenericIcon, { Names as GenericIcons } from '../../common/icons/GenericIcon';
+import Colors from '../../../styles/constants/ColorConstants';
 
-import Colors from '../../styles/constants/ColorConstants';
+export const routeNames = {
+  Home: 'Home',
+  Store: 'Store'
+};
+
+const children = [
+  Helper.createChild(routeNames.Home, HomeScreen),
+  Helper.createChild(routeNames.Store, StoreNavigator)
+];
 
 const HomeStack = createStackNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-    },
-    Store: {
-      screen: StoreNavigator,
-    },
-  },
+  Helper.createStack(children),
   {
     headerMode: 'screen'
   }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { ExpoConfigView } from '@expo/samples';
 
-export default class SettingsScreen extends Component {
-  static navigationOptions = { title: 'app.json' };
+export default class RewardsNearMeScreen extends Component {
+  static navigationOptions = { title: 'Rewards Near Me' };
 
   render() {
     /* Go ahead and delete ExpoConfigView and replace it with your
