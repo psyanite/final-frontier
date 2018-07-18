@@ -10,7 +10,7 @@ import * as ActionCreators from '../../modules/me/actions';
 
 import BackTouchable from '../../components/navigation/touchables/BackTouchable';
 import BurntGradient from '../../components/gradients/BurntGradient';
-import WideWhiteButton from '../../components/common/buttons/WideWhiteButton';
+import WideButton from '../../components/common/buttons/WideButton';
 
 class MySettingsScreen extends Component {
 
@@ -34,15 +34,15 @@ class MySettingsScreen extends Component {
           style={styles.settingsIcon}
         />
 
-        <WideWhiteButton onPress={logout} style={styles.wrap} >
+        <WideButton onPress={logout} style={styles.wrap} >
           <Text style={styles.title}>Logout</Text>
           <Ionicons name='ios-log-out' size={32} color={ColorConstants.tintColor} style={styles.overlayIcon} />
-        </WideWhiteButton>
+        </WideButton>
 
-        <WideWhiteButton onPress={() => {}} style={styles.wrap} >
+        <WideButton onPress={() => {}} style={styles.wrap} >
           <Text style={styles.title}>Contact Burntoast</Text>
           <Ionicons name='ios-send-outline' size={35} color={ColorConstants.tintColor} style={styles.overlayIcon} />
-        </WideWhiteButton>
+        </WideButton>
 
       </BurntGradient>
     );

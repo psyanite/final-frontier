@@ -4,10 +4,9 @@ import { Image, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ActionCreators from '../../modules/me/actions';
-import BurntGradient from '../../components/gradients/BurntGradient';
 import ColorConstants from '../../styles/constants/ColorConstants';
 import * as Auth from '../../lib/Auth';
-import WideWhiteButton from '../../components/common/buttons/WideWhiteButton';
+import WideButton, { Types as WideButtonTypes } from '../../components/common/buttons/WideButton';
 import BurntView from '../../components/common/BurntView';
 
 class LoginScreen extends Component {
@@ -73,9 +72,9 @@ class LoginScreen extends Component {
 
         <Image style={styles.logo} source={require('../../assets/images/bk/loading-icon.png')} />
 
-        <WideWhiteButton onPress={loginWithFacebook} text={'Login with Facebook'} />
-        <WideWhiteButton onPress={loginAsTestUserLuna} text={'Login as test user Luna'} />
-        <WideWhiteButton style={styles.button} onPress={loginAsTestUserChloe} text={'Login as test user Chloe'} />
+        <WideButton onPress={loginWithFacebook} text={'Login with Facebook'} type={WideButtonTypes.Light} />
+        <WideButton onPress={loginAsTestUserLuna} text={'Login as test user Luna'} type={WideButtonTypes.Light} />
+        <WideButton style={styles.button} onPress={loginAsTestUserChloe} text={'Login as test user Chloe'} type={WideButtonTypes.Light} />
 
       </BurntView>
     );

@@ -7,14 +7,15 @@ import { Ionicons } from '@expo/vector-icons';
 import ColorConstants from '../../styles/constants/ColorConstants';
 import LayoutConstants from '../../styles/constants/LayoutConstants';
 import * as ActionCreators from '../../modules/me/actions';
-import WideWhiteButton from '../../components/common/buttons/WideWhiteButton';
+import WideButton, { Types as WideButtonTypes } from '../../components/common/buttons/WideButton';
 import HeaderBack from '../../components/navigation/headers/HeaderBack';
 import BurntView from '../../components/common/BurntView';
+import GenericIcon, { Names as GenericIcons } from '../../components/common/icons/GenericIcon';
 
 class MySettingsScreen extends Component {
-
+  
   static navigationOptions = ({ navigation }) => ({
-    headerTitle: <Text style={{ color: '#fff' }}>Settings</Text>,
+    headerTitle: <Text style={{ color: '#fff', fontSize: 26 }}>Settings</Text>,
     headerStyle: {
       position: 'absolute',
       backgroundColor: 'transparent',
@@ -40,15 +41,15 @@ class MySettingsScreen extends Component {
     return (
       <BurntView centerCenterYah>
 
-        <WideWhiteButton onPress={logout} style={styles.wrap} >
+        <WideButton onPress={logout} style={styles.wrap} type={WideButtonTypes.Light}>
           <Text style={styles.title}>Logout</Text>
-          <Ionicons name='ios-log-out' size={32} color={ColorConstants.tintColor} style={styles.overlayIcon} />
-        </WideWhiteButton>
+          <GenericIcon name={GenericIcons.Logout} fill={ColorConstants.tintColor} width={30} height={30} />
+        </WideButton>
 
-        <WideWhiteButton onPress={openEmail} style={styles.wrap} >
+        <WideButton onPress={openEmail} style={styles.wrap} type={WideButtonTypes.Light}>
           <Text style={styles.title}>Contact Burntoast</Text>
-          <Ionicons name='ios-send-outline' size={35} color={ColorConstants.tintColor} style={styles.overlayIcon} />
-        </WideWhiteButton>
+          <GenericIcon name={GenericIcons.Paperplane} fill={ColorConstants.tintColor} width={30} height={30} />
+        </WideButton>
 
       </BurntView>
     );
