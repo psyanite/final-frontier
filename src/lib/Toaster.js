@@ -20,14 +20,15 @@ export default class Toaster {
       }),
     };
 
-    const response = await fetch(`${HOST}`, options);
-    if (response.ok) {
+    const response = await fetch(`${HOST}`, options)
+      .catch((e) => {
+        console.log('An error occurred when trying to perform a fetch from the Toaster', e);
+      }
+    );
+    if (response && response.ok) {
       const { data } = await response.json();
       return data;
     }
-    console.log(response);
-    console.log(response._bodyText);
-    throw new Error(response.status);
   }
 
 }

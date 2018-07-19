@@ -10,8 +10,10 @@ export const fetchPostsByStoreId = (storeId) => async (dispatch, getState) => {
       fields: PostFields.fields
     }
   };
-  const { posts } = await Toaster.get(query);
-  dispatch(setStorePosts(storeId, posts));
+  const resp = await Toaster.get(query);
+  if (resp && resp.posts) {
+    dispatch(setStorePosts(storeId, resp.posts));
+  }
 };
 
 export const fetchPostsByUserAccountId = (userAccountId) => async (dispatch, getState) => {
@@ -22,8 +24,10 @@ export const fetchPostsByUserAccountId = (userAccountId) => async (dispatch, get
       fields: PostFields.fields
     }
   };
-  const { posts } = await Toaster.get(query);
-  dispatch(setProfilePosts(userAccountId, posts));
+  const resp = await Toaster.get(query);
+  if (resp && resp.posts) {
+    dispatch(setProfilePosts(userAccountId, resp.posts));
+  }
 };
 
 export const fetchPostsForLoggedInUser = (userAccountId) => async (dispatch, getState) => {
@@ -34,8 +38,10 @@ export const fetchPostsForLoggedInUser = (userAccountId) => async (dispatch, get
       fields: PostFields.fields
     }
   };
-  const { posts } = await Toaster.get(query);
-  dispatch(setMyProfilePosts(posts));
+  const resp = await Toaster.get(query);
+  if (resp && resp.posts) {
+    dispatch(setMyProfilePosts(resp.posts));
+  }
 };
 
 const setStorePosts = (storeId, posts) => ({

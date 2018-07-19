@@ -18,8 +18,10 @@ export const fetchAllStores = () => async (dispatch, getState) => {
       fields
     }
   };
-  const { stores } = await Toaster.get(query);
-  dispatch(setStores(stores));
+  const resp = await Toaster.get(query);
+  if (resp && resp.stores) {
+    dispatch(setStores(resp.stores));
+  }
 };
 
 export const fetchStoreById = (storeId) => async (dispatch, getState) => {
@@ -40,8 +42,10 @@ export const fetchStoreById = (storeId) => async (dispatch, getState) => {
       fields
     }
   };
-  const { store } = await Toaster.get(query);
-  dispatch(setStore(store[0]));
+  const resp = await Toaster.get(query);
+  if (resp && resp.store) {
+    dispatch(setStore(resp.store[0]));
+  }
 };
 
 export const resetStore = () => (dispatch) => {
