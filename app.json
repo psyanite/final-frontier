@@ -26,6 +26,9 @@
     "android": {
       "package": "io.github.burntoast"
     },
+    "androidStatusBar": {
+      "backgroundColor": "#fcbf5e"
+    },
     "facebookAppId": "223129748069711",
     "facebookDisplayName": "Burntoast",
     "extra": {
