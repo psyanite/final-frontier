@@ -5,8 +5,8 @@ import HomeScreen from '../../../screens/HomeScreen/HomeScreen';
 import StoreNavigator from './StoreStack';
 
 import * as Helper from '../helpers/index';
-import GenericIcon, { Names as GenericIcons } from '../../common/icons/GenericIcon';
-import Colors from '../../../styles/constants/ColorConstants';
+import { Names as GenericIcons } from '../../common/icons/GenericIcon';
+import TabBarIcon from '../components/TabBarIcon';
 
 export const routeNames = {
   Home: 'Home',
@@ -28,12 +28,7 @@ const HomeStack = createStackNavigator(
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
-    <GenericIcon
-      name={GenericIcons.BreadHeart}
-      fill={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-      width={25}
-      height={25}
-    />
+    <TabBarIcon name={GenericIcons.BreadHeart} focused={focused} />
   ),
 };
 

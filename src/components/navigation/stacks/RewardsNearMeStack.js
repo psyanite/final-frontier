@@ -1,11 +1,10 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 
-import GenericIcon, { Names as GenericIcons } from '../../common/icons/GenericIcon';
-
-import Colors from '../../../styles/constants/ColorConstants';
+import { Names as GenericIcons } from '../../common/icons/GenericIcon';
 import RewardsNearMeScreen from '../../../screens/RewardsNearMeScreen';
 import * as Helper from '../helpers';
+import TabBarIcon from '../components/TabBarIcon';
 
 export const routeNames = {
   RewardsNearMe: 'RewardsNearMe',
@@ -25,12 +24,7 @@ const RewardsNearMeStack = createStackNavigator(
 RewardsNearMeStack.navigationOptions = {
   tabBarLabel: 'RewardsNearMeStack',
   tabBarIcon: ({ focused }) => (
-    <GenericIcon
-      name={GenericIcons.Present}
-      fill={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-      width={25}
-      height={25}
-    />
+    <TabBarIcon name={GenericIcons.Present} focused={focused} />
   ),
 };
 

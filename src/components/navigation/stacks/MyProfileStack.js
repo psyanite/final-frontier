@@ -2,13 +2,12 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 
-import GenericIcon, { Names as GenericIcons } from '../../common/icons/GenericIcon';
-
-import Colors from '../../../styles/constants/ColorConstants';
+import { Names as GenericIcons } from '../../common/icons/GenericIcon';
 import MyProfileScreen from '../../../screens/MyProfileScreen/MyProfileScreen';
 import MySettingsScreen from '../../../screens/MySettingsScreen/MySettingsScreen';
 import LoginScreen from '../../../screens/LoginScreen/LoginScreen';
 import * as Helper from '../helpers';
+import TabBarIcon from '../components/TabBarIcon';
 
 export const routeNames = {
   MyProfile: 'MyProfile',
@@ -31,12 +30,7 @@ const MyProfileStack = createStackNavigator(
 
 MyProfileStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
-    <GenericIcon
-      name={GenericIcons.Person}
-      fill={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-      width={25}
-      height={25}
-    />
+    <TabBarIcon name={GenericIcons.Person} focused={focused} />
   ),
 };
 

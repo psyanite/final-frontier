@@ -1,12 +1,11 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 
-import GenericIcon, { Names as GenericIcons } from '../../common/icons/GenericIcon';
-
-import Colors from '../../../styles/constants/ColorConstants';
+import { Names as GenericIcons } from '../../common/icons/GenericIcon';
 import NewPostScreen from '../../../screens/NewPostScreen';
 import NewReviewScreen from '../../../screens/NewReviewScreen';
 import * as Helper from '../helpers';
+import TabBarIcon from '../components/TabBarIcon';
 
 export const routeNames = {
   NewPost: 'NewPost',
@@ -28,12 +27,7 @@ const NewPostStack = createStackNavigator(
 NewPostStack.navigationOptions = {
   tabBarLabel: 'Links',
   tabBarIcon: ({ focused }) => (
-    <GenericIcon
-      name={GenericIcons.NewPost}
-      fill={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-      width={25}
-      height={25}
-    />
+    <TabBarIcon name={GenericIcons.NewPost} focused={focused} />
   ),
 };
 
