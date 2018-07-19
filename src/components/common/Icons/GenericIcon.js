@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React from 'react';
 import SvgIcon from 'react-native-svg-icon';
 import { Path } from 'react-native-svg';
@@ -6,7 +7,25 @@ import { Path } from 'react-native-svg';
  * Collection of outline icons wrapped around SvgIcon from react-native-svg-icon.
  * Color of the icon is customizable.
  */
-const GenericIcon = (props) => <SvgIcon {...props} svgs={Icons} />;
+const GenericIcon = (props) => (<SvgIcon {...validateProps(props)} svgs={Icons} />);
+
+const validateProps = (props) => {
+  const newProps = Object.assign({}, props);
+  if ('width' in props && 'height' in props) {
+    return newProps;
+  }
+  else if (!('width' in props || 'height' in props)) {
+    newProps.width = 35;
+    newProps.height = 35;
+  }
+  else if (!('width' in props)) {
+    newProps.width = newProps.height;
+  }
+  else {
+    newProps.height = newProps.width;
+  }
+  return newProps;
+};
 
 export const Names = {
   Menu: 'Menu',
@@ -61,8 +80,6 @@ const Icons = {
 GenericIcon.defaultProps = {
   fill: '#fff',
   viewBox: '0 0 300 300',
-  width: 35,
-  height: 35,
 };
 
 export default GenericIcon;
