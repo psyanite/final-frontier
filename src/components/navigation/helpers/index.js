@@ -1,7 +1,6 @@
 export const createStack = (children) => {
   const stack = {};
   Object.assign(stack, ...children);
-  console.log(`createStack: ${stack}`);
   return stack;
 };
 

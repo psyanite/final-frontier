@@ -6,10 +6,10 @@ import LayoutConstants from '../../styles/constants/LayoutConstants';
 /**
  * Static view that is NOT-SCROLLABLE, with the BurnGradient background.
  */
-const BurntView = ({ centerCenterYah, children }) =>
+const BurntView = ({ centerCenterYah, style, children }) =>
   (<BurnGradient
     children={children}
-    style={[styles.default, centerCenterYah ? styles.centerCenter : {}]}
+    style={[styles.default, style, centerCenterYah ? styles.centerCenter : {}]}
   />);
 
 const styles = StyleSheet.create({

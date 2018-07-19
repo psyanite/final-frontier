@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { createSwitchNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createSwitchNavigator, createMaterialTopTabNavigator } from 'react-navigation';
 
 import HomeStack, { routeNames as HomeStackRouteNames } from './stacks/HomeStack';
 import RewardsNearMeStack, { routeNames as RewardsNearMeStackRouteNames } from './stacks/RewardsNearMeStack';
@@ -18,12 +18,17 @@ export const routeNames = Object.assign({},
 const styles = StyleSheet.create({
   tabBar: {
     backgroundColor: '#fff',
-    height: 40,
-    borderTopColor: 'transparent'
+    height: 50,
+    borderTopColor: 'transparent',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 20,
   },
 });
 
-const MainNavigator = createBottomTabNavigator({
+const MainNavigator = createMaterialTopTabNavigator({
   HomeStack,
   RewardsNearMeStack,
   NewPostStack,
@@ -32,6 +37,8 @@ const MainNavigator = createBottomTabNavigator({
 }, {
   tabBarPosition: 'bottom',
   tabBarOptions: {
+    indicatorStyle: { opacity: 0 },
+    showIcon: true,
     showLabel: false,
     style: styles.tabBar
   },

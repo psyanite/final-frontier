@@ -21,9 +21,7 @@ const HeaderStyles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: LayoutConstants.margins.s,
-    paddingLeft: LayoutConstants.margins.m,
-    paddingRight: LayoutConstants.margins.m,
+    paddingTop: LayoutConstants.margins.m,
   },
 });
 

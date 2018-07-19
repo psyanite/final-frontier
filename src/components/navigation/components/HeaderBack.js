@@ -8,11 +8,10 @@ import LayoutConstants from '../../../styles/constants/LayoutConstants';
 import ColorConstants from '../../../styles/constants/ColorConstants';
 
 // todo: refactor 'type' like in WideButton
-// todo: not sure if wrapStyle is still required
-const HeaderBack = ({ navigation, type, wrapStyle, size, color }) => (
+const HeaderBack = ({ navigation, type,size, color }) => (
   <TouchableOpacity
     onPress={() => navigation.dispatch(NavigationActions.back())}
-    style={wrapStyle}
+    style={styles.wrap}
     activeOpacity={1.0}
   >
     { getIcon(size, color, type) }
@@ -45,7 +44,8 @@ const getIcon = (size, color, type) => {
 
 const styles = StyleSheet.create({
   wrap: {
-    paddingLeft: LayoutConstants.margins.m,
+    padding: LayoutConstants.margins.m,
+    paddingLeft: 25,
   },
   lineIcon: {},
   overlayIcon: {
