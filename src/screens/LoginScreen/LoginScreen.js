@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Expo, { Constants } from 'expo';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StatusBar, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ActionCreators from '../../modules/me/actions';
@@ -70,6 +70,7 @@ class LoginScreen extends Component {
 
     return (
       <BurntView centerCenterYah>
+        <StatusBar backgroundColor='#FFC86B' />
 
         <Image style={styles.logo} source={require('../../assets/images/bk/loading-icon.png')} />
 

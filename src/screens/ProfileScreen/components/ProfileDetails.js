@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Image, StyleSheet, Text, View } from 'react-native';
 
-import ImageHeader from '../../../components/navigation/headers/ImageHeader';
+import ImageHeader from '../../../components/navigation/components/ImageHeader';
 
 const ProfileDetails = ({ profile }) => (
   <View>

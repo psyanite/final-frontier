@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
 
-import BurntHeader from '../../components/navigation/headers/BurntHeader';
 import GenericIcon, { Names as GenericIcons } from '../../components/common/icons/GenericIcon';
 import StoreListContainer from './components/StoreList/StoreListContainer';
 
@@ -19,12 +18,10 @@ export default class HomeScreen extends Component {
     );
     return ({
       headerTitle: title,
-      header: (props) => <BurntHeader {...props} />,
       headerRight,
-      headerStyle: { backgroundColor: 'transparent' },
+      headerStyle: { backgroundColor: '#ffab40' },
     });
   };
-
 
   state = {
     displayOverlay: true,
@@ -34,6 +31,7 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar backgroundColor={ColorConstants.statusBar.lightTint} />
         <StoreListContainer navigate={this.props.navigation.navigate} />
       </View>
     );
@@ -45,11 +43,11 @@ const styles = StyleSheet.create({
     fontFamily: 'grand-hotel',
     fontSize: 40,
     color: '#fff',
-    marginLeft: LayoutConstants.margins.m,
+    marginLeft: LayoutConstants.margins.l,
     marginTop: 5,
   },
   headerRight: {
-    marginRight: LayoutConstants.margins.m,
+    marginRight: LayoutConstants.margins.l,
   },
   container: {
     flex: 1,

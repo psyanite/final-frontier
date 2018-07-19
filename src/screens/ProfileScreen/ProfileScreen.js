@@ -3,9 +3,9 @@ import { ScrollView, Share, StyleSheet } from 'react-native';
 
 import PostListContainer from './components/PostListContainer';
 import ProfileDetails from './components/ProfileDetails';
-import HeaderBack from '../../components/navigation/headers/HeaderBack';
-import HeaderShare from '../../components/navigation/headers/HeaderShare';
-import ImageOverlayHeader from '../../components/navigation/headers/ImageOverlayHeader';
+import HeaderBack from '../../components/navigation/components/HeaderBack';
+import HeaderShare from '../../components/navigation/components/HeaderShare';
+import ImageOverlayHeader from '../../components/navigation/components/ImageOverlayHeader';
 
 export default class ProfileScreen extends Component {
 

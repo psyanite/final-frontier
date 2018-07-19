@@ -7,9 +7,9 @@ import * as ObjectHelpers from '../../lib/ObjectHelpers';
 import * as StoreActionCreators from '../../modules/store/actions';
 import StoreDetails from './components/StoreDetails';
 import PostListContainer from './components/PostListContainer';
-import HeaderBack from '../../components/navigation/headers/HeaderBack';
-import HeaderShare from '../../components/navigation/headers/HeaderShare';
-import ImageOverlayHeader from '../../components/navigation/headers/ImageOverlayHeader';
+import HeaderBack from '../../components/navigation/components/HeaderBack';
+import HeaderShare from '../../components/navigation/components/HeaderShare';
+import ImageOverlayHeader from '../../components/navigation/components/ImageOverlayHeader';
 
 class StoreScreen extends Component {
 

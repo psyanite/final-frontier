@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { Platform, ScrollView, StatusBar, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
+import ColorConstants from '../styles/constants/ColorConstants';
+import LayoutConstants from '../styles/constants/LayoutConstants';
 
 export default class MyRewardsScreen extends Component {
-  static navigationOptions = { title: 'My Rewards' };
+  static navigationOptions = {
+    title: 'My Rewards',
+    headerStyle: { paddingLeft: LayoutConstants.margins.s, paddingRight: LayoutConstants.margins.s }
+  };
+
+  componentDidMount() {
+    this._navListener = this.props.navigation.addListener('didFocus', () => {
+      if (Platform.OS === 'android') StatusBar.setBackgroundColor(ColorConstants.statusBar.grey);
+    });
+  }
+
+  componentWillUnmount() {
+    this._navListener.remove();
+  }
 
   render() {
     return (
@@ -20,6 +35,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
     backgroundColor: '#fff',
   },
 });

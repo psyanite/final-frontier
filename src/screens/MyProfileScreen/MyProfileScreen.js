@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, TouchableOpacity, View, } from 'react-native';
+import { Platform, ScrollView, StatusBar, StyleSheet, TouchableOpacity, View, } from 'react-native';
 import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -8,6 +8,7 @@ import PostListContainer from './components/PostListContainer';
 import ProfileDetails from '../ProfileScreen/components/ProfileDetails';
 import LayoutConstants from '../../styles/constants/LayoutConstants';
 import { routeNames } from '../../components/navigation/AppNavigator';
+import ColorConstants from '../../styles/constants/ColorConstants';
 
 class ProfileScreen extends Component {
 
@@ -17,6 +18,16 @@ class ProfileScreen extends Component {
     if (!this.isUserLoggedIn()) {
       this.props.navigation.navigate('Login');
     }
+  }
+
+  componentDidMount() {
+    this._navListener = this.props.navigation.addListener('didFocus', () => {
+      if (Platform.OS === 'android') StatusBar.setBackgroundColor(ColorConstants.statusBar.lightTint);
+    });
+  }
+
+  componentWillUnmount() {
+    this._navListener.remove();
   }
 
   isUserLoggedIn = () => ObjectHelpers.isNonEmpty(this.props.profile);
@@ -102,8 +113,11 @@ const styles = StyleSheet.create({
 
   moreIconWrap: {
     position: 'absolute',
-    top: LayoutConstants.margins.s,
+    top: 0,
     right: 0,
+    padding: LayoutConstants.margins.m,
+    paddingBottom: LayoutConstants.margins.l,
+    paddingRight: 0,
     justifyContent: 'flex-end',
   },
   moreIcon: {

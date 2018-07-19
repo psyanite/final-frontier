@@ -4,7 +4,7 @@ import { phonecall as phoneCall } from 'react-native-communications';
 
 import CustomIcon, { Names as CustomIcons } from '../../../components/common/icons/CustomIcon';
 import LayoutConstants from '../../../styles/constants/LayoutConstants';
-import ImageHeader from '../../../components/navigation/headers/ImageHeader';
+import ImageHeader from '../../../components/navigation/components/ImageHeader';
 
 const StoreDetails = ({ store }) => {
   const details = buildDetails(store);

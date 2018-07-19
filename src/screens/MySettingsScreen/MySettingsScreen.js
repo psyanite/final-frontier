@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Linking, StyleSheet, Text } from 'react-native';
+import { Linking, StatusBar, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -8,25 +8,15 @@ import ColorConstants from '../../styles/constants/ColorConstants';
 import LayoutConstants from '../../styles/constants/LayoutConstants';
 import * as ActionCreators from '../../modules/me/actions';
 import WideButton, { Types as WideButtonTypes } from '../../components/common/buttons/WideButton';
-import HeaderBack from '../../components/navigation/headers/HeaderBack';
+import HeaderBack from '../../components/navigation/components/HeaderBack';
 import BurntView from '../../components/common/BurntView';
 import GenericIcon, { Names as GenericIcons } from '../../components/common/icons/GenericIcon';
 import { routeNames } from '../../components/navigation/AppNavigator';
+import { Header, Title} from '../../components/navigation/components/Header';
 
 class MySettingsScreen extends Component {
-  
-  static navigationOptions = ({ navigation }) => ({
-    headerTitle: <Text style={{ color: '#fff', fontSize: 26 }}>Settings</Text>,
-    headerStyle: {
-      position: 'absolute',
-      backgroundColor: 'transparent',
-      zIndex: 100,
-      top: 0,
-      left: 0,
-      right: 0,
-    },
-    headerLeft: <HeaderBack navigation={navigation} type={'line'} color={'#fff'} wrapStyle={styles.headerLeft} />
-  });
+
+  static navigationOptions = { header: null };
 
   render() {
     const logout = () => {
@@ -39,17 +29,26 @@ class MySettingsScreen extends Component {
         .catch(e => console.log('An error occurred', e));
     };
 
+    const getHeader = () => {
+      const left = <HeaderBack navigation={this.props.navigation} type={'line'} color={'#fff'} />;
+      const title = <Title style={{ color: '#fff' }} text={'Settings'} />;
+      return (<Header left={left} title={title} />);
+    };
+
     return (
       <BurntView centerCenterYah>
+        <StatusBar backgroundColor='#FFC86B' />
+
+        { getHeader() }
 
         <WideButton onPress={logout} style={styles.wrap} type={WideButtonTypes.Light}>
           <Text style={styles.title}>Logout</Text>
-          <GenericIcon name={GenericIcons.Logout} fill={ColorConstants.tintColor} width={30} height={30} />
+          <GenericIcon name={GenericIcons.Logout} fill={ColorConstants.tintColor} width={30} />
         </WideButton>
 
         <WideButton onPress={openEmail} style={styles.wrap} type={WideButtonTypes.Light}>
           <Text style={styles.title}>Contact Burntoast</Text>
-          <GenericIcon name={GenericIcons.Paperplane} fill={ColorConstants.tintColor} width={30} height={30} />
+          <GenericIcon name={GenericIcons.Paperplane} fill={ColorConstants.tintColor} width={30} />
         </WideButton>
 
       </BurntView>
@@ -58,9 +57,6 @@ class MySettingsScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  headerLeft: {
-    paddingLeft: LayoutConstants.margins.m
-  },
   settingsIcon: {
     marginBottom: 20,
   },
@@ -72,6 +68,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: ColorConstants.tintColor,
+    fontSize: 18,
   },
 });
 

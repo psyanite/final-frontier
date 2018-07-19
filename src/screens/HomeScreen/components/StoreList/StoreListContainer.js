@@ -17,7 +17,6 @@ class StoreListContainer extends Component {
 
   render() {
     const list = <StoreList stores={this.props.stores} navigateToStore={this.navigateToStore} />;
-    console.log(this.props.stores);
     return this.props.stores ? list : null;
   }
 }

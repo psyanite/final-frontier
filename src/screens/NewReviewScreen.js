@@ -1,53 +1,73 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import BurntView from '../components/common/BurntView';
-import ColorConstants from '../styles/constants/ColorConstants';
-import GenericIcon, { Names as GenericIcons } from '../components/common/icons/GenericIcon';
+import CenteredLightView from '../components/common/CenteredLightView';
+import HeaderBack from '../components/navigation/components/HeaderBack';
+import { Header } from '../components/navigation/components/Header';
+import ScoreIconNew from '../components/common/icons/ScoreIconNew';
 import LayoutConstants from '../styles/constants/LayoutConstants';
-import WideButton, { Types as WideButtonTypes } from '../components/common/buttons/WideButton';
 
 export default class NewReviewScreen extends Component {
 
   static navigationOptions = { header: null };
 
   render() {
+    const getHeader = () => {
+      const left = <HeaderBack navigation={this.props.navigation} type={'line'} />;
+      return (<Header left={left} />);
+    };
+
     return (
-      <BurntView centerCenterYah>
+      <CenteredLightView style={styles.container}>
+        <StatusBar backgroundColor='#CCCCCC' />
 
-        <Text>How was your overall experience today?</Text>
+        { getHeader() }
 
-        <View>
-          <GenericIcon name={GenericIcons.BubbleHeart} fill={'red'} width={30} height={30} />
-          <Text>Bad</Text>
+        <Text style={styles.title}>
+          How was your overall experience today?
+        </Text>
+
+        <View style={styles.wrap}>
+          <View style={styles.option}>
+            <ScoreIconNew score={'bad'} width={100} height={100} />
+            <Text style={[styles.optionText, { color: '#CF773F' }]}>Bad</Text>
+          </View>
+          <View style={styles.option}>
+            <ScoreIconNew score={'okay'} width={100} height={100} />
+            <Text style={[styles.optionText, { color: '#ffa000' }]}>OK</Text>
+          </View>
+          <View style={styles.option}>
+            <ScoreIconNew score={'good'} width={100} height={100} />
+            <Text style={[styles.optionText, { color: '#FF9999' }]}>Good</Text>
+          </View>
         </View>
-        <View>
-          <GenericIcon name={GenericIcons.BubbleHeart} fill={ColorConstants.tintColor} width={30} height={30} />
-          <Text>OK</Text>
-        </View>
-        <View>
-          <GenericIcon name={GenericIcons.BubbleHeart} fill={'green'} width={30} height={30} />
-          <Text>Good</Text>
-        </View>
 
-        <WideButton type={WideButtonTypes.Tinted}>
-
-        </WideButton>
-
-      </BurntView>
+      </CenteredLightView>
     );
   }
 }
 
 
 const styles = StyleSheet.create({
-  wrap: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: LayoutConstants.margins.m,
-  },
   title: {
-    color: ColorConstants.tintColor,
+    fontWeight: 'bold',
+    fontSize: 22,
   },
+  container: {
+    backgroundColor: '#fff',
+    justifyContent: 'space-between',
+  },
+  wrap: {
+    flex: 1,
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+    justifyContent: 'space-evenly',
+  },
+  option: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  optionText: {
+    marginTop: LayoutConstants.margins.xs,
+  }
 });

@@ -13,4 +13,10 @@ export default {
   noticeText: '#fff',
   bodyText: '#604b41',
   lightSeparatorColor: '#eee',
+
+  statusBar: {
+    grey: '#cccccc',
+    lightTint: '#fcbf5e',
+    darkTint: '#ffab40',
+  }
 };
