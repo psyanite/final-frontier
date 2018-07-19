@@ -7,7 +7,8 @@ import { Ionicons } from '@expo/vector-icons';
 import LayoutConstants from '../../../styles/constants/LayoutConstants';
 import ColorConstants from '../../../styles/constants/ColorConstants';
 
-// todo: refactor type like in WideButton
+// todo: refactor 'type' like in WideButton
+// todo: not sure if wrapStyle is still required
 const HeaderBack = ({ navigation, type, wrapStyle, size, color }) => (
   <TouchableOpacity
     onPress={() => navigation.dispatch(NavigationActions.back())}
