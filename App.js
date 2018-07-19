@@ -8,11 +8,11 @@ import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
-import { persistStore, persistReducer } from 'redux-persist';
+import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import { Constants, AppLoading, Asset, Font } from 'expo';
+import { AppLoading, Asset, Constants, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 
 import rootReducer from './src/reducer/index';
@@ -79,6 +79,7 @@ export default class App extends Component {
     'grand-hotel': require('./src/assets/fonts/GrandHotel-Regular.ttf'),
     'open-sans': require('./src/assets/fonts/OpenSans-Regular.ttf'),
     'open-sans-light': require('./src/assets/fonts/OpenSans-Light.ttf'),
+    'open-sans-bold': require('./src/assets/fonts/OpenSans-Bold.ttf'), // not used at the moment
   });
 
   _loadResourcesAsync = async () => Promise.all([
@@ -112,7 +113,6 @@ export default class App extends Component {
         <PersistGate loading={null} persistor={persistor}>
           <View style={styles.container}>
             {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-            {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
             <AppWithNavigationState />
           </View>
         </PersistGate>
