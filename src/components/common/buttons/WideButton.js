@@ -1,9 +1,9 @@
+/* eslint-disable no-param-reassign */
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import LayoutConstants from '../../../styles/constants/LayoutConstants';
 import ColorConstants from '../../../styles/constants/ColorConstants';
-import BurntGradient from '../../gradients/BurntGradient';
 
 export const Types = {
   Light: 'Light',
@@ -12,20 +12,23 @@ export const Types = {
 
 // the style is applied on the outermost element TouchableOpacity or BurntGradient
 const WideButton = ({ onPress, type, style, text, textColor, children }) => {
-  if (type === Types.Light) {
-    return (
-      <TouchableOpacity onPress={onPress} style={[styles.defaultButtonStyle, styles.light, style]} activeOpacity={1.0}>
-        { getChildren(children, text, textColor) }
-      </TouchableOpacity>
-    );
+  let customStyle;
+
+  switch (type) {
+    case Types.Light:
+      customStyle = styles.light;
+      break;
+    case Types.Tinted:
+    default:
+      customStyle = styles.tinted;
+      textColor = '#fff';
+      break;
   }
 
   return (
-    <BurntGradient>
-      <TouchableOpacity onPress={onPress} style={[styles.defaultButtonStyle]} activeOpacity={1.0}>
-        { getChildren(children, text, textColor) }
-      </TouchableOpacity>
-    </BurntGradient>
+    <TouchableOpacity onPress={onPress} style={[styles.defaultButtonStyle, customStyle, style]} activeOpacity={1.0}>
+      { getChildren(children, text, textColor) }
+    </TouchableOpacity>
   );
 };
 
@@ -40,6 +43,9 @@ const styles = StyleSheet.create({
   },
   light: {
     backgroundColor: '#fff',
+  },
+  tinted: {
+    backgroundColor: ColorConstants.tintColor,
   }
 });
 
