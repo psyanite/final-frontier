@@ -2,7 +2,7 @@ import { Constants } from 'expo';
 
 const ENV = {
   dev: {
-    toasterUrl: 'http://192.168.1.8:3000'
+    toasterUrl: 'http://192.168.1.10:3000'
   },
   stage: {
     toasterUrl: 'https://staging.burntoast.com'

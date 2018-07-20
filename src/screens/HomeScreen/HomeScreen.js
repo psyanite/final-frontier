@@ -1,27 +1,14 @@
 import React, { Component } from 'react';
-import { StatusBar, StyleSheet, Text, View } from 'react-native';
-
-import GenericIcon, { Names as GenericIcons } from '../../components/common/icons/GenericIcon';
+import { Animated, Button, Easing, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import StoreListContainer from './components/StoreList/StoreListContainer';
 
 import ColorConstants from '../../styles/constants/ColorConstants';
 import LayoutConstants from '../../styles/constants/LayoutConstants';
+import HomeScreenHeader from './components/HomeScreenHeader';
 
 export default class HomeScreen extends Component {
 
-  static navigationOptions = () => {
-    const title = <Text style={styles.headerTitle}>Burntoast</Text>;
-    const headerRight = (
-      <View style={styles.headerRight}>
-        <GenericIcon name={GenericIcons.Search} width={25} height={25} />
-      </View>
-    );
-    return ({
-      headerTitle: title,
-      headerRight,
-      headerStyle: { backgroundColor: '#ffab40' },
-    });
-  };
+  static navigationOptions = { header: null };
 
   state = {
     displayOverlay: true,
@@ -30,10 +17,11 @@ export default class HomeScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
+        <HomeScreenHeader />
         <StatusBar backgroundColor={ColorConstants.statusBar.lightTint} />
         <StoreListContainer navigate={this.props.navigation.navigate} />
-      </View>
+      </ScrollView>
     );
   }
 }
