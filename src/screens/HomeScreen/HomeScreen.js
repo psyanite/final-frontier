@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Animated, Button, Easing, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StatusBar, StyleSheet } from 'react-native';
 import StoreListContainer from './components/StoreList/StoreListContainer';
 
 import ColorConstants from '../../styles/constants/ColorConstants';

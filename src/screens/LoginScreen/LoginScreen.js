@@ -62,7 +62,7 @@ class LoginScreen extends Component {
         id: 2,
         username: 'curious_chloe',
         display_name: 'Chloe',
-        profile_picture: 'https://imgur.com/FErrGkO.jpg'
+        profile_picture: 'https://imgur.com/AwS5vPC.jpg'
       };
       this.props.actions.setMe(testUserProfile);
       onLoginSuccess();
