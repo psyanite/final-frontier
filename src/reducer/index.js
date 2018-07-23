@@ -5,7 +5,6 @@ import storeReducer from '../modules/store/reducer';
 import postReducer from '../modules/post/reducer';
 
 export default combineReducers({
-  navigation: navigationReducer,
   me: meReducer,
   stores: storeReducer,
   posts: postReducer,

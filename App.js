@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect, Provider } from 'react-redux';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { createReactNavigationReduxMiddleware, reduxifyNavigator } from 'react-navigation-redux-helpers';
 import { setCustomText } from 'react-native-global-props';
 
 import { applyMiddleware, createStore } from 'redux';
@@ -33,17 +32,10 @@ const persistConfig = {
   whitelist: ['me']
 };
 
-const reduxNavigationMiddleware = createReactNavigationReduxMiddleware(
-  'root',
-  state => state.nav,
-);
-
-const ReduxifiedAppNavigator = reduxifyNavigator(AppNavigator, 'root');
-
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const middleWare = () => {
-  const wares = [reduxNavigationMiddleware, thunk];
+  const wares = [thunk];
   if (Constants.manifest.extra.enableReduxLogger) {
     wares.push(logger);
   }
@@ -61,7 +53,7 @@ const mapStateToProps = (state) => ({
   state: state.navigation,
 });
 
-const AppWithNavigationState = connect(mapStateToProps)(ReduxifiedAppNavigator);
+const AppWithNavigationState = connect(mapStateToProps)(AppNavigator);
 
 export default class App extends Component {
   state = {

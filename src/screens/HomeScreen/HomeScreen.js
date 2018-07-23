@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, StatusBar, StyleSheet } from 'react-native';
+import { Platform, ScrollView, StatusBar, StyleSheet } from 'react-native';
 import StoreListContainer from './components/StoreList/StoreListContainer';
 
 import ColorConstants from '../../styles/constants/ColorConstants';
@@ -15,11 +15,21 @@ export default class HomeScreen extends Component {
     overlayContent: null,
   };
 
+  componentDidMount() {
+    this._navListener = this.props.navigation.addListener('didFocus', () => {
+      if (Platform.OS === 'android') StatusBar.setBackgroundColor(ColorConstants.statusBar.darkTint);
+    });
+  }
+
+  componentWillUnmount() {
+    this._navListener.remove();
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
         <HomeScreenHeader />
-        <StatusBar backgroundColor={ColorConstants.statusBar.lightTint} />
+        <StatusBar backgroundColor={ColorConstants.statusBar.darkTint} />
         <StoreListContainer navigate={this.props.navigation.navigate} />
       </ScrollView>
     );

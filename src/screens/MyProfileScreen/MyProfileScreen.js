@@ -22,7 +22,7 @@ class ProfileScreen extends Component {
 
   componentDidMount() {
     this._navListener = this.props.navigation.addListener('didFocus', () => {
-      if (Platform.OS === 'android') StatusBar.setBackgroundColor(ColorConstants.statusBar.lightTint);
+      if (Platform.OS === 'android') StatusBar.setBackgroundColor(ColorConstants.statusBar.grey);
     });
   }
 
