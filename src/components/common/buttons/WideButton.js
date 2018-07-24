@@ -34,10 +34,10 @@ const WideButton = ({ onPress, type, style, text, textColor, children }) => {
 
 const styles = StyleSheet.create({
   defaultButtonStyle: {
-    marginBottom: LayoutConstants.margins.m,
-    paddingTop: LayoutConstants.margins.m,
-    paddingBottom: LayoutConstants.margins.m,
-    borderRadius: 5,
+    padding: LayoutConstants.margins.xl,
+    marginBottom: LayoutConstants.margins.l,
+    paddingTop: LayoutConstants.margins.l,
+    paddingBottom: LayoutConstants.margins.l,
     alignSelf: 'stretch',
     alignItems: 'center',
   },
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
 });
 
 const getChildren = (children, text, textColor) =>
-  children || (<Text style={{ color: textColor }}>{text}</Text>);
+  children || (<Text style={{ color: textColor, fontSize: 26 }}>{text}</Text>);
 
 WideButton.defaultProps = {
   textColor: ColorConstants.tintColor

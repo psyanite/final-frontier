@@ -70,7 +70,7 @@ class LoginScreen extends Component {
 
     return (
       <BurntView centerCenterYah>
-        <StatusBar backgroundColor='#FFC86B' />
+        <StatusBar backgroundColor={ColorConstants.statusBar.lightTint} />
 
         <Image style={styles.logo} source={require('../../assets/images/bk/loading-icon.png')} />
 

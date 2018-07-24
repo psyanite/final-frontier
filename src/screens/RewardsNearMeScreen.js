@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import { ExpoConfigView } from '@expo/samples';
-import { Platform, StatusBar, View } from 'react-native';
+import { Platform, ScrollView, StatusBar, StyleSheet } from 'react-native';
 import ColorConstants from '../styles/constants/ColorConstants';
-import LayoutConstants from '../styles/constants/LayoutConstants';
+import { Header, Title } from '../components/navigation/components/Header';
+import StoreListContainer from './HomeScreen/components/StoreList/StoreListContainer';
 
 export default class RewardsNearMeScreen extends Component {
-  static navigationOptions = {
-    title: 'Rewards Near Me',
-    headerStyle: { paddingLeft: LayoutConstants.margins.s, paddingRight: LayoutConstants.margins.s }
-  };
+  static navigationOptions = { header: null };
 
   componentDidMount() {
     this._navListener = this.props.navigation.addListener('didFocus', () => {
@@ -20,13 +17,24 @@ export default class RewardsNearMeScreen extends Component {
     this._navListener.remove();
   }
 
+  getHeader = () => {
+    const title = <Title text={'Rewards Near Me'} />;
+    return (<Header title={title} />);
+  };
+
   render() {
-    /* Go ahead and delete ExpoConfigView and replace it with your
-     * content, we just wanted to give you a quick view of your config */
     return (
-      <View>
-        <ExpoConfigView />
-      </View>
+      <ScrollView style={styles.container}>
+        { this.getHeader() }
+        <StoreListContainer navigate={this.props.navigation.navigate} />
+      </ScrollView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+});

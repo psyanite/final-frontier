@@ -26,7 +26,7 @@ export default class NewPostScreen extends Component {
 
   render() {
     return (
-      <BurntView centerCenterYah>
+      <BurntView style={styles.content}>
 
         <WideButton style={styles.wrap} type={WideButtonTypes.Light}>
           <Text style={styles.title}>Post a photo</Text>
@@ -45,6 +45,12 @@ export default class NewPostScreen extends Component {
 
 
 const styles = StyleSheet.create({
+  content: {
+    flex: 1,
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   wrap: {
     flexDirection: 'row',
     alignItems: 'center',

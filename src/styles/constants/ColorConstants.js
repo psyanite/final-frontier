@@ -16,7 +16,7 @@ export default {
 
   statusBar: {
     grey: '#cccccc',
-    lightTint: '#fcbf5e',
+    lightTint: '#ffc86b',
     darkTint: '#ffab40',
   }
 };

@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { Platform, ScrollView, StatusBar, StyleSheet } from 'react-native';
+import { Platform, ScrollView, StatusBar, StyleSheet, Text } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import ColorConstants from '../styles/constants/ColorConstants';
-import LayoutConstants from '../styles/constants/LayoutConstants';
+import { Header, Title } from '../components/navigation/components/Header';
+import StoreListContainer from './HomeScreen/components/StoreList/StoreListContainer';
 
 export default class MyRewardsScreen extends Component {
-  static navigationOptions = {
-    title: 'My Rewards',
-    headerStyle: { paddingLeft: LayoutConstants.margins.s, paddingRight: LayoutConstants.margins.s }
-  };
+  static navigationOptions = { header: null };
 
   componentDidMount() {
     this._navListener = this.props.navigation.addListener('didFocus', () => {
@@ -20,12 +18,16 @@ export default class MyRewardsScreen extends Component {
     this._navListener.remove();
   }
 
+  getHeader = () => {
+    const title = <Title text={'My Rewards'} />;
+    return (<Header title={title} />);
+  };
+
   render() {
     return (
       <ScrollView style={styles.container}>
-        {/* Go ahead and delete ExpoLinksView and replace it with your
-           * content, we just wanted to provide you with some helpful links */}
-        <ExpoLinksView />
+        { this.getHeader() }
+        <StoreListContainer navigate={this.props.navigation.navigate} />
       </ScrollView>
     );
   }
@@ -34,9 +36,6 @@ export default class MyRewardsScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
-    paddingLeft: 15,
-    paddingRight: 15,
     backgroundColor: '#fff',
   },
 });

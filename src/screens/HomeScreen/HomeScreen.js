@@ -1,5 +1,7 @@
+/* eslint-disable no-return-assign */
 import React, { Component } from 'react';
-import { Platform, ScrollView, StatusBar, StyleSheet } from 'react-native';
+import * as Animatable from 'react-native-animatable';
+import { Platform, ScrollView, StatusBar, StyleSheet, Text } from 'react-native';
 import StoreListContainer from './components/StoreList/StoreListContainer';
 
 import ColorConstants from '../../styles/constants/ColorConstants';
@@ -13,11 +15,13 @@ export default class HomeScreen extends Component {
   state = {
     displayOverlay: true,
     overlayContent: null,
+
+    isSearchMode: false,
   };
 
   componentDidMount() {
     this._navListener = this.props.navigation.addListener('didFocus', () => {
-      if (Platform.OS === 'android') StatusBar.setBackgroundColor(ColorConstants.statusBar.darkTint);
+      if (Platform.OS === 'android') StatusBar.setBackgroundColor(ColorConstants.tintColor);
     });
   }
 
@@ -25,11 +29,30 @@ export default class HomeScreen extends Component {
     this._navListener.remove();
   }
 
+  handleSearchOverlayView = ref => this.searchOverlayView = ref;
+
+  handleSearchPress = () => {
+    this.setState({ isSearchMode: true });
+    this.searchOverlayView.fadeInUpBig();
+    this.searchOverlayView.transition({ opacity: 1 });
+  };
+
+
   render() {
     return (
       <ScrollView style={styles.container}>
         <HomeScreenHeader />
-        <StatusBar backgroundColor={ColorConstants.statusBar.darkTint} />
+
+        {/*<TouchableWithoutFeedback onPress={this.handleSearchPress}>*/}
+          {/*<Text>Click me</Text>*/}
+        {/*</TouchableWithoutFeedback>*/}
+
+        <Animatable.View style={[styles.searchOverlay, this.state.isSearchMode ? { zIndex: 100 } : {}]} ref={this.handleSearchOverlayView}>
+          <Text>The Thing</Text>
+        </Animatable.View>
+
+
+        <StatusBar backgroundColor={ColorConstants.tintColor} />
         <StoreListContainer navigate={this.props.navigation.navigate} />
       </ScrollView>
     );
@@ -49,9 +72,21 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: ColorConstants.bodyBackgroundColor,
+    backgroundColor: '#fff',
   },
   contentContainer: {
     paddingTop: 30,
   },
+  searchOverlay: {
+    position: 'absolute',
+    top: 100,
+    left: 0,
+    right: 0,
+    flex: 1,
+    flexDirection: 'row',
+    opacity: 0,
+    zIndex: 0,
+    backgroundColor: '#f0f',
+    height: 200,
+  }
 });
