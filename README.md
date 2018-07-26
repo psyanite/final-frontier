@@ -16,7 +16,7 @@
 * Start up the frakkin toaster
 * [Setup Genymotion with Expo](https://medium.com/@psyanite/how-to-use-genymotion-with-expo-cc52815928cf)
 * Or install Expo on a device
-* Update the host in /config
+* Update the host in config/index.js
 * Start project on Expo XDE
 * In Expo XDE, change Host to LAN, and enable Development Mode
 
