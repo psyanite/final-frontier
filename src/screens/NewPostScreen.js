@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Platform, StatusBar, StyleSheet, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import WideButton, { Types as WideButtonTypes } from '../components/common/buttons/WideButton';
 import BurntView from '../components/common/BurntView';
 import ColorConstants from '../styles/constants/ColorConstants';

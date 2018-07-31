@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import TimeAgo from 'react-native-timeago';
 import ScoreIcon from '../common/icons/ScoreIcon';
 import LayoutConstants from '../../styles/constants/LayoutConstants';
+import ScoreIconNew from '../common/icons/ScoreIconNew';
 
 const PostProfileHeader = ({ postedBy, postedAt, overallScore, navigateToProfile }) => {
   const profile = postedBy.profile;
@@ -22,7 +23,7 @@ const PostProfileHeader = ({ postedBy, postedAt, overallScore, navigateToProfile
       </TouchableOpacity>
       {overallScore && (
         <View style={styles.overallScore}>
-          <ScoreIcon score={overallScore} width={34} height={34} />
+          <ScoreIconNew score={overallScore} size={35} />
         </View>
       )}
     </View>

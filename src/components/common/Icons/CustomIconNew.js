@@ -35,10 +35,10 @@ const Icons = {
   },
 };
 
-const CustomIcon = ({ width, height, name, viewBox }) => (
+const CustomIcon = ({ size, name, viewBox }) => (
   <Svg
-    height={height}
-    width={width}
+    height={size}
+    width={size}
     viewBox={viewBox}
   >
     {Icons[name].svg}
@@ -46,8 +46,7 @@ const CustomIcon = ({ width, height, name, viewBox }) => (
 );
 
 CustomIcon.defaultProps = {
-  width: 20,
-  height: 20,
+  size: 20,
   viewBox: '0 0 402.6 385.5'
 };
 
