@@ -59,5 +59,6 @@ const styles = StyleSheet.create({
   },
   title: {
     color: ColorConstants.tintColor,
+    fontSize: 18,
   },
 });

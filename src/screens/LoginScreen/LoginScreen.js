@@ -69,7 +69,7 @@ class LoginScreen extends Component {
     };
 
     return (
-      <BurntView centerCenterYah>
+      <BurntView style={styles.container}>
         <StatusBar backgroundColor={ColorConstants.statusBar.lightTint} />
 
         <Image style={styles.logo} source={require('../../assets/images/bk/loading-icon.png')} />
@@ -84,6 +84,10 @@ class LoginScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   logo: {
     width: 150,
     height: 150,
