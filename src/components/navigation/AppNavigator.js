@@ -18,10 +18,10 @@ export const routeNames = Object.assign({},
 const styles = StyleSheet.create({
   tabBar: {
     backgroundColor: '#fff',
-    height: 53,
-    paddingBottom: 0,
+    height: 48,
+    paddingVertical: 0,
+    marginVertical: 0,
     justifyContent: 'center',
-    paddingTop: 0,
     borderTopColor: 'transparent',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },

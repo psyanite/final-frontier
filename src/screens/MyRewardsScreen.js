@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, ScrollView, StatusBar, StyleSheet, Text } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import { Platform, ScrollView, StatusBar, StyleSheet } from 'react-native';
 import ColorConstants from '../styles/constants/ColorConstants';
 import { Header, Title } from '../components/navigation/components/Header';
 import StoreListContainer from './HomeScreen/components/StoreList/StoreListContainer';

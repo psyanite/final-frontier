@@ -47,9 +47,9 @@ export default class HomeScreen extends Component {
           {/*<Text>Click me</Text>*/}
         {/*</TouchableWithoutFeedback>*/}
 
-        <Animatable.View style={[styles.searchOverlay, this.state.isSearchMode ? { zIndex: 100 } : {}]} ref={this.handleSearchOverlayView}>
-          <Text>The Thing</Text>
-        </Animatable.View>
+        {/*<Animatable.View style={[styles.searchOverlay, this.state.isSearchMode ? { zIndex: 100 } : {}]} ref={this.handleSearchOverlayView}>*/}
+          {/*<Text>The Thing</Text>*/}
+        {/*</Animatable.View>*/}
 
 
         <StatusBar backgroundColor={ColorConstants.tintColor} />

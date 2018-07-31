@@ -27,6 +27,7 @@
       "package": "io.github.burntoast"
     },
     "androidStatusBar": {
+      "barStyle": "light-content",
       "backgroundColor": "#fcbf5e"
     },
     "facebookAppId": "223129748069711",

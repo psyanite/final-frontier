@@ -35,12 +35,26 @@ const StoreDetails = ({ store }) => {
 
           <TouchableOpacity onPress={() => Linking.openURL(address.google_url)}>
             <View style={styles.address}>
-              <View style={styles.firstLine}>
-                <CustomIcon name={CustomIcons.Location} width={20} height={20} />
-                <Text style={styles.addressLineText}>{address.address_first_line}</Text>
-              </View>
-              <Text style={styles.addressLine}>{address.address_street_number} {address.address_street_name}</Text>
-              <Text style={styles.addressLine}>{details.location}</Text>
+
+              {address.address_first_line ?
+                (<View>
+                  <View style={styles.firstLine}>
+                    <CustomIcon name={CustomIcons.Location} width={20} height={20} />
+                    <Text style={styles.addressLineText}>{address.address_first_line}</Text>
+                  </View>
+                  <Text style={styles.addressLine}>{address.address_street_number} {address.address_street_name}</Text>
+                  <Text style={styles.addressLine}>{details.location}</Text>
+                </View>)
+                :
+                (<View>
+                  <View style={styles.firstLine}>
+                    <CustomIcon name={CustomIcons.Location} width={20} height={20} />
+                    <Text style={styles.addressLineText}>{address.address_street_number} {address.address_street_name}</Text>
+                  </View>
+                  <Text style={styles.addressLine}>{details.location}</Text>
+                </View>)
+              }
+
             </View>
           </TouchableOpacity>
         </View>

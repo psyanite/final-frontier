@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import CustomIcon, { Names as CustomIcons } from '../../../../components/common/icons/CustomIcon';
 import LayoutConstants from '../../../../styles/constants/LayoutConstants';
 
 export default class StoreListItem extends Component {
@@ -15,44 +14,43 @@ export default class StoreListItem extends Component {
 
     view.location = store.location ? store.location.name : store.suburb.name;
 
-    view.cuisines = store.cuisines[0].name;
-
-      // {/*<TouchableOpacity style={styles.wrap} onPress={this.handleOnPress} activeOpacity={1.0}>*/}
-      // </TouchableOpacity>
+    view.cuisines = store.cuisines ? store.cuisines[0].name : '';
 
     return (
-      <View style={styles.wrap} key={view.id}>
-        <Image
-          resizeMode='cover'
-          style={styles.coverImage}
-          source={{ uri: view.cover_image }}
-        />
-        <View style={styles.deets}>
-          <Text style={styles.name}>{view.name}</Text>
-          <Text style={styles.location}>{view.location}</Text>
-          <Text style={styles.cuisines} numberOfLines={1} ellipsizeMode={'tail'}>{view.cuisines}</Text>
-          {/*<View style={styles.ratings}>*/}
-          {/*<View style={styles.ratingIcon}>*/}
-          {/*<Text style={styles.ratingCount}>23</Text>*/}
-          {/*<View style={styles.ratingIcon}>*/}
-          {/*<CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />*/}
-          {/*</View>*/}
-          {/*</View>*/}
-          {/*<View style={styles.ratingIcon}>*/}
-          {/*<Text style={styles.ratingCount}>15</Text>*/}
-          {/*<View style={styles.ratingIcon}>*/}
-          {/*<CustomIcon name={CustomIcons.BreadOkay} width={24} height={24} />*/}
-          {/*</View>*/}
-          {/*</View>*/}
-          {/*<View style={styles.ratingIcon}>*/}
-          {/*<Text style={styles.ratingCount}>2</Text>*/}
-          {/*<View style={styles.ratingIcon}>*/}
-          {/*<CustomIcon name={CustomIcons.BreadCross} width={24} height={24} />*/}
-          {/*</View>*/}
-          {/*</View>*/}
-          {/*</View>*/}
+      <TouchableOpacity style={styles.wrap} onPress={this.handleOnPress} activeOpacity={1.0}>
+        <View style={styles.wrap} key={view.id}>
+          <Image
+            resizeMode='cover'
+            style={styles.coverImage}
+            source={{ uri: view.cover_image }}
+          />
+          <View style={styles.deets}>
+            <Text style={styles.name}>{view.name}</Text>
+            <Text style={styles.location}>{view.location}</Text>
+            <Text style={styles.cuisines} numberOfLines={1} ellipsizeMode={'tail'}>{view.cuisines}</Text>
+            {/*<View style={styles.ratings}>*/}
+            {/*<View style={styles.ratingIcon}>*/}
+            {/*<Text style={styles.ratingCount}>23</Text>*/}
+            {/*<View style={styles.ratingIcon}>*/}
+            {/*<CustomIcon name={CustomIcons.BreadHeart} width={24} height={24} />*/}
+            {/*</View>*/}
+            {/*</View>*/}
+            {/*<View style={styles.ratingIcon}>*/}
+            {/*<Text style={styles.ratingCount}>15</Text>*/}
+            {/*<View style={styles.ratingIcon}>*/}
+            {/*<CustomIcon name={CustomIcons.BreadOkay} width={24} height={24} />*/}
+            {/*</View>*/}
+            {/*</View>*/}
+            {/*<View style={styles.ratingIcon}>*/}
+            {/*<Text style={styles.ratingCount}>2</Text>*/}
+            {/*<View style={styles.ratingIcon}>*/}
+            {/*<CustomIcon name={CustomIcons.BreadCross} width={24} height={24} />*/}
+            {/*</View>*/}
+            {/*</View>*/}
+            {/*</View>*/}
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }
