@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, ScrollView, StatusBar, StyleSheet, TouchableOpacity, View, } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity, View, } from 'react-native';
 import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -8,7 +8,6 @@ import PostListContainer from './components/PostListContainer';
 import ProfileDetails from '../ProfileScreen/components/ProfileDetails';
 import LayoutConstants from '../../styles/constants/LayoutConstants';
 import { routeNames } from '../../components/navigation/AppNavigator';
-import ColorConstants from '../../styles/constants/ColorConstants';
 
 class ProfileScreen extends Component {
 
@@ -18,16 +17,6 @@ class ProfileScreen extends Component {
     if (!this.isUserLoggedIn()) {
       this.props.navigation.navigate('Login');
     }
-  }
-
-  componentDidMount() {
-    this._navListener = this.props.navigation.addListener('didFocus', () => {
-      if (Platform.OS === 'android') StatusBar.setBackgroundColor(ColorConstants.statusBar.grey);
-    });
-  }
-
-  componentWillUnmount() {
-    this._navListener.remove();
   }
 
   isUserLoggedIn = () => ObjectHelpers.isNonEmpty(this.props.profile);

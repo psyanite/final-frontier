@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { ScrollView, Share, View } from 'react-native';
+import { ScrollView, Share } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-import * as ObjectHelpers from '../../lib/ObjectHelpers';
 import * as StoreActionCreators from '../../modules/store/actions';
 import StoreDetails from './components/StoreDetails';
 import PostListContainer from './components/PostListContainer';
@@ -21,11 +19,11 @@ class StoreScreen extends Component {
 
   share = (store) => {
     Share.share({
-      message: `Check out ${store.name}'s profile`,
+      message: `Check out ${store.name}`,
       url: 'https://expo.io/@psyanite/burntoast',
-      title: `Check out ${store.name}'s profile`,
+      title: `Check out ${store.name}`,
     }, {
-      dialogTitle: `Share ${store.name}'s profile`,
+      dialogTitle: `Share ${store.name}`,
     });
   };
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StatusBar, StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import WideButton, { Types as WideButtonTypes } from '../components/common/buttons/WideButton';
 import BurntView from '../components/common/BurntView';
 import ColorConstants from '../styles/constants/ColorConstants';
@@ -10,16 +10,6 @@ import { routeNames } from '../components/navigation/AppNavigator';
 export default class NewPostScreen extends Component {
 
   static navigationOptions = { header: null };
-
-  componentDidMount() {
-    this._navListener = this.props.navigation.addListener('didFocus', () => {
-      if (Platform.OS === 'android') StatusBar.setBackgroundColor(ColorConstants.statusBar.lightTint);
-    });
-  }
-
-  componentWillUnmount() {
-    this._navListener.remove();
-  }
 
   navigateToNewReview = () => this.props.navigation.navigate(routeNames.NewReview);
 

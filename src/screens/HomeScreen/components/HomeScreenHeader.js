@@ -13,12 +13,10 @@ export default class HomeScreenHeader extends Component {
     searchText: 'Search for a restaurant',
   };
 
-  getSearchBoxWidth = () => {
-    return this.state.animatedSearchEnabled.interpolate({
+  getSearchBoxWidth = () => this.state.animatedSearchEnabled.interpolate({
       inputRange: [0, 1],
       outputRange: [40, LayoutConstants.window.width - 2 * LayoutConstants.margins.l]
     });
-  };
 
   getLogoOpacity = () => this.state.animatedSearchEnabled.interpolate({
     inputRange: [0, 1],
@@ -84,7 +82,7 @@ export default class HomeScreenHeader extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: ColorConstants.tintColor,
+    backgroundColor: ColorConstants.statusBar.lightTint,
     height: 110,
   },
   logo: {
