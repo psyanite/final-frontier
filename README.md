@@ -19,11 +19,3 @@ React Native App using Expo
 * Update the host in config/index.js
 * Start project on Expo XDE
 * In Expo XDE, change Host to LAN, and enable Development Mode
-
-### More Info
-
-* Environment and 'enableReduxLogger' are defined in app.json, then loaded via config/index.js
-* Enable live reload, hot reload, or debugging remotely could cause issues with AsyncStorage
-* Enable redux logger for debugging
-* Press Ctrl-M in the emulator or shake device to bring up the developer menu
-* Use debug JS remotely on emulator or device for debugging
