@@ -7,8 +7,10 @@
 <p align="center">
 <img width="300" src="docs/images/homepage.jpg" />&nbsp;&nbsp;&nbsp;<img width="300" style="display:inline-block" src="docs/images/store.jpg" />
 </p>
- <img width="300" src="docs/images/profile.jpg" /> <img width="300" src="docs/images/loading-screen.jpg" />
 
+<p align="center">
+<img width="300" src="docs/images/profile.jpg" />&nbsp;&nbsp;&nbsp;<img width="300" src="docs/images/loading-screen.jpg" />
+</p>
 
 ### Development Tools
 
