@@ -4,7 +4,10 @@
 
 🔥 Check it out on [Expo](https://expo.io/@psyanite/burntoast) or [the simulator](https://expo.io/appetize-simulator?url=https://expo.io/@psyanite/burntoast)!
 
-<img width="300" style="display:inline-block" src="docs/images/homepage.jpg" /> <img width="300" style="display:inline-block" src="docs/images/store.jpg" /> <img width="300" src="docs/images/profile.jpg" /> <img width="300" src="docs/images/loading-screen.jpg" />
+<p align="center">
+<img width="300" style="display:inline-block" src="docs/images/homepage.jpg" /> <img width="300" style="display:inline-block" src="docs/images/store.jpg" />
+</p>
+ <img width="300" src="docs/images/profile.jpg" /> <img width="300" src="docs/images/loading-screen.jpg" />
 
 
 ### Development Tools
