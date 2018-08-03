@@ -1,4 +1,4 @@
-# ☄️ Final Frontier 0.1.0
+# ☄️ Final Frontier 1.0.0
 
 React Native App using Expo
 
