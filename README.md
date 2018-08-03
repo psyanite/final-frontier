@@ -1,5 +1,9 @@
 # ☄️ Final Frontier 1.0.0
 
+🔥 Check it out on Expo! https://expo.io/@psyanite/burntoast 
+🔥 Or check it out on the simulator! https://expo.io/appetize-simulator?url=https://expo.io/@psyanite/burntoast
+
+
 React Native App using Expo
 
 
