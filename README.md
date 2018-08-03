@@ -4,6 +4,7 @@
 
 🔥 Check it out on [Expo](https://expo.io/@psyanite/burntoast) or [the simulator](https://expo.io/appetize-simulator?url=https://expo.io/@psyanite/burntoast)!
 
+<img src="docs/images/homepage.jpg" />
 
 
 ### Development Tools
