@@ -18,7 +18,7 @@
 * Git
 * Git Bash
 * Git Kraken
-* Expo XDE
+* Expo
 * Genymotion
 
 ### How to reach the final frontier
