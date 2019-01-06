@@ -2,7 +2,7 @@
 
 ✨ React Native App using Expo consuming the [Toaster](https://github.com/psyanite/toaster/)
 
-🔥 Check it out on [Expo](https://expo.io/@psyanite/burntoast) or [the simulator](https://expo.io/appetize-simulator?url=https://expo.io/@psyanite/burntoast)!
+🔥 Check it out now on [Expo](https://expo.io/@psyanite/burntoast) or [the simulator](https://expo.io/appetize-simulator?url=https://expo.io/@psyanite/burntoast)!
 
 <p align="center">
 <img width="300" src="docs/images/homepage.jpg" />&nbsp;&nbsp;&nbsp;<img width="300" style="display:inline-block" src="docs/images/store.jpg" />
