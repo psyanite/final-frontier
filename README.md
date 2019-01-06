@@ -15,6 +15,7 @@
 ### Development Tools
 
 * IntelliJ
+* Git
 * Git Bash
 * Git Kraken
 * Expo XDE
